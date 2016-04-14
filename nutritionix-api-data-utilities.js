@@ -1,5 +1,6 @@
 /**
  * @license MIT
+ * @version 1.0.2
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -197,7 +198,7 @@
     var apiName, nutrient, fullNutrients = [];
 
     for (apiName in nutrientsMap) if (nutrientsMap.hasOwnProperty(apiName)) {
-      if (apiName in data) {
+      if (apiName in data && data[apiName] !== null) {
         nutrient = JSON.parse(JSON.stringify(nutrientsMap[apiName]));
         nutrient.value = data[apiName];
 
