@@ -1,0 +1,20 @@
+{
+  "name": "nutritionix-api-data-utilities",
+  "description": "Utilities to handle different data formats in Nutritionix APIs",
+  "main": "nutritionix-api-data-utilities.js",
+  "authors": [
+    "Yura Fedoriv <yurko.fedoriv@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "nutritionix"
+  ],
+  "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

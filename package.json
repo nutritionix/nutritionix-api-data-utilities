@@ -1,0 +1,22 @@
+{
+  "name": "nutritionix-api-data-utilities",
+  "version": "1.0.0",
+  "description": "Utilities to handle different data formats in Nutritionix APIs",
+  "main": "nutritionix-api-data-utilities.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nutritionix/nutritionix-api-data-utilities.git"
+  },
+  "keywords": [
+    "nutritionix"
+  ],
+  "author": "Yura Fedoriv <yurko.fedoriv@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nutritionix/nutritionix-api-data-utilities/issues"
+  },
+  "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities#readme"
+}
