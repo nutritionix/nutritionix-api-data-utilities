@@ -1,6 +1,6 @@
 /**
  * @license MIT
- * @version 1.0.2
+ * @version 1.2.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -189,18 +189,27 @@
   };
 
   /**
-   * Uses top level properties from provided data object to construct full nutrients array
+   * Uses top level properties from provided data object to construct full nutrients array.
+   * Supports api names and attr ids as keys of the source object
    *
    * @param {Object} data
    * @returns {Array} Full nutrients array
    */
   function buildFullNutrientsArray(data) {
-    var apiName, nutrient, fullNutrients = [];
+    var apiName, nutrient, fullNutrients = [], value;
 
     for (apiName in nutrientsMap) if (nutrientsMap.hasOwnProperty(apiName)) {
+      value = null;
+
       if (apiName in data && data[apiName] !== null) {
+        value = data[apiName];
+      } else if (nutrientsMap[apiName].attr_id in data && data[nutrientsMap[apiName].attr_id] !== null) {
+        value = data[nutrientsMap[apiName].attr_id];
+      }
+
+      if (value !== null) {
         nutrient = JSON.parse(JSON.stringify(nutrientsMap[apiName]));
-        nutrient.value = data[apiName];
+        nutrient.value = value;
 
         fullNutrients.push(nutrient);
       }
@@ -209,9 +218,31 @@
     return fullNutrients;
   }
 
+  /**
+   * Generates object with top level nf_attributes from full_nuteients array
+   * @param {Object[]} fullNutrients Full nutrients array
+   * @returns {Object} Nf attributes object
+   */
+  function convertFullNutrientsToNfAttributes(fullNutrients) {
+    var i, nutrient, apiName, nfAttributes = {};
+
+    for (i = 0; i < fullNutrients.length; i += 1) {
+      nutrient = fullNutrients[i];
+
+      for (apiName in nutrientsMap) if (nutrientsMap.hasOwnProperty(apiName)) {
+        if (nutrientsMap[apiName].attr_id === nutrient.attr_id) {
+          nfAttributes[apiName] = nutrient.value;
+        }
+      }
+    }
+
+    return nfAttributes;
+  }
+
   return {
-    nutrientsMap:             nutrientsMap,
-    convertV1ItemToTrackFood: convertV1ItemToTrackFood,
-    buildFullNutrientsArray:  buildFullNutrientsArray
+    nutrientsMap:                       nutrientsMap,
+    convertV1ItemToTrackFood:           convertV1ItemToTrackFood,
+    buildFullNutrientsArray:            buildFullNutrientsArray,
+    convertFullNutrientsToNfAttributes: convertFullNutrientsToNfAttributes
   };
 }));
