@@ -713,7 +713,7 @@
 
       if (value !== null) {
         nutrient = JSON.parse(JSON.stringify(nutrientsMap[apiName]));
-        nutrient.value = value;
+        nutrient.value = parseFloat(value);
 
         fullNutrients.push(nutrient);
       }
