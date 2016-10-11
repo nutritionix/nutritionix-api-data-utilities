@@ -658,14 +658,6 @@
     };
 
     for (var field in food) if (food.hasOwnProperty(field)) {
-      if (field in v1Item) {
-        food[field] = v1Item[field];
-      }
-
-      if (field in extraFields) {
-        food[field] = extraFields[field];
-      }
-
       if (field in convertV1ItemToTrackFood.mapping) {
         var mappedField = convertV1ItemToTrackFood.mapping[field];
 
@@ -676,6 +668,14 @@
         if (mappedField in extraFields) {
           food[field] = extraFields[mappedField];
         }
+      }
+
+      if (field in v1Item) {
+        food[field] = v1Item[field];
+      }
+
+      if (field in extraFields) {
+        food[field] = extraFields[field];
       }
     }
 
