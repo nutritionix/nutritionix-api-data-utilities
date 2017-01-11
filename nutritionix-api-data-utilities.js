@@ -59,8 +59,20 @@
       "unit":     "g",
       "usda_tag": "FIBTG"
     },
-    "nf_calcium_dv":          {"attr_id": 301, "name": "Calcium, Ca", "unit": "mg", "usda_tag": "CA"},
-    "nf_iron_dv":             {"attr_id": 303, "name": "Iron, Fe", "unit": "mg", "usda_tag": "FE"},
+    "nf_calcium_dv":          {
+      "attr_id":     301,
+      "name":        "Calcium, Ca",
+      "unit":        "mg",
+      "usda_tag":    "CA",
+      "daily_value": 1000
+    },
+    "nf_iron_dv":             {
+      "attr_id":     303,
+      "name":        "Iron, Fe",
+      "unit":        "mg",
+      "usda_tag":    "FE",
+      "daily_value": 18
+    },
     "nf_mg":                  {"attr_id": 304, "name": "Magnesium, Mg", "unit": "mg", "usda_tag": "MG"},
     "nf_p":                   {"attr_id": 305, "name": "Phosphorus, P", "unit": "mg", "usda_tag": "P"},
     "nf_potassium":           {"attr_id": 306, "name": "Potassium, K", "unit": "mg", "usda_tag": "K"},
@@ -70,13 +82,27 @@
     "nf_fld":                 {"attr_id": 313, "name": "Fluoride, F", "unit": "\u00b5g", "usda_tag": "FLD"},
     "nf_mn":                  {"attr_id": 315, "name": "Manganese, Mn", "unit": "mg", "usda_tag": "MN"},
     "nf_se":                  {"attr_id": 317, "name": "Selenium, Se", "unit": "\u00b5g", "usda_tag": "SE"},
-    "nf_vitamin_a_dv":        {"attr_id": 318, "name": "Vitamin A, IU", "unit": "IU", "usda_tag": "VITA_IU"},
+    "nf_vitamin_a_dv":        {
+      "attr_id":     318,
+      "name":        "Vitamin A, IU",
+      "unit":        "IU",
+      "usda_tag":    "VITA_IU",
+      "daily_value": 5000
+    },
     "nf_retol":               {"attr_id": 319, "name": "Retinol", "unit": "\u00b5g", "usda_tag": "RETOL"},
     "nf_vitamin_c_dv":        {
-      "attr_id":  401,
-      "name":     "Vitamin C, total ascorbic acid",
-      "unit":     "mg",
-      "usda_tag": "VITC"
+      "attr_id":     401,
+      "name":        "Vitamin C, total ascorbic acid",
+      "unit":        "mg",
+      "usda_tag":    "VITC",
+      "daily_value": 60
+    },
+    "nf_vitamin_d_pct":       {
+      "attr_id":     324,
+      "name":        "Vitamin D",
+      "unit":        "IU",
+      "usda_tag":    "VITD",
+      "daily_value": 400
     },
     "nf_cholesterol":         {"attr_id": 601, "name": "Cholesterol", "unit": "mg", "usda_tag": "CHOLE"},
     "nf_trans_fatty_acid":    {
@@ -712,8 +738,13 @@
       }
 
       if (value !== null) {
-        nutrient = JSON.parse(JSON.stringify(nutrientsMap[apiName]));
+        nutrient       = JSON.parse(JSON.stringify(nutrientsMap[apiName]));
         nutrient.value = parseFloat(value);
+
+        if (nutrient.daily_value) {
+          nutrient.value = nutrient.value / 100 * nutrientsMap[apiName].daily_value;
+          delete nutrient.daily_value;
+        }
 
         fullNutrients.push(nutrient);
       }
@@ -736,6 +767,10 @@
       for (apiName in nutrientsMap) if (nutrientsMap.hasOwnProperty(apiName)) {
         if (nutrientsMap[apiName].attr_id === nutrient.attr_id) {
           nfAttributes[apiName] = nutrient.value;
+
+          if (nutrientsMap[apiName].daily_value) {
+            nfAttributes[apiName] = nfAttributes[apiName] / nutrientsMap[apiName].daily_value * 100;
+          }
         }
       }
     }
