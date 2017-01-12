@@ -97,7 +97,7 @@
       "usda_tag":    "VITC",
       "daily_value": 60
     },
-    "nf_vitamin_d_pct":       {
+    "nf_vitamin_d_dv":        {
       "attr_id":     324,
       "name":        "Vitamin D",
       "unit":        "IU",
