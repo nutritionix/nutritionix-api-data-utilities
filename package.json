@@ -2,7 +2,7 @@
   "name": "nutritionix-api-data-utilities",
   "version": "1.6.0",
   "description": "Utilities to handle different data formats in Nutritionix APIs",
-  "main": "nutritionix-api-data-utilities.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/nutritionix/nutritionix-api-data-utilities/issues"
   },
-  "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities#readme"
+  "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "browserify": "^13.3.0"
+  }
 }
