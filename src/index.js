@@ -6,12 +6,10 @@ var attrMap = nutrientsArtifacts.attrMap;
 const utils = require('./utils');
 
 var _ = {
-  mapKeys: require('lodash/mapKeys'),
-  uniqBy: require('lodash/uniqBy'),
+  mapKeys: utils.mapKeys,
+  uniqBy: utils.uniqBy,
   defaults: utils.defaults,
-  reduce: require('lodash/reduce'),
-  round: require('lodash/round'),
-  set: require('lodash/set')
+  reduce: utils.reduce
 };
 
 /**
@@ -120,7 +118,7 @@ function buildFullNutrientsArray(data) {
   return _.reduce(nutrientsMap, function(accum, nutrDetails, v1AttrName) {
     if (data[v1AttrName]) {
       //round to 4 decimal places
-      let value = _.round(data[v1AttrName], 4);
+      let value = parseFloat(data[v1AttrName].toFixed(4))
       accum.push({
         attr_id: nutrDetails.attr_id,
         value: value
@@ -139,11 +137,9 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
   return _.reduce(fullNutrients, function(accum, val) {
     var nfKey = attrMap[val.attr_id];
     if (nfKey) {
-      return _.set(accum, nfKey, val.value);
-    } else {
-      //invalid attr_id, discard.
-      return accum;
+      accum[nfKey] = val.value;
     }
+    return accum;
   }, {});
 }
 
