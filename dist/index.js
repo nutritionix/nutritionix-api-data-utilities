@@ -614,19 +614,59 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         '859': 'NULL'
       };
 
+      var baseTrackObj = _defineProperty({
+        metadata: {},
+        food_name: undefined,
+        brand_name: null,
+        serving_qty: 1,
+        serving_unit: 'serving',
+        serving_weight_grams: null,
+        nf_calories: null,
+        nf_total_fat: null,
+        nf_saturated_fat: null,
+        nf_cholesterol: null,
+        nf_sodium: null,
+        nf_total_carbohydrate: null,
+        nf_dietary_fiber: null,
+        nf_sugars: null,
+        nf_protein: null,
+        nf_potassium: null,
+        nf_p: null,
+        full_nutrients: [],
+        created_at: undefined,
+        consumed_at: undefined,
+        nix_brand_name: null,
+        nix_brand_id: null,
+        nix_item_name: null,
+        nix_item_id: null,
+        upc: null,
+        source: null,
+        ndb_no: null,
+        natural_query_id: null,
+        tags: null,
+        photo: null,
+        lat: null,
+        lng: null,
+        note: null,
+        alt_measures: []
+      }, "tags", {});
+
       module.exports = {
         nutrientsMap: nutrientsMap,
         fullNutrientsDefinitions: fullNutrientsDefinitions,
-        attrMap: attrMap
+        attrMap: attrMap,
+        baseTrackObj: baseTrackObj
       };
     }, {}], 2: [function (require, module, exports) {
       'use strict';
 
-      var nutrientsArtifacts = require('./artifacts.js');
-      var nutrientsMap = nutrientsArtifacts.nutrientsMap;
-      var fullNutrientsDefinitions = nutrientsArtifacts.fullNutrientsDefinitions;
-      var attrMap = nutrientsArtifacts.attrMap;
       var utils = require('./utils');
+
+      var _require = require('./artifacts.js'),
+          nutrientsMap = _require.nutrientsMap,
+          fullNutrientsDefinitions = _require.fullNutrientsDefinitions,
+          attrMap = _require.attrMap,
+          baseTrackObj = _require.baseTrackObj;
 
       var _ = {
         mapKeys: utils.mapKeys,
@@ -670,45 +710,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        */
 
       function convertV1ItemToTrackFood(v1Item, defaultObj) {
-        v1Item = (typeof v1Item === "undefined" ? "undefined" : _typeof(v1Item)) === 'object' ? v1Item : {};
-        defaultObj = (typeof defaultObj === "undefined" ? "undefined" : _typeof(defaultObj)) === 'object' ? v1Item : {};
-
-        var base = _defineProperty({
-          metadata: {},
-          food_name: undefined,
-          brand_name: null,
-          serving_qty: 1,
-          serving_unit: 'serving',
-          serving_weight_grams: null,
-          nf_calories: null,
-          nf_total_fat: null,
-          nf_saturated_fat: null,
-          nf_cholesterol: null,
-          nf_sodium: null,
-          nf_total_carbohydrate: null,
-          nf_dietary_fiber: null,
-          nf_sugars: null,
-          nf_protein: null,
-          nf_potassium: null,
-          nf_p: null,
-          full_nutrients: [],
-          created_at: undefined,
-          consumed_at: undefined,
-          nix_brand_name: null,
-          nix_brand_id: null,
-          nix_item_name: null,
-          nix_item_id: null,
-          upc: null,
-          source: null,
-          ndb_no: null,
-          natural_query_id: null,
-          tags: null,
-          photo: null,
-          lat: null,
-          lng: null,
-          note: null,
-          alt_measures: []
-        }, "tags", {});
+        v1Item = (typeof v1Item === "undefined" ? "undefined" : _typeof(v1Item)) === 'object' && v1Item !== null ? v1Item : {};
+        defaultObj = (typeof defaultObj === "undefined" ? "undefined" : _typeof(defaultObj)) === 'object' && defaultObj !== null ? defaultObj : {};
 
         //apply any necessary aliases
         var v1PickFields = _.mapKeys(v1Item, function (value, key) {
@@ -725,7 +728,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return nutr.attr_id;
         });
 
-        return _.defaults({ full_nutrients: calced_nutrients }, defaultObj, base);
+        return _.defaults({ full_nutrients: calced_nutrients }, defaultObj, baseTrackObj);
       }
 
       /**
@@ -798,12 +801,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           rest[_key - 1] = arguments[_key];
         }
 
-        for (var i = 0; i < rest.length; i++) {
+        var _loop = function _loop(i) {
           Object.keys(rest[i]).forEach(function (key) {
             if (source[key] === undefined) {
-              source[key] = rest[key];
+              source[key] = rest[i][key];
             }
           });
+        };
+
+        for (var i = 0; i < rest.length; i++) {
+          _loop(i);
         }
         return source;
       }

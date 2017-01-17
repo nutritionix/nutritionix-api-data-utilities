@@ -17,6 +17,7 @@ const {
 describe('convertV1ItemToTrackFood', () => {
   it('should return an object', () => {
     expect(convertV1ItemToTrackFood()).to.be.an('object');
+    console.log(convertV1ItemToTrackFood(null, food) && null)
   });
 });
 

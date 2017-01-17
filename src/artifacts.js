@@ -1,7 +1,7 @@
 'use strict';
 
 
-  var fullNutrientsDefinitions = {
+  const fullNutrientsDefinitions = {
     '203': {attr_id: 203, name: 'Protein', unit: 'g', usda_tag: 'PROCNT'},
     '204': {
       attr_id:  204,
@@ -505,7 +505,7 @@
     }
   };
 
-var nutrientsMap = {
+const nutrientsMap = {
   nf_protein: fullNutrientsDefinitions['203'],
   nf_total_fat: fullNutrientsDefinitions['204'],
   nf_total_carbohydrate: fullNutrientsDefinitions['205'],
@@ -548,7 +548,7 @@ var nutrientsMap = {
   nf_polyunsaturated_fat: fullNutrientsDefinitions['646']
 }
 
-var attrMap = {
+const attrMap = {
   '203': 'nf_protein',
   '204': 'nf_total_fat',
   '205': 'nf_total_carbohydrate',
@@ -589,11 +589,50 @@ var attrMap = {
   '645': 'nf_monounsaturated_fat',
   '646': 'nf_polyunsaturated_fat',
   '859': 'NULL'
-}
+};
+
+const baseTrackObj = {
+  metadata:              {},
+  food_name:             undefined,
+  brand_name:            null,
+  serving_qty:           1,
+  serving_unit:          'serving',
+  serving_weight_grams:  null,
+  nf_calories:           null,
+  nf_total_fat:          null,
+  nf_saturated_fat:      null,
+  nf_cholesterol:        null,
+  nf_sodium:             null,
+  nf_total_carbohydrate: null,
+  nf_dietary_fiber:      null,
+  nf_sugars:             null,
+  nf_protein:            null,
+  nf_potassium:          null,
+  nf_p:                  null,
+  full_nutrients:        [],
+  created_at:            undefined,
+  consumed_at:           undefined,
+  nix_brand_name:        null,
+  nix_brand_id:          null,
+  nix_item_name:         null,
+  nix_item_id:           null,
+  upc:                   null,
+  source:                null,
+  ndb_no:                null,
+  natural_query_id:      null,
+  tags:                  null,
+  photo: null,
+  lat: null,
+  lng: null,
+  note: null,
+  alt_measures: [],
+  tags: {}
+};
 
 
 module.exports = {
-  nutrientsMap: nutrientsMap,
-  fullNutrientsDefinitions: fullNutrientsDefinitions,
-  attrMap: attrMap
+  nutrientsMap,
+  fullNutrientsDefinitions,
+  attrMap,
+  baseTrackObj
 };

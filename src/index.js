@@ -1,11 +1,15 @@
 'use strict';
-var nutrientsArtifacts = require('./artifacts.js');
-var nutrientsMap = nutrientsArtifacts.nutrientsMap;
-var fullNutrientsDefinitions = nutrientsArtifacts.fullNutrientsDefinitions;
-var attrMap = nutrientsArtifacts.attrMap;
-const utils = require('./utils');
 
-var _ = {
+
+const utils = require('./utils');
+const {
+  nutrientsMap,
+  fullNutrientsDefinitions,
+  attrMap,
+  baseTrackObj
+} = require('./artifacts.js');
+
+const _ = {
   mapKeys: utils.mapKeys,
   uniqBy: utils.uniqBy,
   defaults: utils.defaults,
@@ -48,46 +52,9 @@ var v1TypeAliases = {
  */
 
 function convertV1ItemToTrackFood(v1Item, defaultObj) {
-  v1Item = (typeof v1Item === 'object') ? v1Item : {};
-  defaultObj = (typeof defaultObj === 'object') ? v1Item : {};
+  v1Item = (typeof v1Item === 'object' && v1Item !== null) ? v1Item : {};
+  defaultObj = (typeof defaultObj === 'object' && defaultObj !== null) ? defaultObj : {};
 
-  var base = {
-    metadata:              {},
-    food_name:             undefined,
-    brand_name:            null,
-    serving_qty:           1,
-    serving_unit:          'serving',
-    serving_weight_grams:  null,
-    nf_calories:           null,
-    nf_total_fat:          null,
-    nf_saturated_fat:      null,
-    nf_cholesterol:        null,
-    nf_sodium:             null,
-    nf_total_carbohydrate: null,
-    nf_dietary_fiber:      null,
-    nf_sugars:             null,
-    nf_protein:            null,
-    nf_potassium:          null,
-    nf_p:                  null,
-    full_nutrients:        [],
-    created_at:            undefined,
-    consumed_at:           undefined,
-    nix_brand_name:        null,
-    nix_brand_id:          null,
-    nix_item_name:         null,
-    nix_item_id:           null,
-    upc:                   null,
-    source:                null,
-    ndb_no:                null,
-    natural_query_id:      null,
-    tags:                  null,
-    photo: null,
-    lat: null,
-    lng: null,
-    note: null,
-    alt_measures: [],
-    tags: {}
-  };
 
   //apply any necessary aliases
   let v1PickFields = _.mapKeys(v1Item, function(value, key) {
@@ -104,7 +71,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
     return nutr.attr_id;
   });
 
-  return _.defaults({full_nutrients: calced_nutrients}, defaultObj, base);
+  return _.defaults({full_nutrients: calced_nutrients}, defaultObj, baseTrackObj);
 }
 
 /**
