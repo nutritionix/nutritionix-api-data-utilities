@@ -1,2 +1,0 @@
-# build for browser
-node_modules/browserify/bin/cmd.js index.js > nutritionix-api-data-utilities.js
