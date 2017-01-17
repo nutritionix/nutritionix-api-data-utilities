@@ -3,15 +3,15 @@ var nutrientsArtifacts = require('./artifacts.js');
 var nutrientsMap = nutrientsArtifacts.nutrientsMap;
 var fullNutrientsDefinitions = nutrientsArtifacts.fullNutrientsDefinitions;
 var attrMap = nutrientsArtifacts.attrMap;
+const utils = require('./utils');
 
 var _ = {
   mapKeys: require('lodash/mapKeys'),
   uniqBy: require('lodash/uniqBy'),
-  defaults: require('lodash/defaults'),
+  defaults: utils.defaults,
   reduce: require('lodash/reduce'),
   round: require('lodash/round'),
-  set: require('lodash/set'),
-  map: require('lodash/map')
+  set: require('lodash/set')
 };
 
 /**
@@ -157,12 +157,13 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
  * @returns {Object[]} Mutated full nutrients array
  */
 function extendFullNutrientsWithMetaData(fullNutrients) {
-  return _.map(fullNutrients, function(nutr) {
+  return fullNutrients.map(function(nutr) {
     //found matching nutrient, extend.
     let nutrDefMatch = fullNutrientsDefinitions[nutr.attr_id];
     if (nutrDefMatch) {
-      return _.defaults({nutr, nutrDefMatch});
+      return _.defaults(nutr, nutrDefMatch);
     } else {
+      return nutr;
       //no match, return base.
     }
   });
