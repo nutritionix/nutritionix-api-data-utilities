@@ -11,7 +11,7 @@ const {
   buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData
-} = require('../src/index');
+} = require('../dist/min/index');
 
 
 describe('convertV1ItemToTrackFood', () => {

@@ -2,6 +2,8 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 !function (e) {
@@ -705,6 +707,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return Array.isArray(test) && test.length;
       }
 
+      function optimisticallyMergeArrays(comparator) {
+        var _ref;
+
+        for (var _len = arguments.length, cols = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+          cols[_key - 1] = arguments[_key];
+        }
+
+        var mergeCols = cols.filter(hasItems);
+        //base cases
+        if (!mergeCols.length) return [];
+        if (mergeCols.length === 1) return mergeCols[0];
+
+        var flat = (_ref = []).concat.apply(_ref, _toConsumableArray(mergeCols));
+        return _.uniqBy(flat, comparator);
+      }
+
       /**
        *
        * @param {object} v1Item Api V1 Food object
@@ -726,20 +744,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         var v1FullNutrs = buildFullNutrientsArray(v1PickFields);
 
         //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
-        var possibleDuplicates = hasItems(defaultObj.full_nutrients) && hasItems(v1FullNutrs);
-
-        var fullNutrArray = void 0;
-        if (possibleDuplicates) {
-          var possibleDuplicateArray = defaultObj.full_nutrients.concat(v1FullNutrs);
-          //remove duplicates
-          var calced_nutrients = _.uniqBy(possibleDuplicateArray, function (nutr) {
-            return nutr.attr_id;
-          });
-
-          fullNutrArray = calced_nutrients;
-        } else {
-          fullNutrArray = hasItems(defaultObj.full_nutrients) ? defaultObj.full_nutrients.concat(v1FullNutrs) : v1FullNutrs;
-        }
+        var fullNutrArray = optimisticallyMergeArrays(function (nutr) {
+          return nutr.attr_id;
+        }, defaultObj.full_nutrients, v1FullNutrs);
 
         return _.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1PickFields, baseTrackObj);
       }
@@ -810,8 +817,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
 
       function defaults(source) {
-        for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-          rest[_key - 1] = arguments[_key];
+        for (var _len2 = arguments.length, rest = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          rest[_key2 - 1] = arguments[_key2];
         }
 
         var _loop = function _loop(i) {

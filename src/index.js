@@ -47,6 +47,16 @@ function hasItems(test) {
   return Array.isArray(test) && test.length;
 }
 
+function optimisticallyMergeArrays(comparator, ...cols) {
+  let mergeCols = cols.filter(hasItems);
+  //base cases
+  if (!mergeCols.length) return [];
+  if (mergeCols.length === 1) return mergeCols[0];
+
+  let flat = [].concat(...mergeCols);
+  return _.uniqBy(flat, comparator);
+}
+
 /**
  *
  * @param {object} v1Item Api V1 Food object
@@ -69,21 +79,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   let v1FullNutrs = buildFullNutrientsArray(v1PickFields);
 
   //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
-  const possibleDuplicates = hasItems(defaultObj.full_nutrients) && hasItems(v1FullNutrs);
-
-  let fullNutrArray;
-  if (possibleDuplicates) {
-    let possibleDuplicateArray = defaultObj.full_nutrients.concat(v1FullNutrs);
-    //remove duplicates
-    let calced_nutrients = _.uniqBy(possibleDuplicateArray, function(nutr) {
-      return nutr.attr_id;
-    });
-
-    fullNutrArray = calced_nutrients;
-  } else {
-    fullNutrArray = hasItems(defaultObj.full_nutrients) ? defaultObj.full_nutrients.concat(v1FullNutrs) : v1FullNutrs;
-  }
-
+  let fullNutrArray = optimisticallyMergeArrays(nutr => nutr.attr_id, defaultObj.full_nutrients, v1FullNutrs);
 
   return _.defaults({full_nutrients: fullNutrArray}, defaultObj, v1PickFields, baseTrackObj);
 }
