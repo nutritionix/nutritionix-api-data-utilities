@@ -701,6 +701,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         item_id: 'nix_item_id'
       };
 
+      function hasItems(test) {
+        return Array.isArray(test) && test.length;
+      }
+
       /**
        *
        * @param {object} v1Item Api V1 Food object
@@ -719,21 +723,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         //build a full nutrient array from any 'nf' fields from the v1item;
-        var v1FullNutrs = buildFullNutrientsArray(v1Item);
+        var v1FullNutrs = buildFullNutrientsArray(v1PickFields);
 
         //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
-        var possibleDuplicateArray = Array.isArray(defaultObj.full_nutrients) ? defaultObj.full_nutrients.concat(v1FullNutrs) : v1FullNutrs;
-        //remove duplicates
-        var calced_nutrients = _.uniqBy(possibleDuplicateArray, function (nutr) {
-          return nutr.attr_id;
-        });
+        var possibleDuplicates = hasItems(defaultObj.full_nutrients) && hasItems(v1FullNutrs);
 
-        return _.defaults({ full_nutrients: calced_nutrients }, defaultObj, baseTrackObj);
+        var fullNutrArray = void 0;
+        if (possibleDuplicates) {
+          var possibleDuplicateArray = defaultObj.full_nutrients.concat(v1FullNutrs);
+          //remove duplicates
+          var calced_nutrients = _.uniqBy(possibleDuplicateArray, function (nutr) {
+            return nutr.attr_id;
+          });
+
+          fullNutrArray = calced_nutrients;
+        } else {
+          fullNutrArray = hasItems(defaultObj.full_nutrients) ? defaultObj.full_nutrients.concat(v1FullNutrs) : v1FullNutrs;
+        }
+
+        return _.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1PickFields, baseTrackObj);
       }
 
       /**
        * Uses top level properties from provided data object to construct full nutrients array.
-       * Supports api names and attr ids as keys of the source object
+       * Supports api names as keys of the source object
        *
        * @param {Object} data
        * @returns {Array} Full nutrients array
