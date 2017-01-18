@@ -35,13 +35,17 @@ module.exports = {
 };
 
 
-var v1TypeAliases = {
+const v1TypeAliases = {
   item_name: 'food_name',
   nf_serving_size_qty:  'food_name',
   nf_serving_size_unit: 'serving_unit',
   nf_serving_weight_grams: 'serving_weight_grams',
   item_id: 'nix_item_id'
 };
+
+function hasItems(test) {
+  return Array.isArray(test) && test.length;
+}
 
 /**
  *
@@ -62,21 +66,31 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   });
 
   //build a full nutrient array from any 'nf' fields from the v1item;
-  let v1FullNutrs = buildFullNutrientsArray(v1Item);
+  let v1FullNutrs = buildFullNutrientsArray(v1PickFields);
 
   //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
-  let possibleDuplicateArray = Array.isArray(defaultObj.full_nutrients) ? defaultObj.full_nutrients.concat(v1FullNutrs) : v1FullNutrs;
-  //remove duplicates
-  let calced_nutrients = _.uniqBy(possibleDuplicateArray, function(nutr) {
-    return nutr.attr_id;
-  });
+  const possibleDuplicates = hasItems(defaultObj.full_nutrients) && hasItems(v1FullNutrs);
 
-  return _.defaults({full_nutrients: calced_nutrients}, defaultObj, baseTrackObj);
+  let fullNutrArray;
+  if (possibleDuplicates) {
+    let possibleDuplicateArray = defaultObj.full_nutrients.concat(v1FullNutrs);
+    //remove duplicates
+    let calced_nutrients = _.uniqBy(possibleDuplicateArray, function(nutr) {
+      return nutr.attr_id;
+    });
+
+    fullNutrArray = calced_nutrients;
+  } else {
+    fullNutrArray = hasItems(defaultObj.full_nutrients) ? defaultObj.full_nutrients.concat(v1FullNutrs) : v1FullNutrs;
+  }
+
+
+  return _.defaults({full_nutrients: fullNutrArray}, defaultObj, v1PickFields, baseTrackObj);
 }
 
 /**
  * Uses top level properties from provided data object to construct full nutrients array.
- * Supports api names and attr ids as keys of the source object
+ * Supports api names as keys of the source object
  *
  * @param {Object} data
  * @returns {Array} Full nutrients array
@@ -85,7 +99,7 @@ function buildFullNutrientsArray(data) {
   return _.reduce(nutrientsMap, function(accum, nutrDetails, v1AttrName) {
     if (data[v1AttrName]) {
       //round to 4 decimal places
-      let value = parseFloat(data[v1AttrName].toFixed(4))
+      let value = parseFloat(data[v1AttrName].toFixed(4));
       accum.push({
         attr_id: nutrDetails.attr_id,
         value: value
