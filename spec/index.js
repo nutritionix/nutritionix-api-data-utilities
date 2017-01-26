@@ -3,6 +3,8 @@
 const chai = require('chai');
 const expect = chai.expect;
 const food = require('./food');
+const v1Food = require('./v1Food');
+const FILE = process.env.IGNORE_MINIFICATION ? '../src/' : '../dist/min/index';
 const {
   nutrientsMap,
   fullNutrientsDefinitions,
@@ -11,7 +13,7 @@ const {
   buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData
-} = require('../dist/min/index');
+} = require(FILE);
 
 
 describe('convertV1ItemToTrackFood', () => {
@@ -29,6 +31,10 @@ describe('convertV1ItemToTrackFood', () => {
     expect(res.full_nutrients.length).to.equal(2);
     let calFN = res.full_nutrients.filter(x => x.attr_id === 208)[0];
     expect(calFN.value).to.equal(5);
+  });
+  it('should correctly map daily value fields', () => {
+    let input = {nf_iron_dv: 50};
+    expect(convertV1ItemToTrackFood(input).full_nutrients.filter(v => v.attr_id === 303)[0].value).to.equal(0.18 * input.nf_iron_dv);
   });
 });
 

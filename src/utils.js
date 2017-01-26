@@ -4,7 +4,8 @@ module.exports = {
   defaults,
   mapKeys,
   reduce,
-  uniqBy
+  uniqBy,
+  keys
 };
 
 function defaults(source, ...rest) {
@@ -70,4 +71,12 @@ function uniqBy(array, comparator) {
   });
 
   return result;
+}
+
+function keys(obj) {
+  let ownKeys = [];
+  for (let prop in obj) {
+    if (obj.hasOwnProperty(prop)) ownKeys.push(prop);
+  }
+  return ownKeys;
 }

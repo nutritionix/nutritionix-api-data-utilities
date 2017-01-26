@@ -653,29 +653,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         alt_measures: []
       }, "tags", {});
 
+      var dailyValueTransforms = {
+        //vitamin_a_dv
+        318: function _(v) {
+          return v * 50;
+        },
+        //vitamin_c_dv
+        401: function _(v) {
+          return v * 0.6;
+        },
+        //calcium_dv
+        301: function _(v) {
+          return v * 10;
+        },
+        //iron_dv
+        303: function _(v) {
+          return v * 0.18;
+        },
+        //vitam_d_dv
+        324: function _(v) {
+          return v * 4;
+        }
+      };
+
       module.exports = {
         nutrientsMap: nutrientsMap,
         fullNutrientsDefinitions: fullNutrientsDefinitions,
         attrMap: attrMap,
-        baseTrackObj: baseTrackObj
+        baseTrackObj: baseTrackObj,
+        dailyValueTransforms: dailyValueTransforms
       };
     }, {}], 2: [function (require, module, exports) {
       'use strict';
 
-      var utils = require('./utils');
+      var _ = require('./utils');
 
       var _require = require('./artifacts.js'),
           nutrientsMap = _require.nutrientsMap,
           fullNutrientsDefinitions = _require.fullNutrientsDefinitions,
           attrMap = _require.attrMap,
-          baseTrackObj = _require.baseTrackObj;
-
-      var _ = {
-        mapKeys: utils.mapKeys,
-        uniqBy: utils.uniqBy,
-        defaults: utils.defaults,
-        reduce: utils.reduce
-      };
+          baseTrackObj = _require.baseTrackObj,
+          dailyValueTransforms = _require.dailyValueTransforms;
 
       /**
        * @license MIT
@@ -685,6 +703,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
        * @description
        * Utilities to handle different data formats in Nutritionix APIs
        */
+
+
       module.exports = {
         nutrientsMap: nutrientsMap,
         fullNutrientsDefinitions: fullNutrientsDefinitions,
@@ -748,7 +768,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           return nutr.attr_id;
         }, defaultObj.full_nutrients, v1FullNutrs);
 
-        return _.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1PickFields, baseTrackObj);
+        //keep relevant fields from v1 item
+        var v1Defaults = _.reduce(_.keys(baseTrackObj), function (accum, key) {
+          accum[key] = v1PickFields[key];
+          return accum;
+        }, {});
+
+        return _.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1Defaults, baseTrackObj);
       }
 
       /**
@@ -761,8 +787,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       function buildFullNutrientsArray(data) {
         return _.reduce(nutrientsMap, function (accum, nutrDetails, v1AttrName) {
           if (data[v1AttrName]) {
+            var value = data[v1AttrName];
+            var attr_id = nutrDetails.attr_id;
+            //ensure that daily value measures are calculated into the appropriate units.
+            if (dailyValueTransforms[attr_id]) {
+              value = dailyValueTransforms[attr_id](value);
+            }
             //round to 4 decimal places
-            var value = parseFloat(data[v1AttrName].toFixed(4));
+            value = parseFloat(value.toFixed(4));
+            // let value = parseFloat(data[v1AttrName].toFixed(4));
             accum.push({
               attr_id: nutrDetails.attr_id,
               value: value
@@ -813,7 +846,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         defaults: defaults,
         mapKeys: mapKeys,
         reduce: reduce,
-        uniqBy: uniqBy
+        uniqBy: uniqBy,
+        keys: keys
       };
 
       function defaults(source) {
@@ -864,10 +898,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             iterator(collection[i], i);
           }
         } else {
-          var keys = Object.keys(collection);
-          for (var i = 0; i < keys.length; i++) {
-            var val = collection[keys[i]];
-            iterator(val, keys[i]);
+          var _keys = Object.keys(collection);
+          for (var i = 0; i < _keys.length; i++) {
+            var val = collection[_keys[i]];
+            iterator(val, _keys[i]);
           }
         }
         return result;
@@ -886,6 +920,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         return result;
+      }
+
+      function keys(obj) {
+        var ownKeys = [];
+        for (var prop in obj) {
+          if (obj.hasOwnProperty(prop)) ownKeys.push(prop);
+        }
+        return ownKeys;
       }
     }, {}] }, {}, [2])(2);
 });

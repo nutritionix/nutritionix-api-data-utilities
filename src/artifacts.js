@@ -629,10 +629,24 @@ const baseTrackObj = {
   tags: {}
 };
 
+const dailyValueTransforms = {
+  //vitamin_a_dv
+  318: v => v * 50,
+  //vitamin_c_dv
+  401: v => v * 0.6,
+  //calcium_dv
+  301: v => v * 10,
+  //iron_dv
+  303: v => v * 0.18,
+  //vitam_d_dv
+  324: v => v * 4
+};
+
 
 module.exports = {
   nutrientsMap,
   fullNutrientsDefinitions,
   attrMap,
-  baseTrackObj
+  baseTrackObj,
+  dailyValueTransforms
 };

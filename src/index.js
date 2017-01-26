@@ -1,20 +1,14 @@
 'use strict';
 
 
-const utils = require('./utils');
+const _ = require('./utils');
 const {
   nutrientsMap,
   fullNutrientsDefinitions,
   attrMap,
-  baseTrackObj
+  baseTrackObj,
+  dailyValueTransforms
 } = require('./artifacts.js');
-
-const _ = {
-  mapKeys: utils.mapKeys,
-  uniqBy: utils.uniqBy,
-  defaults: utils.defaults,
-  reduce: utils.reduce
-};
 
 /**
  * @license MIT
@@ -81,7 +75,13 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
   let fullNutrArray = optimisticallyMergeArrays(nutr => nutr.attr_id, defaultObj.full_nutrients, v1FullNutrs);
 
-  return _.defaults({full_nutrients: fullNutrArray}, defaultObj, v1PickFields, baseTrackObj);
+  //keep relevant fields from v1 item
+  let v1Defaults = _.reduce(_.keys(baseTrackObj), (accum, key) => {
+    accum[key] = v1PickFields[key];
+    return accum;
+  }, {});
+
+  return _.defaults({full_nutrients: fullNutrArray}, defaultObj, v1Defaults, baseTrackObj);
 }
 
 /**
@@ -94,8 +94,15 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
 function buildFullNutrientsArray(data) {
   return _.reduce(nutrientsMap, function(accum, nutrDetails, v1AttrName) {
     if (data[v1AttrName]) {
+      let value = data[v1AttrName];
+      let attr_id = nutrDetails.attr_id;
+      //ensure that daily value measures are calculated into the appropriate units.
+      if (dailyValueTransforms[attr_id]) {
+        value = dailyValueTransforms[attr_id](value);
+      }
       //round to 4 decimal places
-      let value = parseFloat(data[v1AttrName].toFixed(4));
+      value = parseFloat(value.toFixed(4));
+      // let value = parseFloat(data[v1AttrName].toFixed(4));
       accum.push({
         attr_id: nutrDetails.attr_id,
         value: value
