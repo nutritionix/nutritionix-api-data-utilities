@@ -56,7 +56,11 @@ describe('convertFullNutrientsToNfAttributes', () => {
   it('should construct the correct fields', () => {
     let built = convertFullNutrientsToNfAttributes([{attr_id: 208, value: 10}]);
     expect(built.nf_calories).to.equal(10);
-  })
+  });
+  it('should correctly calculate daily values', () => {
+    let built = convertFullNutrientsToNfAttributes([{attr_id: 401, value: 10}]);
+    expect(built.nf_vitamin_c_dv).to.equal(10 / 60 * 100);
+  });
 });
 
 describe('extendFullNutrientsWithMetaData', () => {

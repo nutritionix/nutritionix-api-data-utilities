@@ -98,7 +98,7 @@ function buildFullNutrientsArray(data) {
       let attr_id = nutrDetails.attr_id;
       //ensure that daily value measures are calculated into the appropriate units.
       if (dailyValueTransforms[attr_id]) {
-        value = dailyValueTransforms[attr_id](value);
+        value = dailyValueTransforms[attr_id] / 100 * value;
       }
       //round to 4 decimal places
       value = parseFloat(value.toFixed(4));
@@ -121,7 +121,8 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
   return _.reduce(fullNutrients, function(accum, val) {
     var nfKey = attrMap[val.attr_id];
     if (nfKey) {
-      accum[nfKey] = val.value;
+      let transformVal = dailyValueTransforms[val.attr_id];
+      accum[nfKey] = transformVal ? val.value / transformVal * 100 : val.value;
     }
     return accum;
   }, {});

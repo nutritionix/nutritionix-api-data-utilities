@@ -655,25 +655,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var dailyValueTransforms = {
         //vitamin_a_dv
-        318: function _(v) {
-          return v * 50;
-        },
+        318: 5000,
         //vitamin_c_dv
-        401: function _(v) {
-          return v * 0.6;
-        },
+        401: 60,
         //calcium_dv
-        301: function _(v) {
-          return v * 10;
-        },
+        301: 1000,
         //iron_dv
-        303: function _(v) {
-          return v * 0.18;
-        },
+        303: 18,
         //vitam_d_dv
-        324: function _(v) {
-          return v * 4;
-        }
+        324: 400
       };
 
       module.exports = {
@@ -791,7 +781,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             var attr_id = nutrDetails.attr_id;
             //ensure that daily value measures are calculated into the appropriate units.
             if (dailyValueTransforms[attr_id]) {
-              value = dailyValueTransforms[attr_id](value);
+              value = dailyValueTransforms[attr_id] / 100 * value;
             }
             //round to 4 decimal places
             value = parseFloat(value.toFixed(4));
@@ -814,7 +804,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return _.reduce(fullNutrients, function (accum, val) {
           var nfKey = attrMap[val.attr_id];
           if (nfKey) {
-            accum[nfKey] = val.value;
+            var transformVal = dailyValueTransforms[val.attr_id];
+            accum[nfKey] = transformVal ? val.value / transformVal * 100 : val.value;
           }
           return accum;
         }, {});

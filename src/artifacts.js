@@ -631,15 +631,15 @@ const baseTrackObj = {
 
 const dailyValueTransforms = {
   //vitamin_a_dv
-  318: v => v * 50,
+  318: 5000,
   //vitamin_c_dv
-  401: v => v * 0.6,
+  401: 60,
   //calcium_dv
-  301: v => v * 10,
+  301: 1000,
   //iron_dv
-  303: v => v * 0.18,
+  303: 18,
   //vitam_d_dv
-  324: v => v * 4
+  324: 400
 };
 
 
