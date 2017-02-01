@@ -1,32 +1,36 @@
 'use strict';
 
 const gulp = require('gulp');
-const plugins = require('gulp-load-plugins')();
 const fs = require('fs-extra');
 const runSequence = require('run-sequence');
+const source = require('vinyl-source-stream');
+const browserify = require('browserify');
+const uglify = require('gulp-uglify');
 
 const PATHS = {
-  src: 'src/*',
   dst: './dist',
-  entry: 'src/index.js'
+  entry: './src/index.js'
 };
+const LIB_NAME = 'nutritionix-api-data-utilities';
 
 
 gulp.task('clean', () => fs.emptyDirSync(PATHS.dst));
 
 
 gulp.task('main', () => {
-  return gulp.src(PATHS.entry)
-    .pipe(plugins.browserify({
-      standalone: 'nutritionix-api-data-utilities'
-    }))
-    .pipe(plugins.babel({presets: ['es2015']}))
+  return browserify({
+    entries: PATHS.entry,
+    standalone: LIB_NAME
+  })
+    .transform('babelify', {presets: ['es2015']})
+    .bundle()
+    .pipe(source('index.js'))
     .pipe(gulp.dest(PATHS.dst));
 });
 
 gulp.task('minify', () => {
   return gulp.src(PATHS.dst + '/index.js')
-    .pipe(plugins.uglify())
+    .pipe(uglify())
     .pipe(gulp.dest(PATHS.dst + '/min'));
 });
 
