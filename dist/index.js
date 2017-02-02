@@ -758,7 +758,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
  */
 function buildFullNutrientsArray(data) {
   return _.reduce(nutrientsMap, function (accum, nutrDetails, v1AttrName) {
-    if (data[v1AttrName]) {
+    if (typeof data[v1AttrName] === 'number') {
       var value = data[v1AttrName];
       var attr_id = nutrDetails.attr_id;
       //ensure that daily value measures are calculated into the appropriate units.

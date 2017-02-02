@@ -2,7 +2,7 @@
   "name": "nutritionix-api-data-utilities",
   "version": "2.0.2",
   "description": "Utilities to handle different data formats in Nutritionix APIs",
-  "main": "nutritionix-api-data-utilities.js",
+  "main": "dist/index.js",
   "authors": [
     "Yura Fedoriv <yurko.fedoriv@gmail.com>"
   ],
