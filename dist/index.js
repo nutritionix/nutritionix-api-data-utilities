@@ -617,7 +617,7 @@ var baseTrackObj = {
   nix_item_name: null,
   nix_item_id: null,
   upc: null,
-  source: null,
+  source: 8,
   ndb_no: null,
   natural_query_id: null,
   tags: null,
@@ -687,10 +687,12 @@ module.exports = {
 
 var v1TypeAliases = {
   item_name: 'food_name',
-  nf_serving_size_qty: 'food_name',
+  nf_serving_size_qty: 'serving_qty',
   nf_serving_size_unit: 'serving_unit',
   nf_serving_weight_grams: 'serving_weight_grams',
-  item_id: 'nix_item_id'
+  item_id: 'nix_item_id',
+  brand_name: 'nix_brand_name',
+  brand_id: 'nix_brand_id'
 };
 
 function hasItems(test) {

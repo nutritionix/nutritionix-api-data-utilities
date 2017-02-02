@@ -617,7 +617,7 @@ const baseTrackObj = {
   nix_item_name:         null,
   nix_item_id:           null,
   upc:                   null,
-  source:                null,
+  source:                8,
   ndb_no:                null,
   natural_query_id:      null,
   tags:                  null,
