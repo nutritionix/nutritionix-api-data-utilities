@@ -1,10 +1,10 @@
 {
   "name": "nutritionix-api-data-utilities",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "description": "Utilities to handle different data formats in Nutritionix APIs",
-  "main": "nutritionix-api-data-utilities.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha spec/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,20 @@
   "bugs": {
     "url": "https://github.com/nutritionix/nutritionix-api-data-utilities/issues"
   },
-  "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities#readme"
+  "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.0.0",
+    "chai": "^3.5.0",
+    "fs-extra": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^2.0.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.2.0",
+    "run-sequence": "^1.2.2",
+    "vinyl": "^2.0.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
 }
