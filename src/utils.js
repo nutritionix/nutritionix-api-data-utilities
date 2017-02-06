@@ -5,7 +5,8 @@ module.exports = {
   mapKeys,
   reduce,
   uniqBy,
-  keys
+  keys,
+  pickBy
 };
 
 function defaults(source, ...rest) {
@@ -79,4 +80,14 @@ function keys(obj) {
     if (obj.hasOwnProperty(prop)) ownKeys.push(prop);
   }
   return ownKeys;
+}
+
+function pickBy(obj, predicate) {
+  predicate = predicate || (x => x);
+  let result = {};
+  for (let key of keys(obj)) {
+    let shouldPick = predicate(obj[key], key);
+    if (shouldPick) result[key] = obj[key];
+  }
+  return result;
 }

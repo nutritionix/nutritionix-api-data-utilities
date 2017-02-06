@@ -625,7 +625,7 @@ const baseTrackObj = {
   lat: null,
   lng: null,
   note: null,
-  alt_measures: []
+  alt_measures: null
 };
 
 const dailyValueTransforms = {

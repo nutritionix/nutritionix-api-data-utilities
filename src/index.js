@@ -30,13 +30,13 @@ module.exports = {
 
 
 const v1TypeAliases = {
-  item_name: 'food_name',
-  nf_serving_size_qty:  'serving_qty',
-  nf_serving_size_unit: 'serving_unit',
-  nf_serving_weight_grams: 'serving_weight_grams',
-  item_id: 'nix_item_id',
-  brand_name: 'nix_brand_name',
-  brand_id: 'nix_brand_id'
+  item_name: ['food_name', 'nix_item_name'],
+  nf_serving_size_qty:  ['serving_qty'],
+  nf_serving_size_unit: ['serving_unit'],
+  nf_serving_weight_grams: ['serving_weight_grams'],
+  item_id: ['nix_item_id'],
+  brand_name: ['nix_brand_name', 'brand_name'],
+  brand_id: ['nix_brand_id']
 };
 
 function hasItems(test) {
@@ -65,23 +65,29 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   v1Item = (typeof v1Item === 'object' && v1Item !== null) ? v1Item : {};
   defaultObj = (typeof defaultObj === 'object' && defaultObj !== null) ? defaultObj : {};
 
+  //build a full nutrient array from any 'nf' fields from the v1item;
+  let v1FullNutrs = buildFullNutrientsArray(v1Item);
 
-  //apply any necessary aliases
-  let v1PickFields = _.mapKeys(v1Item, function(value, key) {
-    return v1TypeAliases.hasOwnProperty(key) ? v1TypeAliases[key] : key;
+  //create an object with superset of keys, including both original and aliases fields for later picking.
+  let mappedFields = _.reduce(v1Item, function(accum, val, key) {
+    //either use array of aliases, or the key itself.
+    let aliases = v1TypeAliases[key];
+    if (aliases) {
+      aliases.forEach(alias => accum[alias] = val);
+    } else {
+      accum[key] = val;
+    }
+    return accum;
+  }, {});
+
+  //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
+  let v1Defaults = _.pickBy(mappedFields, (val, key) => {
+    return baseTrackObj.hasOwnProperty(key) && val;
   });
 
-  //build a full nutrient array from any 'nf' fields from the v1item;
-  let v1FullNutrs = buildFullNutrientsArray(v1PickFields);
 
   //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
   let fullNutrArray = optimisticallyMergeArrays(nutr => nutr.attr_id, defaultObj.full_nutrients, v1FullNutrs);
-
-  //keep relevant fields from v1 item
-  let v1Defaults = _.reduce(_.keys(baseTrackObj), (accum, key) => {
-    accum[key] = v1PickFields[key];
-    return accum;
-  }, {});
 
   return _.defaults({full_nutrients: fullNutrArray}, defaultObj, v1Defaults, baseTrackObj);
 }

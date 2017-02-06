@@ -20,7 +20,7 @@ describe('convertV1ItemToTrackFood', () => {
   it('should return an object', () => {
     expect(convertV1ItemToTrackFood()).to.be.an('object');
   });
-  it('should conver v1 fields', () => {
+  it('should convert v1 fields', () => {
     expect(convertV1ItemToTrackFood({item_name: 'override'}).food_name).to.equal('override');
   });
   it('should take into account defaults', () => {
@@ -35,6 +35,26 @@ describe('convertV1ItemToTrackFood', () => {
   it('should correctly map daily value fields', () => {
     let input = {nf_iron_dv: 50};
     expect(convertV1ItemToTrackFood(input).full_nutrients.filter(v => v.attr_id === 303)[0].value).to.equal(0.18 * input.nf_iron_dv);
+  });
+  it('should correctly map defaults for serving & unit', () => {
+    let input = {
+      nf_serving_size_qty: null,
+      nf_serving_unit: ''
+    };
+    let result = convertV1ItemToTrackFood(input);
+    expect(result.serving_qty).to.equal(1);
+    expect(result.serving_unit).to.equal('serving');
+  });
+  it('should duplicate fields for food_name and nix_item_name', () => {
+    let input = {
+      item_name: 'itemName',
+      brand_name: 'brandName'
+    };
+    let res = convertV1ItemToTrackFood(input);
+    expect(res.nix_item_name).to.equal(input.item_name);
+    expect(res.food_name).to.equal(input.item_name);
+    expect(res.nix_brand_name).to.equal(input.brand_name);
+    expect(res.brand_name).to.equal(input.brand_name);
   });
 });
 
