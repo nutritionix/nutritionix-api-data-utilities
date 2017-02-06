@@ -625,7 +625,7 @@ var baseTrackObj = {
   lat: null,
   lng: null,
   note: null,
-  alt_measures: []
+  alt_measures: null
 };
 
 var dailyValueTransforms = {
@@ -686,13 +686,13 @@ module.exports = {
 };
 
 var v1TypeAliases = {
-  item_name: 'food_name',
-  nf_serving_size_qty: 'serving_qty',
-  nf_serving_size_unit: 'serving_unit',
-  nf_serving_weight_grams: 'serving_weight_grams',
-  item_id: 'nix_item_id',
-  brand_name: 'nix_brand_name',
-  brand_id: 'nix_brand_id'
+  item_name: ['food_name', 'nix_item_name'],
+  nf_serving_size_qty: ['serving_qty'],
+  nf_serving_size_unit: ['serving_unit'],
+  nf_serving_weight_grams: ['serving_weight_grams'],
+  item_id: ['nix_item_id'],
+  brand_name: ['nix_brand_name', 'brand_name'],
+  brand_id: ['nix_brand_id']
 };
 
 function hasItems(test) {
@@ -727,24 +727,32 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   v1Item = (typeof v1Item === 'undefined' ? 'undefined' : _typeof(v1Item)) === 'object' && v1Item !== null ? v1Item : {};
   defaultObj = (typeof defaultObj === 'undefined' ? 'undefined' : _typeof(defaultObj)) === 'object' && defaultObj !== null ? defaultObj : {};
 
-  //apply any necessary aliases
-  var v1PickFields = _.mapKeys(v1Item, function (value, key) {
-    return v1TypeAliases.hasOwnProperty(key) ? v1TypeAliases[key] : key;
-  });
-
   //build a full nutrient array from any 'nf' fields from the v1item;
-  var v1FullNutrs = buildFullNutrientsArray(v1PickFields);
+  var v1FullNutrs = buildFullNutrientsArray(v1Item);
+
+  //create an object with superset of keys, including both original and aliases fields for later picking.
+  var mappedFields = _.reduce(v1Item, function (accum, val, key) {
+    //either use array of aliases, or the key itself.
+    var aliases = v1TypeAliases[key];
+    if (aliases) {
+      aliases.forEach(function (alias) {
+        return accum[alias] = val;
+      });
+    } else {
+      accum[key] = val;
+    }
+    return accum;
+  }, {});
+
+  //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
+  var v1Defaults = _.pickBy(mappedFields, function (val, key) {
+    return baseTrackObj.hasOwnProperty(key) && val;
+  });
 
   //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
   var fullNutrArray = optimisticallyMergeArrays(function (nutr) {
     return nutr.attr_id;
   }, defaultObj.full_nutrients, v1FullNutrs);
-
-  //keep relevant fields from v1 item
-  var v1Defaults = _.reduce(_.keys(baseTrackObj), function (accum, key) {
-    accum[key] = v1PickFields[key];
-    return accum;
-  }, {});
 
   return _.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1Defaults, baseTrackObj);
 }
@@ -821,7 +829,8 @@ module.exports = {
   mapKeys: mapKeys,
   reduce: reduce,
   uniqBy: uniqBy,
-  keys: keys
+  keys: keys,
+  pickBy: pickBy
 };
 
 function defaults(source) {
@@ -902,6 +911,40 @@ function keys(obj) {
     if (obj.hasOwnProperty(prop)) ownKeys.push(prop);
   }
   return ownKeys;
+}
+
+function pickBy(obj, predicate) {
+  predicate = predicate || function (x) {
+    return x;
+  };
+  var result = {};
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = keys(obj)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var key = _step.value;
+
+      var shouldPick = predicate(obj[key], key);
+      if (shouldPick) result[key] = obj[key];
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return result;
 }
 
 },{}]},{},[2])(2)
