@@ -12,7 +12,8 @@ const {
   convertV1ItemToTrackFood,
   buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes,
-  extendFullNutrientsWithMetaData
+  extendFullNutrientsWithMetaData,
+  dailyValueTransforms
 } = require(FILE);
 
 

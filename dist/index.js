@@ -682,7 +682,8 @@ module.exports = {
   convertV1ItemToTrackFood: convertV1ItemToTrackFood,
   buildFullNutrientsArray: buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes: convertFullNutrientsToNfAttributes,
-  extendFullNutrientsWithMetaData: extendFullNutrientsWithMetaData
+  extendFullNutrientsWithMetaData: extendFullNutrientsWithMetaData,
+  dailyValueTransforms: dailyValueTransforms
 };
 
 var v1TypeAliases = {
