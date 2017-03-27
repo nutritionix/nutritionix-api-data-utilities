@@ -25,7 +25,8 @@ module.exports = {
   convertV1ItemToTrackFood,
   buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes,
-  extendFullNutrientsWithMetaData
+  extendFullNutrientsWithMetaData,
+  dailyValueTransforms
 };
 
 
