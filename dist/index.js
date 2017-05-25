@@ -667,7 +667,7 @@ var _require = require('./artifacts.js'),
 
 /**
  * @license MIT
- * @version 1.3.0
+ * @version 2.2.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -767,9 +767,9 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
  */
 function buildFullNutrientsArray(data) {
   return _.reduce(nutrientsMap, function (accum, nutrDetails, v1AttrName) {
-    if (data[v1AttrName]) {
+    if (data[v1AttrName] || data[v1AttrName] === 0) {
       var value = parseFloat(data[v1AttrName]);
-      if (!isNaN(value)) {
+      if (!isNaN(value) && !(value < 0)) {
         var attr_id = nutrDetails.attr_id;
         //ensure that daily value measures are calculated into the appropriate units.
         if (dailyValueTransforms[attr_id]) {

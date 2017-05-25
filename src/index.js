@@ -12,7 +12,7 @@ const {
 
 /**
  * @license MIT
- * @version 1.3.0
+ * @version 2.2.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description

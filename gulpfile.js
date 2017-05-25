@@ -1,5 +1,6 @@
 'use strict';
 
+const argv = require('yargs').argv;
 const gulp = require('gulp');
 const fs = require('fs-extra');
 const runSequence = require('run-sequence');
@@ -38,4 +39,30 @@ gulp.task('minify', () => {
 gulp.task('default', ['clean', 'main']);
 gulp.task('release', cb => {
   return runSequence('default', 'minify', cb);
+});
+
+gulp.task('setVersion', function () {
+  let version = argv.version;
+  if (!version) {
+    console.error('--version=x.x.x param is required');
+    process.exit(1);
+    return;
+  }
+
+  ['bower.json', 'package.json'].forEach(file => {
+    file = __dirname + '/' + file;
+    fs.writeFileSync(
+      file,
+      fs.readFileSync(file)
+        .toString()
+        .replace(/"version":\s*"[\d.]+?"/, `"version": "${version}"`)
+    );
+  });
+
+  fs.writeFileSync(
+    PATHS.entry,
+    fs.readFileSync(PATHS.entry)
+      .toString()
+      .replace(/@version\s+[^\s\n]+/, `@version ${version}`)
+  );
 });
