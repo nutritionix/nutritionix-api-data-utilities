@@ -12,7 +12,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.2.0
+ * @version 2.2.1
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -83,7 +83,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
 
   //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
   let v1Defaults = _.pickBy(mappedFields, (val, key) => {
-    return baseTrackObj.hasOwnProperty(key) && val;
+    return baseTrackObj.hasOwnProperty(key) && (val || val === 0);
   });
 
 

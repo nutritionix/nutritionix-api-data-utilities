@@ -667,7 +667,7 @@ var _require = require('./artifacts.js'),
 
 /**
  * @license MIT
- * @version 2.2.0
+ * @version 2.2.1
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -747,7 +747,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
 
   //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
   var v1Defaults = _.pickBy(mappedFields, function (val, key) {
-    return baseTrackObj.hasOwnProperty(key) && val;
+    return baseTrackObj.hasOwnProperty(key) && (val || val === 0);
   });
 
   //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
