@@ -1,0 +1,502 @@
+{
+  "Header": "",
+  "ServingSize": {
+    "Value": "1",
+    "Uom": {
+      "Value": "190103",
+      "Text": "cup",
+      "Code": null
+    }
+  },
+  "ServingsPerContainer": "about 42",
+  "Calorie": {
+    "ServingText": "",
+    "Calories": 110,
+    "CaloriesFromFat": 10
+  },
+  "Dietary": {
+    "Facts": [
+      {
+        "Nutrient": {
+          "Value": "127271",
+          "Text": "Total Fat"
+        },
+        "Name": null,
+        "Quantity": 1,
+        "Pdv": {
+          "Value": 2,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190064",
+          "Text": "g",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127272",
+          "Text": "Saturated Fat"
+        },
+        "Name": null,
+        "Quantity": 0.5,
+        "Pdv": {
+          "Value": 3,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190064",
+          "Text": "g",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "132289",
+          "Text": "Trans Fat"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": null,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127275",
+          "Text": "Cholesterol"
+        },
+        "Name": null,
+        "Quantity": 0,
+        "Pdv": {
+          "Value": 0,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190065",
+          "Text": "mg",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127276",
+          "Text": "Sodium"
+        },
+        "Name": null,
+        "Quantity": 150,
+        "Pdv": {
+          "Value": 6,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190065",
+          "Text": "mg",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127278",
+          "Text": "Total Carbohydrate"
+        },
+        "Name": null,
+        "Quantity": 25,
+        "Pdv": {
+          "Value": 8,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190065",
+          "Text": "mg",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127279",
+          "Text": "Dietary Fiber"
+        },
+        "Name": null,
+        "Quantity": 3,
+        "Pdv": {
+          "Value": 13,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190064",
+          "Text": "g",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127282",
+          "Text": "Sugars"
+        },
+        "Name": null,
+        "Quantity": 10,
+        "Pdv": {
+          "Value": null,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190064",
+          "Text": "g",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127285",
+          "Text": "Protein"
+        },
+        "Name": null,
+        "Quantity": 2,
+        "Pdv": {
+          "Value": null,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190064",
+          "Text": "g",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127273",
+          "Text": "Polyunsaturated Fat"
+        },
+        "Name": null,
+        "Quantity": 0,
+        "Pdv": {
+          "Value": null,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190064",
+          "Text": "g",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127274",
+          "Text": "Monounsaturated Fat"
+        },
+        "Name": null,
+        "Quantity": 0,
+        "Pdv": {
+          "Value": null,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190064",
+          "Text": "g",
+          "Code": null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127277",
+          "Text": "Potassium"
+        },
+        "Name": null,
+        "Quantity": 45,
+        "Pdv": {
+          "Value": 1,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": {
+          "Value": "190065",
+          "Text": "mg",
+          "Code": null
+        },
+        "NoteMark": null
+      }
+    ]
+  },
+  "Vitamineral": {
+    "Facts": [
+      {
+        "Nutrient": {
+          "Value": "127286",
+          "Text": "Vitamin A"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 10,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127287",
+          "Text": "Vitamin C"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127288",
+          "Text": "Calcium"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 0,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127289",
+          "Text": "Iron"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "191181",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127296",
+          "Text": "Vitamin D"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 10,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127309",
+          "Text": "Niacin"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127316",
+          "Text": "Vitamin B12"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "128004",
+          "Text": "Vitamin B"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127318",
+          "Text": "Zinc"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 10,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127331",
+          "Text": "Riboflavin"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127332",
+          "Text": "Thiamin"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "127334",
+          "Text": "Folic Acid"
+        },
+        "Name": null,
+        "Quantity": null,
+        "Pdv": {
+          "Value": 25,
+          "Uom": {
+            "Value": "percent",
+            "Text": "%",
+            "Code": null
+          }
+        },
+        "Uom": null,
+        "NoteMark": null
+      }
+    ]
+  },
+  "ServingAccuracy": null
+}

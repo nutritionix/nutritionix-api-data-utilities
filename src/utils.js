@@ -6,7 +6,11 @@ module.exports = {
   reduce,
   uniqBy,
   keys,
-  pickBy
+  pickBy,
+  get:         require('lodash.get'),
+  forEach:     require('lodash.foreach'),
+  find:        require('lodash.find'),
+  isUndefined: require('lodash.isundefined')
 };
 
 function defaults(source, ...rest) {

@@ -1,18 +1,18 @@
 'use strict';
 
-
 const _ = require('./utils');
 const {
-  nutrientsMap,
-  fullNutrientsDefinitions,
-  attrMap,
-  baseTrackObj,
-  dailyValueTransforms
-} = require('./artifacts.js');
+        nutrientsMap,
+        fullNutrientsDefinitions,
+        attrMap,
+        baseTrackObj,
+        dailyValueTransforms,
+        onyxMapping
+      } = require('./artifacts.js');
 
 /**
  * @license MIT
- * @version 2.2.1
+ * @version 2.3.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -26,7 +26,8 @@ module.exports = {
   buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData,
-  dailyValueTransforms
+  dailyValueTransforms,
+  convertOnyxToFullNutrientsArray
 };
 
 
@@ -158,4 +159,40 @@ function extendFullNutrientsWithMetaData(fullNutrients) {
       //no match, return base.
     }
   });
+}
+
+
+/**
+ * Uses top level properties from provided data object to construct full nutrients array.
+ * Supports api names as keys of the source object
+ *
+ * @param {Object} data Onyx nutrition label data
+ * @returns {Array} Full nutrients array
+ */
+function convertOnyxToFullNutrientsArray(data) {
+  const fullNutrients = [];
+
+  _.forEach(onyxMapping, (nutrientId, onyxKey) => {
+    let value;
+    if (onyxKey.match(/^\d+$/)) {
+      const facts = _.get(data, 'Dietary.Facts');
+      const fact  = _.find(facts, (fact) => _.get(fact, 'Nutrient.Value') === onyxKey);
+
+      if (fact) {
+        value = _.get(fact, 'Uom.Value');
+      }
+    } else {
+      value = _.get(data, onyxKey);
+    }
+
+    if (!_.isUndefined(value)) {
+      if (value !== null) {
+        value = parseFloat(value);
+      }
+
+      fullNutrients.push({attr_id: nutrientId, value});
+    }
+  });
+
+  return fullNutrients;
 }

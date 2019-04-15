@@ -15,7 +15,10 @@ const PATHS = {
 const LIB_NAME = 'nutritionix-api-data-utilities';
 
 
-gulp.task('clean', () => fs.emptyDirSync(PATHS.dst));
+gulp.task('clean', (done) => {
+  fs.emptyDirSync(PATHS.dst);
+  done();
+});
 
 
 gulp.task('main', () => {
@@ -23,7 +26,7 @@ gulp.task('main', () => {
     entries: PATHS.entry,
     standalone: LIB_NAME
   })
-    .transform('babelify', {presets: ['es2015']})
+    .transform('babelify', {presets: ['env']})
     .bundle()
     .pipe(source('index.js'))
     .pipe(gulp.dest(PATHS.dst));
@@ -36,33 +39,32 @@ gulp.task('minify', () => {
 });
 
 
-gulp.task('default', ['clean', 'main']);
+gulp.task('default', gulp.series(['clean', 'main']));
 gulp.task('release', cb => {
   return runSequence('default', 'minify', cb);
 });
 
-gulp.task('setVersion', function () {
+gulp.task('setVersion', function (done) {
   let version = argv.version;
   if (!version) {
     console.error('--version=x.x.x param is required');
-    process.exit(1);
-    return;
-  }
+  } else {
+    ['bower.json', 'package.json'].forEach(file => {
+      file = __dirname + '/' + file;
+      fs.writeFileSync(
+        file,
+        fs.readFileSync(file)
+          .toString()
+          .replace(/"version":\s*"[\d.]+?"/, `"version": "${version}"`)
+      );
+    });
 
-  ['bower.json', 'package.json'].forEach(file => {
-    file = __dirname + '/' + file;
     fs.writeFileSync(
-      file,
-      fs.readFileSync(file)
+      PATHS.entry,
+      fs.readFileSync(PATHS.entry)
         .toString()
-        .replace(/"version":\s*"[\d.]+?"/, `"version": "${version}"`)
+        .replace(/@version\s+[^\s\n]+/, `@version ${version}`)
     );
-  });
-
-  fs.writeFileSync(
-    PATHS.entry,
-    fs.readFileSync(PATHS.entry)
-      .toString()
-      .replace(/@version\s+[^\s\n]+/, `@version ${version}`)
-  );
+  }
+  done();
 });

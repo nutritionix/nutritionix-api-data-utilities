@@ -1,10 +1,11 @@
 'use strict';
 
-const chai = require('chai');
-const expect = chai.expect;
-const food = require('./food');
-const v1Food = require('./v1Food');
-const FILE = process.env.IGNORE_MINIFICATION ? '../src/' : '../dist/min/index';
+const chai               = require('chai');
+const expect             = chai.expect;
+const food               = require('./food');
+const onyxNutritionLabel = require('./onyx_nutrition_panel.json');
+const FILE               = process.env.IGNORE_MINIFICATION ? '../src/' : '../dist/min/index';
+
 const {
   nutrientsMap,
   fullNutrientsDefinitions,
@@ -13,7 +14,8 @@ const {
   buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData,
-  dailyValueTransforms
+  dailyValueTransforms,
+  convertOnyxToFullNutrientsArray
 } = require(FILE);
 
 
@@ -93,5 +95,26 @@ describe('extendFullNutrientsWithMetaData', () => {
     expect(built.name).to.equal('Energy');
     expect(built.usda_tag).to.equal('ENERC_KCAL');
     expect(built.unit).to.equal('kcal');
+  });
+});
+
+describe('convertOnyxToFullNutrientsArray', () => {
+  const result = convertOnyxToFullNutrientsArray(onyxNutritionLabel);
+
+  it('should return an expected array', () => {
+    expect(result).to.deep.equal([
+      {attr_id: 204, value: 190064},
+      {attr_id: 606, value: 190064},
+      {attr_id: 646, value: 190064},
+      {attr_id: 645, value: 190064},
+      {attr_id: 601, value: 190065},
+      {attr_id: 307, value: 190065},
+      {attr_id: 306, value: 190065},
+      {attr_id: 205, value: 190065},
+      {attr_id: 291, value: 190064},
+      {attr_id: 269, value: 190064},
+      {attr_id: 203, value: 190064},
+      {attr_id: 208, value: 110}]
+    );
   });
 });

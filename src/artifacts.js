@@ -641,11 +641,27 @@ const dailyValueTransforms = {
   324: 400
 };
 
+const onyxMapping = {
+  "127271": 204,
+  "127272": 606,
+  "132289": 605,
+  "127275": 601,
+  "127276": 307,
+  "127278": 205,
+  "127279": 291,
+  "127282": 269,
+  "127285": 203,
+  "127277": 306,
+  "Calorie.Calories": 208,
+  "127273": 646,
+  "127274": 645
+};
 
 module.exports = {
   nutrientsMap,
   fullNutrientsDefinitions,
   attrMap,
   baseTrackObj,
-  dailyValueTransforms
+  dailyValueTransforms,
+  onyxMapping
 };
