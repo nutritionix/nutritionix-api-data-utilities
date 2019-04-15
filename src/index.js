@@ -12,7 +12,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.3.1
+ * @version 2.3.2
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -179,7 +179,7 @@ function convertOnyxToFullNutrientsArray(data) {
       const fact  = _.find(facts, (fact) => _.get(fact, 'Nutrient.Value') === onyxKey);
 
       if (fact) {
-        value = _.get(fact, 'Uom.Value');
+        value = _.get(fact, 'Quantity');
       }
     } else {
       value = _.get(data, onyxKey);

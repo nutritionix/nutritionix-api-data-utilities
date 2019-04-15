@@ -685,7 +685,7 @@ var _require = require('./artifacts.js'),
 
 /**
  * @license MIT
- * @version 2.3.0
+ * @version 2.3.1
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -861,7 +861,7 @@ function convertOnyxToFullNutrientsArray(data) {
       });
 
       if (fact) {
-        value = _.get(fact, 'Uom.Value');
+        value = _.get(fact, 'Quantity');
       }
     } else {
       value = _.get(data, onyxKey);

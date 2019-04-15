@@ -103,18 +103,19 @@ describe('convertOnyxToFullNutrientsArray', () => {
 
   it('should return an expected array', () => {
     expect(result).to.deep.equal([
-      {attr_id: 204, value: 190064},
-      {attr_id: 606, value: 190064},
-      {attr_id: 646, value: 190064},
-      {attr_id: 645, value: 190064},
-      {attr_id: 601, value: 190065},
-      {attr_id: 307, value: 190065},
-      {attr_id: 306, value: 190065},
-      {attr_id: 205, value: 190065},
-      {attr_id: 291, value: 190064},
-      {attr_id: 269, value: 190064},
-      {attr_id: 203, value: 190064},
-      {attr_id: 208, value: 110}]
-    );
+      {attr_id: 204, value: 1},
+      {attr_id: 606, value: 0.5},
+      {attr_id: 646, value: 0},
+      {attr_id: 645, value: 0},
+      {attr_id: 601, value: 0},
+      {attr_id: 307, value: 150},
+      {attr_id: 306, value: 45},
+      {attr_id: 205, value: 25},
+      {attr_id: 291, value: 3},
+      {attr_id: 269, value: 10},
+      {attr_id: 203, value: 2},
+      {attr_id: 605, value: null},
+      {attr_id: 208, value: 110}
+    ]);
   });
 });
