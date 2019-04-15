@@ -1,6 +1,6 @@
 {
   "name": "nutritionix-api-data-utilities",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Utilities to handle different data formats in Nutritionix APIs",
   "main": "dist/index.js",
   "scripts": {
@@ -20,10 +20,6 @@
   },
   "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities#readme",
   "dependencies": {
-    "lodash.find": "^4.6.0",
-    "lodash.foreach": "^4.5.0",
-    "lodash.get": "^4.4.2",
-    "lodash.isundefined": "^3.0.1"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",

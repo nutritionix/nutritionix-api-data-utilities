@@ -7,10 +7,10 @@ module.exports = {
   uniqBy,
   keys,
   pickBy,
-  get:         require('lodash.get'),
-  forEach:     require('lodash.foreach'),
-  find:        require('lodash.find'),
-  isUndefined: require('lodash.isundefined')
+  get,
+  forEach,
+  find,
+  isUndefined
 };
 
 function defaults(source, ...rest) {
@@ -94,4 +94,47 @@ function pickBy(obj, predicate) {
     if (shouldPick) result[key] = obj[key];
   }
   return result;
+}
+
+function isUndefined(value) {
+  return value === undefined;
+}
+
+function get(object, key) {
+  let current = object;
+
+  const keys = key.split('.');
+
+  for (let i = 0; i < keys.length; i += 1) {
+    if (current === null || typeof current !== 'object') {
+      current = undefined;
+      break;
+    }
+
+    current = current[keys[i]];
+  }
+
+  return current;
+}
+
+function find(collection, predicate) {
+  if (typeof collection === 'object') {
+    if (!collection.length) {
+      collection = Object.values(collection);
+    }
+
+    for (let i = 0; i < collection.length; i += 1) {
+      if (predicate(collection[i])) {
+        return collection[i];
+      }
+    }
+  }
+
+  return undefined;
+}
+
+function forEach(collection, iterator) {
+  Object.keys(collection).forEach((key) => {
+    iterator(collection[key], key);
+  });
 }
