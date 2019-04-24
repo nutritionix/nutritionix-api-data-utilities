@@ -673,19 +673,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var _ = require('./utils');
+var _2 = require('./utils');
 
 var _require = require('./artifacts.js'),
     nutrientsMap = _require.nutrientsMap,
     fullNutrientsDefinitions = _require.fullNutrientsDefinitions,
     attrMap = _require.attrMap,
     baseTrackObj = _require.baseTrackObj,
-    dailyValueTransforms = _require.dailyValueTransforms,
-    onyxMapping = _require.onyxMapping;
+    dailyValueTransforms = _require.dailyValueTransforms;
 
 /**
  * @license MIT
- * @version 2.3.1
+ * @version 2.4.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -732,7 +731,7 @@ function optimisticallyMergeArrays(comparator) {
   if (mergeCols.length === 1) return mergeCols[0];
 
   var flat = (_ref = []).concat.apply(_ref, _toConsumableArray(mergeCols));
-  return _.uniqBy(flat, comparator);
+  return _2.uniqBy(flat, comparator);
 }
 
 /**
@@ -751,7 +750,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   var v1FullNutrs = buildFullNutrientsArray(v1Item);
 
   //create an object with superset of keys, including both original and aliases fields for later picking.
-  var mappedFields = _.reduce(v1Item, function (accum, val, key) {
+  var mappedFields = _2.reduce(v1Item, function (accum, val, key) {
     //either use array of aliases, or the key itself.
     var aliases = v1TypeAliases[key];
     if (aliases) {
@@ -765,7 +764,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   }, {});
 
   //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
-  var v1Defaults = _.pickBy(mappedFields, function (val, key) {
+  var v1Defaults = _2.pickBy(mappedFields, function (val, key) {
     return baseTrackObj.hasOwnProperty(key) && (val || val === 0);
   });
 
@@ -774,7 +773,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
     return nutr.attr_id;
   }, defaultObj.full_nutrients, v1FullNutrs);
 
-  return _.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1Defaults, baseTrackObj);
+  return _2.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1Defaults, baseTrackObj);
 }
 
 /**
@@ -785,7 +784,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
  * @returns {Array} Full nutrients array
  */
 function buildFullNutrientsArray(data) {
-  return _.reduce(nutrientsMap, function (accum, nutrDetails, v1AttrName) {
+  return _2.reduce(nutrientsMap, function (accum, nutrDetails, v1AttrName) {
     if (data[v1AttrName] || data[v1AttrName] === 0) {
       var value = parseFloat(data[v1AttrName]);
       if (!isNaN(value) && !(value < 0)) {
@@ -812,7 +811,7 @@ function buildFullNutrientsArray(data) {
  * @returns {Object} Nf attributes object
  */
 function convertFullNutrientsToNfAttributes(fullNutrients) {
-  return _.reduce(fullNutrients, function (accum, val) {
+  return _2.reduce(fullNutrients, function (accum, val) {
     var nfKey = attrMap[val.attr_id];
     if (nfKey) {
       var transformVal = dailyValueTransforms[val.attr_id];
@@ -834,13 +833,31 @@ function extendFullNutrientsWithMetaData(fullNutrients) {
     //found matching nutrient, extend.
     var nutrDefMatch = fullNutrientsDefinitions[nutr.attr_id];
     if (nutrDefMatch) {
-      return _.defaults(nutr, nutrDefMatch);
+      return _2.defaults(nutr, nutrDefMatch);
     } else {
       return nutr;
       //no match, return base.
     }
   });
 }
+
+var onyxMapping = {
+  204: [{ 'Nutrient.Text': "Total Fat" }, { 'Nutrient.Value': "127271" }],
+  606: [{ 'Nutrient.Text': "Saturated Fat" }, { 'Nutrient.Text': "Sat. fat" }, { 'Nutrient.Value': "127272" }],
+  605: [{ 'Nutrient.Text': "Trans Fat" }, { 'Nutrient.Value': "132289" }],
+  601: [{ 'Nutrient.Text': "Cholesterol" }, { 'Nutrient.Text': "cholestrol" }, { 'Nutrient.Value': "127275" }],
+  307: [{ 'Nutrient.Text': "Sodium" }, { 'Nutrient.Value': "127276" }],
+  205: [{ 'Nutrient.Text': "Total Carbohydrate" }, { 'Nutrient.Text': "carbohydrates" }, { 'Nutrient.Value': "127278" }],
+  291: [{ 'Nutrient.Text': "Dietary Fiber" }, { 'Nutrient.Value': "127279" }],
+  269: [{ 'Nutrient.Text': "Sugars" }, { 'Nutrient.Value': "127282" }],
+  203: [{ 'Nutrient.Text': "Protein" }, { 'Nutrient.Value': "127285" }],
+  306: [{ 'Nutrient.Text': "Potassium" }, { 'Nutrient.Value': "127277" }],
+  208: function _(panel) {
+    return _2.get(panel, 'Calorie.Calories');
+  },
+  646: [{ 'Nutrient.Text': "Polyunsaturated Fat" }, { 'Nutrient.Value': "127273" }],
+  645: [{ 'Nutrient.Text': "Monounsaturated Fat" }, { 'Nutrient.Value': "127274" }]
+};
 
 /**
  * Uses top level properties from provided data object to construct full nutrients array.
@@ -852,27 +869,42 @@ function extendFullNutrientsWithMetaData(fullNutrients) {
 function convertOnyxToFullNutrientsArray(data) {
   var fullNutrients = [];
 
-  _.forEach(onyxMapping, function (nutrientId, onyxKey) {
+  _2.forEach(onyxMapping, function (onyxMapping, nutrientId) {
     var value = void 0;
-    if (onyxKey.match(/^\d+$/)) {
-      var facts = _.get(data, 'Dietary.Facts');
-      var fact = _.find(facts, function (fact) {
-        return _.get(fact, 'Nutrient.Value') === onyxKey;
-      });
 
-      if (fact) {
-        value = _.get(fact, 'Quantity');
-      }
+    if (typeof onyxMapping === 'function') {
+      value = onyxMapping(data);
     } else {
-      value = _.get(data, onyxKey);
+      var facts = [].concat(_2.get(data, 'Dietary.Facts') || [], _2.get(data, 'Vitamineral.Facts') || []);
+      var fact = void 0;
+
+      var _loop = function _loop(i) {
+        var factSearchKey = Object.keys(onyxMapping[i])[0];
+        var factSearchValue = Object.values(onyxMapping[i])[0].toLowerCase();
+
+        fact = _2.find(facts, function (fact) {
+          return (_2.get(fact, factSearchKey) || '').toString().toLowerCase() === factSearchValue;
+        });
+
+        if (fact) {
+          value = _2.get(fact, 'Quantity');
+          return 'break';
+        }
+      };
+
+      for (var i = 0; i < onyxMapping.length; i += 1) {
+        var _ret = _loop(i);
+
+        if (_ret === 'break') break;
+      }
     }
 
-    if (!_.isUndefined(value)) {
+    if (!_2.isUndefined(value)) {
       if (value !== null) {
         value = parseFloat(value);
       }
 
-      fullNutrients.push({ attr_id: nutrientId, value: value });
+      fullNutrients.push({ attr_id: +nutrientId, value: value });
     }
   });
 

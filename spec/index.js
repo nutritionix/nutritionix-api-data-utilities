@@ -3,7 +3,6 @@
 const chai               = require('chai');
 const expect             = chai.expect;
 const food               = require('./food');
-const onyxNutritionLabel = require('./onyx_nutrition_panel.json');
 const FILE               = process.env.IGNORE_MINIFICATION ? '../src/' : '../dist/min/index';
 
 const {
@@ -99,10 +98,15 @@ describe('extendFullNutrientsWithMetaData', () => {
 });
 
 describe('convertOnyxToFullNutrientsArray', () => {
-  const result = convertOnyxToFullNutrientsArray(onyxNutritionLabel);
+
 
   it('should return an expected array', () => {
-    expect(result).to.deep.equal([
+    const intakeResult     = convertOnyxToFullNutrientsArray(require('./intake_nutrition_panel'));
+    const itemMasterResult = convertOnyxToFullNutrientsArray(require('./itemmaster_nutrition_panel'));
+
+    const sorter = (a, b) => a.attr_id - b.attr_id;
+
+    expect(intakeResult.sort(sorter)).to.deep.equal([
       {attr_id: 204, value: 1},
       {attr_id: 606, value: 0.5},
       {attr_id: 646, value: 0},
@@ -116,6 +120,22 @@ describe('convertOnyxToFullNutrientsArray', () => {
       {attr_id: 203, value: 2},
       {attr_id: 605, value: null},
       {attr_id: 208, value: 110}
-    ]);
+    ].sort(sorter));
+
+    expect(itemMasterResult.sort(sorter)).to.deep.equal([
+      {attr_id: 203, value: 1},
+      {attr_id: 204, value: 4},
+      {attr_id: 205, value: 3},
+      {attr_id: 208, value: 2},
+      {attr_id: 269, value: 3},
+      {attr_id: 291, value: 7},
+      {attr_id: 306, value: 2},
+      {attr_id: 307, value: 2},
+      {attr_id: 601, value: 3},
+      {attr_id: 605, value: 1},
+      {attr_id: 606, value: 2},
+      {attr_id: 645, value: 2.3},
+      {attr_id: 646, value: 2}
+    ].sort(sorter));
   });
 });

@@ -1,0 +1,1082 @@
+{
+  "Header":               "Nutrition",
+  "ServingSize":          {
+    "Value": "3.2",
+    "Uom":   {
+      "Value": "fried slices",
+      "Text":  null,
+      "Code":  null
+    }
+  },
+  "ServingsPerContainer": "2",
+  "Calorie":              {
+    "ServingText":     "g",
+    "Calories":        2,
+    "CaloriesFromFat": 3
+  },
+  "Dietary":              {
+    "Facts": [
+      {
+        "Nutrient": {
+          "Value": "4",
+          "Text":  "Fat"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 4,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "4",
+          "Text":  "Total fat"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 4,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Sat. fat"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 1.4,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "1",
+          "Text":  "Trans fat"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 1,
+        "Pdv":      {
+          "Value": null,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "sodium"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 3.2,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "cholestrol"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 4,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "carbohydrates"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "7",
+          "Text":  "Dietary fiber"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 7,
+        "Pdv":      {
+          "Value": 4,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Added sugars"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 5,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "sugars"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": null,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Sugar Alcohol"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": null,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Other Carbohydrate"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": null,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "1",
+          "Text":  "protein"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 1,
+        "Pdv":      {
+          "Value": 0.2,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2.3",
+          "Text":  "Monounsaturated fat"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2.3,
+        "Pdv":      {
+          "Value": 2.3,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "polyunsaturated fat"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 5.4,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "energy"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": null,
+          "Uom":   {
+            "Value": "",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      }
+    ]
+  },
+  "Vitamineral":          {
+    "Facts": [
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Vitamin A"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 0.3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Vitamin b12"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 9.2,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "5",
+          "Text":  "Vitamin B6"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 5,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "1",
+          "Text":  "Vitamin C"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 1,
+        "Pdv":      {
+          "Value": 0.4,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Vitamin K"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 7,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "8",
+          "Text":  "Vitamin D"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 8,
+        "Pdv":      {
+          "Value": 8,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Vitamin E"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 2,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "4",
+          "Text":  "Calcium"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 4,
+        "Pdv":      {
+          "Value": 0.5,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Potassium"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 4,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "5",
+          "Text":  "Iron"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 5,
+        "Pdv":      {
+          "Value": 0.5,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "9",
+          "Text":  "Magnesium"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 9,
+        "Pdv":      {
+          "Value": 0.4,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Manganese"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 2,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Molybdneum"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "6",
+          "Text":  "Phosphorous"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 6,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Biotin"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "7",
+          "Text":  "Folic acid"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 7,
+        "Pdv":      {
+          "Value": 2,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "8",
+          "Text":  "Iodine"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 8,
+        "Pdv":      {
+          "Value": 1,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "0.4",
+          "Text":  "niacin"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 0.4,
+        "Pdv":      {
+          "Value": 4.3,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Pantothenic acid"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 6,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Chloride"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "10",
+          "Text":  "chlorine"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 10,
+        "Pdv":      {
+          "Value": 2,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "6",
+          "Text":  "copper"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 6,
+        "Pdv":      {
+          "Value": 0.6,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "1",
+          "Text":  "folate"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 1,
+        "Pdv":      {
+          "Value": 5,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Linoleic"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "1",
+          "Text":  "Protein"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 1,
+        "Pdv":      {
+          "Value": 0.2,
+          "Uom":   {
+            "Value": "mcg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mcg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "7",
+          "Text":  "RiboFlavin"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 7,
+        "Pdv":      {
+          "Value": 4,
+          "Uom":   {
+            "Value": "mg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "mg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Selenium"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "2",
+          "Text":  "Sodium"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 2,
+        "Pdv":      {
+          "Value": 3.2,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Soluable Fiber"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": null,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "4",
+          "Text":  "Thiamin"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 4,
+        "Pdv":      {
+          "Value": null,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "5",
+          "Text":  "Zinc"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 5,
+        "Pdv":      {
+          "Value": 5,
+          "Uom":   {
+            "Value": "kg",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "kg",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      },
+      {
+        "Nutrient": {
+          "Value": "3",
+          "Text":  "Inositol"
+        },
+        "Name":     "Nutritional Facts",
+        "Quantity": 3,
+        "Pdv":      {
+          "Value": 3,
+          "Uom":   {
+            "Value": "g",
+            "Text":  null,
+            "Code":  null
+          }
+        },
+        "Uom":      {
+          "Value": "g",
+          "Text":  null,
+          "Code":  null
+        },
+        "NoteMark": null
+      }
+    ]
+  },
+  "ServingAccuracy":      null
+}

@@ -6,13 +6,12 @@ const {
         fullNutrientsDefinitions,
         attrMap,
         baseTrackObj,
-        dailyValueTransforms,
-        onyxMapping
+        dailyValueTransforms
       } = require('./artifacts.js');
 
 /**
  * @license MIT
- * @version 2.3.2
+ * @version 2.4.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -161,6 +160,21 @@ function extendFullNutrientsWithMetaData(fullNutrients) {
   });
 }
 
+const onyxMapping = {
+  204: [{'Nutrient.Text': "Total Fat"}, {'Nutrient.Value': "127271"}],
+  606: [{'Nutrient.Text': "Saturated Fat"}, {'Nutrient.Text': "Sat. fat"}, {'Nutrient.Value': "127272"}],
+  605: [{'Nutrient.Text': "Trans Fat"}, {'Nutrient.Value': "132289"}],
+  601: [{'Nutrient.Text': "Cholesterol"}, {'Nutrient.Text': "cholestrol"}, {'Nutrient.Value': "127275"}],
+  307: [{'Nutrient.Text': "Sodium"}, {'Nutrient.Value': "127276"}],
+  205: [{'Nutrient.Text': "Total Carbohydrate"}, {'Nutrient.Text': "carbohydrates"}, {'Nutrient.Value': "127278"}],
+  291: [{'Nutrient.Text': "Dietary Fiber"}, {'Nutrient.Value': "127279"}],
+  269: [{'Nutrient.Text': "Sugars"}, {'Nutrient.Value': "127282"}],
+  203: [{'Nutrient.Text': "Protein"}, {'Nutrient.Value': "127285"}],
+  306: [{'Nutrient.Text': "Potassium"}, {'Nutrient.Value': "127277"}],
+  208: panel => _.get(panel, 'Calorie.Calories'),
+  646: [{'Nutrient.Text': "Polyunsaturated Fat"}, {'Nutrient.Value': "127273"}],
+  645: [{'Nutrient.Text': "Monounsaturated Fat"}, {'Nutrient.Value': "127274"}],
+};
 
 /**
  * Uses top level properties from provided data object to construct full nutrients array.
@@ -172,17 +186,26 @@ function extendFullNutrientsWithMetaData(fullNutrients) {
 function convertOnyxToFullNutrientsArray(data) {
   const fullNutrients = [];
 
-  _.forEach(onyxMapping, (nutrientId, onyxKey) => {
+  _.forEach(onyxMapping, (onyxMapping, nutrientId) => {
     let value;
-    if (onyxKey.match(/^\d+$/)) {
-      const facts = _.get(data, 'Dietary.Facts');
-      const fact  = _.find(facts, (fact) => _.get(fact, 'Nutrient.Value') === onyxKey);
 
-      if (fact) {
-        value = _.get(fact, 'Quantity');
-      }
+    if (typeof onyxMapping === 'function') {
+      value = onyxMapping(data);
     } else {
-      value = _.get(data, onyxKey);
+      const facts = [].concat(_.get(data, 'Dietary.Facts') || [], _.get(data, 'Vitamineral.Facts') || []);
+      let fact;
+
+      for (let i = 0; i < onyxMapping.length; i += 1) {
+        let factSearchKey   = Object.keys(onyxMapping[i])[0];
+        let factSearchValue = Object.values(onyxMapping[i])[0].toLowerCase();
+
+        fact = _.find(facts, (fact) => (_.get(fact, factSearchKey) || '').toString().toLowerCase() === factSearchValue);
+
+        if (fact) {
+          value = _.get(fact, 'Quantity');
+          break;
+        }
+      }
     }
 
     if (!_.isUndefined(value)) {
@@ -190,7 +213,7 @@ function convertOnyxToFullNutrientsArray(data) {
         value = parseFloat(value);
       }
 
-      fullNutrients.push({attr_id: nutrientId, value});
+      fullNutrients.push({attr_id: +nutrientId, value});
     }
   });
 
