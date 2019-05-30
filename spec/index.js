@@ -14,7 +14,8 @@ const {
   convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData,
   dailyValueTransforms,
-  convertOnyxToFullNutrientsArray
+  convertOnyxToFullNutrientsArray,
+  convertCxhToFullNutrients
 } = require(FILE);
 
 
@@ -98,8 +99,6 @@ describe('extendFullNutrientsWithMetaData', () => {
 });
 
 describe('convertOnyxToFullNutrientsArray', () => {
-
-
   it('should return an expected array', () => {
     const intakeResult     = convertOnyxToFullNutrientsArray(require('./intake_nutrition_panel'));
     const itemMasterResult = convertOnyxToFullNutrientsArray(require('./itemmaster_nutrition_panel'));
@@ -136,6 +135,25 @@ describe('convertOnyxToFullNutrientsArray', () => {
       {attr_id: 606, value: 2},
       {attr_id: 645, value: 2.3},
       {attr_id: 646, value: 2}
+    ].sort(sorter));
+  });
+});
+
+describe('convertCxhToFullNutrientsArray', () => {
+  it('should return an expected array', () => {
+    const cxhResult     = convertCxhToFullNutrients(require('./cxh_nutrient_panel'));
+
+    const sorter = (a, b) => a.attr_id - b.attr_id;
+
+    expect(cxhResult.sort(sorter)).to.deep.equal([
+      { attr_id: 203, value: 2 },
+      { attr_id: 204, value: 5 },
+      { attr_id: 205, value: 19 },
+      { attr_id: 208, value: 130 },
+      { attr_id: 307, value: 300 },
+      { attr_id: 601, value: 0 },
+      { attr_id: 605, value: 0 },
+      { attr_id: 606, value: 0.5 }
     ].sort(sorter));
   });
 });

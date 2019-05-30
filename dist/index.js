@@ -289,6 +289,12 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'HYP'
   },
+  '539': {
+    attr_id: 539,
+    name: 'Sugars, added',
+    unit: 'g',
+    usda_tag: 'SUGAR_ADD'
+  },
   '573': {
     attr_id: 573,
     name: 'Vitamin E, added',
@@ -701,7 +707,8 @@ module.exports = {
   convertFullNutrientsToNfAttributes: convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData: extendFullNutrientsWithMetaData,
   dailyValueTransforms: dailyValueTransforms,
-  convertOnyxToFullNutrientsArray: convertOnyxToFullNutrientsArray
+  convertOnyxToFullNutrientsArray: convertOnyxToFullNutrientsArray,
+  convertCxhToFullNutrients: convertCxhToFullNutrients
 };
 
 var v1TypeAliases = {
@@ -905,6 +912,38 @@ function convertOnyxToFullNutrientsArray(data) {
       }
 
       fullNutrients.push({ attr_id: +nutrientId, value: value });
+    }
+  });
+
+  return fullNutrients;
+}
+
+var cxhMappping = {
+  208: 'ENER-',
+  204: 'FAT',
+  606: 'FASAT',
+  307: 'NA',
+  205: 'CHO-',
+  601: 'CHOL-',
+  269: 'SUGAR-',
+  539: 'SUGAD',
+  291: 'FIBTSW',
+  605: 'FATRN',
+  203: 'PRO-'
+};
+
+function convertCxhToFullNutrients(panel) {
+  var nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
+
+  var fullNutrients = [];
+
+  _2.forEach(cxhMappping, function (nutrientTypeCode, attrId) {
+    var nutrientDetail = _2.find(nutrientDetails, function (detail) {
+      return detail.NutrientTypeCode === nutrientTypeCode;
+    });
+
+    if (nutrientDetail) {
+      fullNutrients.push({ attr_id: +attrId, value: nutrientDetail.QuantityContained.Value });
     }
   });
 

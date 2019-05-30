@@ -11,7 +11,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.4.0
+ * @version 2.5.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -26,7 +26,8 @@ module.exports = {
   convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData,
   dailyValueTransforms,
-  convertOnyxToFullNutrientsArray
+  convertOnyxToFullNutrientsArray,
+  convertCxhToFullNutrients
 };
 
 
@@ -214,6 +215,36 @@ function convertOnyxToFullNutrientsArray(data) {
       }
 
       fullNutrients.push({attr_id: +nutrientId, value});
+    }
+  });
+
+  return fullNutrients;
+}
+
+const cxhMappping = {
+  208: 'ENER-',
+  204: 'FAT',
+  606: 'FASAT',
+  307: 'NA',
+  205: 'CHO-',
+  601: 'CHOL-',
+  269: 'SUGAR-',
+  539: 'SUGAD',
+  291: 'FIBTSW',
+  605: 'FATRN',
+  203: 'PRO-'
+};
+
+function convertCxhToFullNutrients(panel) {
+  const nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
+
+  const fullNutrients = [];
+
+  _.forEach(cxhMappping, (nutrientTypeCode, attrId) => {
+    const nutrientDetail = _.find(nutrientDetails, (detail) => detail.NutrientTypeCode === nutrientTypeCode);
+
+    if (nutrientDetail) {
+      fullNutrients.push({attr_id: +attrId, value: nutrientDetail.QuantityContained.Value})
     }
   });
 

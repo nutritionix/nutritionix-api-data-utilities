@@ -289,6 +289,12 @@
       unit:     'g',
       usda_tag: 'HYP'
     },
+    '539': {
+      attr_id:  539,
+      name:     'Sugars, added',
+      unit:     'g',
+      usda_tag: 'SUGAR_ADD'
+    },
     '573': {
       attr_id:  573,
       name:     'Vitamin E, added',

@@ -1,6 +1,6 @@
 {
   "name": "nutritionix-api-data-utilities",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Utilities to handle different data formats in Nutritionix APIs",
   "main": "dist/index.js",
   "scripts": {
