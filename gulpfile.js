@@ -1,9 +1,6 @@
-'use strict';
-
 const argv = require('yargs').argv;
 const gulp = require('gulp');
 const fs = require('fs-extra');
-const runSequence = require('run-sequence');
 const source = require('vinyl-source-stream');
 const browserify = require('browserify');
 const uglify = require('gulp-uglify');
@@ -26,7 +23,7 @@ gulp.task('main', () => {
     entries: PATHS.entry,
     standalone: LIB_NAME
   })
-    .transform('babelify', {presets: ['env']})
+    .transform('babelify', {presets: ['@babel/preset-env']})
     .bundle()
     .pipe(source('index.js'))
     .pipe(gulp.dest(PATHS.dst));
@@ -40,9 +37,7 @@ gulp.task('minify', () => {
 
 
 gulp.task('default', gulp.series(['clean', 'main']));
-gulp.task('release', cb => {
-  return runSequence('default', 'minify', cb);
-});
+gulp.task('release', gulp.series(['default', 'minify']));
 
 gulp.task('setVersion', function (done) {
   let version = argv.version;
