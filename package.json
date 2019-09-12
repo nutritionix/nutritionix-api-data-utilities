@@ -19,8 +19,7 @@
     "url": "https://github.com/nutritionix/nutritionix-api-data-utilities/issues"
   },
   "homepage": "https://github.com/nutritionix/nutritionix-api-data-utilities#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
     "babelify": "^7.3.0",
@@ -29,8 +28,8 @@
     "fs-extra": "^2.0.0",
     "gulp": "^4.0.0",
     "gulp-uglify": "^2.0.0",
-    "lodash": "^4.17.4",
-    "mocha": "^6.1.3",
+    "lodash": "^4.17.15",
+    "mocha": "^6.2.0",
     "run-sequence": "^1.2.2",
     "vinyl": "^2.2.0",
     "vinyl-source-stream": "^2.0.0",

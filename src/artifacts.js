@@ -530,6 +530,7 @@ const nutrientsMap = {
   nf_thebrn: fullNutrientsDefinitions['263'],
   nf_enerc_kj: fullNutrientsDefinitions['268'],
   nf_sugars: fullNutrientsDefinitions['269'],
+  nf_added_sugars: fullNutrientsDefinitions['539'],
   nf_gals: fullNutrientsDefinitions['287'],
   nf_dietary_fiber: fullNutrientsDefinitions['291'],
   nf_calcium_dv: fullNutrientsDefinitions['301'],
@@ -572,6 +573,7 @@ const attrMap = {
   '263': 'nf_thebrn',
   '268': 'nf_enerc_kj',
   '269': 'nf_sugars',
+  '539': 'nf_added_sugars',
   '287': 'nf_gals',
   '291': 'nf_dietary_fiber',
   '301': 'nf_calcium_dv',
@@ -640,11 +642,12 @@ const dailyValueTransforms = {
   //vitamin_c_dv
   401: 60,
   //calcium_dv
-  301: 1000,
+  301: 1300,
   //iron_dv
   303: 18,
   //vitam_d_dv
-  324: 400
+  324: 800, // IU
+  328: 20 // µg
 };
 
 const onyxMapping = {
