@@ -1,4 +1,4 @@
-const argv = require('yargs').argv;
+const argv = require('yargs').version(false).argv;
 const gulp = require('gulp');
 const fs = require('fs-extra');
 const source = require('vinyl-source-stream');

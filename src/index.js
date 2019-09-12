@@ -11,7 +11,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.5.0
+ * @version 2.6.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -232,7 +232,11 @@ const cxhMappping = {
   539: 'SUGAD',
   291: 'FIBTSW',
   605: 'FATRN',
-  203: 'PRO-'
+  203: 'PRO-',
+  320: 'VITA-',
+  410: 'VITC-',
+  301: 'CA',
+  303: 'FE'
 };
 
 function convertCxhToFullNutrients(panel) {
@@ -244,7 +248,11 @@ function convertCxhToFullNutrients(panel) {
     const nutrientDetail = _.find(nutrientDetails, (detail) => detail.NutrientTypeCode === nutrientTypeCode);
 
     if (nutrientDetail) {
-      fullNutrients.push({attr_id: +attrId, value: nutrientDetail.QuantityContained.Value})
+      const nutrient = {attr_id: +attrId, value: nutrientDetail.QuantityContained.Value};
+      if (!_.isUndefined(nutrientDetail.DailyValueIntakePercent)) {
+        nutrient.dv = nutrientDetail.DailyValueIntakePercent;
+      }
+      fullNutrients.push(nutrient);
     }
   });
 

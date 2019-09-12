@@ -146,14 +146,14 @@ describe('convertCxhToFullNutrientsArray', () => {
     const sorter = (a, b) => a.attr_id - b.attr_id;
 
     expect(cxhResult.sort(sorter)).to.deep.equal([
-      { attr_id: 203, value: 2 },
-      { attr_id: 204, value: 5 },
-      { attr_id: 205, value: 19 },
+      { attr_id: 203, value: 2, dv: 0 },
+      { attr_id: 204, value: 5, dv: 8 },
+      { attr_id: 205, value: 19, dv: 6 },
       { attr_id: 208, value: 130 },
-      { attr_id: 307, value: 300 },
-      { attr_id: 601, value: 0 },
-      { attr_id: 605, value: 0 },
-      { attr_id: 606, value: 0.5 }
+      { attr_id: 307, value: 300, dv: 13 },
+      { attr_id: 601, value: 0, dv: 0 },
+      { attr_id: 605, value: 0, dv: 0 },
+      { attr_id: 606, value: 0.5, dv: 3 }
     ].sort(sorter));
   });
 });

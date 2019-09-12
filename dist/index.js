@@ -2,7 +2,12 @@
 'use strict';
 
 var fullNutrientsDefinitions = {
-  '203': { attr_id: 203, name: 'Protein', unit: 'g', usda_tag: 'PROCNT' },
+  '203': {
+    attr_id: 203,
+    name: 'Protein',
+    unit: 'g',
+    usda_tag: 'PROCNT'
+  },
   '204': {
     attr_id: 204,
     name: 'Total lipid (fat)',
@@ -15,86 +20,186 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'CHOCDF'
   },
-  '207': { attr_id: 207, name: 'Ash', unit: 'g', usda_tag: 'ASH' },
+  '207': {
+    attr_id: 207,
+    name: 'Ash',
+    unit: 'g',
+    usda_tag: 'ASH'
+  },
   '208': {
     attr_id: 208,
     name: 'Energy',
     unit: 'kcal',
     usda_tag: 'ENERC_KCAL'
   },
-  '209': { attr_id: 209, name: 'Starch', unit: 'g', usda_tag: 'STARCH' },
-  '210': { attr_id: 210, name: 'Sucrose', unit: 'g', usda_tag: 'SUCS' },
+  '209': {
+    attr_id: 209,
+    name: 'Starch',
+    unit: 'g',
+    usda_tag: 'STARCH'
+  },
+  '210': {
+    attr_id: 210,
+    name: 'Sucrose',
+    unit: 'g',
+    usda_tag: 'SUCS'
+  },
   '211': {
     attr_id: 211,
     name: 'Glucose (dextrose)',
     unit: 'g',
     usda_tag: 'GLUS'
   },
-  '212': { attr_id: 212, name: 'Fructose', unit: 'g', usda_tag: 'FRUS' },
-  '213': { attr_id: 213, name: 'Lactose', unit: 'g', usda_tag: 'LACS' },
-  '214': { attr_id: 214, name: 'Maltose', unit: 'g', usda_tag: 'MALS' },
+  '212': {
+    attr_id: 212,
+    name: 'Fructose',
+    unit: 'g',
+    usda_tag: 'FRUS'
+  },
+  '213': {
+    attr_id: 213,
+    name: 'Lactose',
+    unit: 'g',
+    usda_tag: 'LACS'
+  },
+  '214': {
+    attr_id: 214,
+    name: 'Maltose',
+    unit: 'g',
+    usda_tag: 'MALS'
+  },
   '221': {
     attr_id: 221,
     name: 'Alcohol, ethyl',
     unit: 'g',
     usda_tag: 'ALC'
   },
-  '255': { attr_id: 255, name: 'Water', unit: 'g', usda_tag: 'WATER' },
+  '255': {
+    attr_id: 255,
+    name: 'Water',
+    unit: 'g',
+    usda_tag: 'WATER'
+  },
   '257': {
     attr_id: 257,
     name: 'Adjusted Protein',
     unit: 'g',
     usda_tag: ''
   },
-  '262': { attr_id: 262, name: 'Caffeine', unit: 'mg', usda_tag: 'CAFFN' },
+  '262': {
+    attr_id: 262,
+    name: 'Caffeine',
+    unit: 'mg',
+    usda_tag: 'CAFFN'
+  },
   '263': {
     attr_id: 263,
     name: 'Theobromine',
     unit: 'mg',
     usda_tag: 'THEBRN'
   },
-  '268': { attr_id: 268, name: 'Energy', unit: 'kJ', usda_tag: 'ENERC_KJ' },
+  '268': {
+    attr_id: 268,
+    name: 'Energy',
+    unit: 'kJ',
+    usda_tag: 'ENERC_KJ'
+  },
   '269': {
     attr_id: 269,
     name: 'Sugars, total',
     unit: 'g',
     usda_tag: 'SUGAR'
   },
-  '287': { attr_id: 287, name: 'Galactose', unit: 'g', usda_tag: 'GALS' },
+  '287': {
+    attr_id: 287,
+    name: 'Galactose',
+    unit: 'g',
+    usda_tag: 'GALS'
+  },
   '291': {
     attr_id: 291,
     name: 'Fiber, total dietary',
     unit: 'g',
     usda_tag: 'FIBTG'
   },
-  '301': { attr_id: 301, name: 'Calcium, Ca', unit: 'mg', usda_tag: 'CA' },
-  '303': { attr_id: 303, name: 'Iron, Fe', unit: 'mg', usda_tag: 'FE' },
+  '301': {
+    attr_id: 301,
+    name: 'Calcium, Ca',
+    unit: 'mg',
+    usda_tag: 'CA'
+  },
+  '303': {
+    attr_id: 303,
+    name: 'Iron, Fe',
+    unit: 'mg',
+    usda_tag: 'FE'
+  },
   '304': {
     attr_id: 304,
     name: 'Magnesium, Mg',
     unit: 'mg',
     usda_tag: 'MG'
   },
-  '305': { attr_id: 305, name: 'Phosphorus, P', unit: 'mg', usda_tag: 'P' },
-  '306': { attr_id: 306, name: 'Potassium, K', unit: 'mg', usda_tag: 'K' },
-  '307': { attr_id: 307, name: 'Sodium, Na', unit: 'mg', usda_tag: 'NA' },
-  '309': { attr_id: 309, name: 'Zinc, Zn', unit: 'mg', usda_tag: 'ZN' },
-  '312': { attr_id: 312, name: 'Copper, Cu', unit: 'mg', usda_tag: 'CU' },
-  '313': { attr_id: 313, name: 'Fluoride, F', unit: 'µg', usda_tag: 'FLD' },
+  '305': {
+    attr_id: 305,
+    name: 'Phosphorus, P',
+    unit: 'mg',
+    usda_tag: 'P'
+  },
+  '306': {
+    attr_id: 306,
+    name: 'Potassium, K',
+    unit: 'mg',
+    usda_tag: 'K'
+  },
+  '307': {
+    attr_id: 307,
+    name: 'Sodium, Na',
+    unit: 'mg',
+    usda_tag: 'NA'
+  },
+  '309': {
+    attr_id: 309,
+    name: 'Zinc, Zn',
+    unit: 'mg',
+    usda_tag: 'ZN'
+  },
+  '312': {
+    attr_id: 312,
+    name: 'Copper, Cu',
+    unit: 'mg',
+    usda_tag: 'CU'
+  },
+  '313': {
+    attr_id: 313,
+    name: 'Fluoride, F',
+    unit: 'µg',
+    usda_tag: 'FLD'
+  },
   '315': {
     attr_id: 315,
     name: 'Manganese, Mn',
     unit: 'mg',
     usda_tag: 'MN'
   },
-  '317': { attr_id: 317, name: 'Selenium, Se', unit: 'µg', usda_tag: 'SE' },
+  '317': {
+    attr_id: 317,
+    name: 'Selenium, Se',
+    unit: 'µg',
+    usda_tag: 'SE'
+  },
   '318': {
     attr_id: 318,
     name: 'Vitamin A, IU',
     unit: 'IU',
     usda_tag: 'VITA_IU'
   },
-  '319': { attr_id: 319, name: 'Retinol', unit: 'µg', usda_tag: 'RETOL' },
+  '319': {
+    attr_id: 319,
+    name: 'Retinol',
+    unit: 'µg',
+    usda_tag: 'RETOL'
+  },
   '320': {
     attr_id: 320,
     name: 'Vitamin A, RAE',
@@ -119,7 +224,12 @@ var fullNutrientsDefinitions = {
     unit: 'mg',
     usda_tag: 'TOCPHA'
   },
-  '324': { attr_id: 324, name: 'Vitamin D', unit: 'IU', usda_tag: 'VITD' },
+  '324': {
+    attr_id: 324,
+    name: 'Vitamin D',
+    unit: 'IU',
+    usda_tag: 'VITD'
+  },
   '325': {
     attr_id: 325,
     name: 'Vitamin D2 (ergocalciferol)',
@@ -144,7 +254,12 @@ var fullNutrientsDefinitions = {
     unit: 'µg',
     usda_tag: 'CRYPX'
   },
-  '337': { attr_id: 337, name: 'Lycopene', unit: 'µg', usda_tag: 'LYCPN' },
+  '337': {
+    attr_id: 337,
+    name: 'Lycopene',
+    unit: 'µg',
+    usda_tag: 'LYCPN'
+  },
   '338': {
     attr_id: 338,
     name: 'Lutein + zeaxanthin',
@@ -175,9 +290,24 @@ var fullNutrientsDefinitions = {
     unit: 'mg',
     usda_tag: 'VITC'
   },
-  '404': { attr_id: 404, name: 'Thiamin', unit: 'mg', usda_tag: 'THIA' },
-  '405': { attr_id: 405, name: 'Riboflavin', unit: 'mg', usda_tag: 'RIBF' },
-  '406': { attr_id: 406, name: 'Niacin', unit: 'mg', usda_tag: 'NIA' },
+  '404': {
+    attr_id: 404,
+    name: 'Thiamin',
+    unit: 'mg',
+    usda_tag: 'THIA'
+  },
+  '405': {
+    attr_id: 405,
+    name: 'Riboflavin',
+    unit: 'mg',
+    usda_tag: 'RIBF'
+  },
+  '406': {
+    attr_id: 406,
+    name: 'Niacin',
+    unit: 'mg',
+    usda_tag: 'NIA'
+  },
   '410': {
     attr_id: 410,
     name: 'Pantothenic acid',
@@ -244,30 +374,90 @@ var fullNutrientsDefinitions = {
     unit: 'µg',
     usda_tag: 'FOLDFE'
   },
-  '454': { attr_id: 454, name: 'Betaine', unit: 'mg', usda_tag: 'BETN' },
-  '501': { attr_id: 501, name: 'Tryptophan', unit: 'g', usda_tag: 'TRP_G' },
-  '502': { attr_id: 502, name: 'Threonine', unit: 'g', usda_tag: 'THR_G' },
-  '503': { attr_id: 503, name: 'Isoleucine', unit: 'g', usda_tag: 'ILE_G' },
-  '504': { attr_id: 504, name: 'Leucine', unit: 'g', usda_tag: 'LEU_G' },
-  '505': { attr_id: 505, name: 'Lysine', unit: 'g', usda_tag: 'LYS_G' },
-  '506': { attr_id: 506, name: 'Methionine', unit: 'g', usda_tag: 'MET_G' },
-  '507': { attr_id: 507, name: 'Cystine', unit: 'g', usda_tag: 'CYS_G' },
+  '454': {
+    attr_id: 454,
+    name: 'Betaine',
+    unit: 'mg',
+    usda_tag: 'BETN'
+  },
+  '501': {
+    attr_id: 501,
+    name: 'Tryptophan',
+    unit: 'g',
+    usda_tag: 'TRP_G'
+  },
+  '502': {
+    attr_id: 502,
+    name: 'Threonine',
+    unit: 'g',
+    usda_tag: 'THR_G'
+  },
+  '503': {
+    attr_id: 503,
+    name: 'Isoleucine',
+    unit: 'g',
+    usda_tag: 'ILE_G'
+  },
+  '504': {
+    attr_id: 504,
+    name: 'Leucine',
+    unit: 'g',
+    usda_tag: 'LEU_G'
+  },
+  '505': {
+    attr_id: 505,
+    name: 'Lysine',
+    unit: 'g',
+    usda_tag: 'LYS_G'
+  },
+  '506': {
+    attr_id: 506,
+    name: 'Methionine',
+    unit: 'g',
+    usda_tag: 'MET_G'
+  },
+  '507': {
+    attr_id: 507,
+    name: 'Cystine',
+    unit: 'g',
+    usda_tag: 'CYS_G'
+  },
   '508': {
     attr_id: 508,
     name: 'Phenylalanine',
     unit: 'g',
     usda_tag: 'PHE_G'
   },
-  '509': { attr_id: 509, name: 'Tyrosine', unit: 'g', usda_tag: 'TYR_G' },
-  '510': { attr_id: 510, name: 'Valine', unit: 'g', usda_tag: 'VAL_G' },
-  '511': { attr_id: 511, name: 'Arginine', unit: 'g', usda_tag: 'ARG_G' },
+  '509': {
+    attr_id: 509,
+    name: 'Tyrosine',
+    unit: 'g',
+    usda_tag: 'TYR_G'
+  },
+  '510': {
+    attr_id: 510,
+    name: 'Valine',
+    unit: 'g',
+    usda_tag: 'VAL_G'
+  },
+  '511': {
+    attr_id: 511,
+    name: 'Arginine',
+    unit: 'g',
+    usda_tag: 'ARG_G'
+  },
   '512': {
     attr_id: 512,
     name: 'Histidine',
     unit: 'g',
     usda_tag: 'HISTN_G'
   },
-  '513': { attr_id: 513, name: 'Alanine', unit: 'g', usda_tag: 'ALA_G' },
+  '513': {
+    attr_id: 513,
+    name: 'Alanine',
+    unit: 'g',
+    usda_tag: 'ALA_G'
+  },
   '514': {
     attr_id: 514,
     name: 'Aspartic acid',
@@ -280,9 +470,24 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'GLU_G'
   },
-  '516': { attr_id: 516, name: 'Glycine', unit: 'g', usda_tag: 'GLY_G' },
-  '517': { attr_id: 517, name: 'Proline', unit: 'g', usda_tag: 'PRO_G' },
-  '518': { attr_id: 518, name: 'Serine', unit: 'g', usda_tag: 'SER_G' },
+  '516': {
+    attr_id: 516,
+    name: 'Glycine',
+    unit: 'g',
+    usda_tag: 'GLY_G'
+  },
+  '517': {
+    attr_id: 517,
+    name: 'Proline',
+    unit: 'g',
+    usda_tag: 'PRO_G'
+  },
+  '518': {
+    attr_id: 518,
+    name: 'Serine',
+    unit: 'g',
+    usda_tag: 'SER_G'
+  },
   '521': {
     attr_id: 521,
     name: 'Hydroxyproline',
@@ -325,15 +530,60 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'FASAT'
   },
-  '607': { attr_id: 607, name: '4:0', unit: 'g', usda_tag: 'F4D0' },
-  '608': { attr_id: 608, name: '6:0', unit: 'g', usda_tag: 'F6D0' },
-  '609': { attr_id: 609, name: '8:0', unit: 'g', usda_tag: 'F8D0' },
-  '610': { attr_id: 610, name: '10:0', unit: 'g', usda_tag: 'F10D0' },
-  '611': { attr_id: 611, name: '12:0', unit: 'g', usda_tag: 'F12D0' },
-  '612': { attr_id: 612, name: '14:0', unit: 'g', usda_tag: 'F14D0' },
-  '613': { attr_id: 613, name: '16:0', unit: 'g', usda_tag: 'F16D0' },
-  '614': { attr_id: 614, name: '18:0', unit: 'g', usda_tag: 'F18D0' },
-  '615': { attr_id: 615, name: '20:0', unit: 'g', usda_tag: 'F20D0' },
+  '607': {
+    attr_id: 607,
+    name: '4:0',
+    unit: 'g',
+    usda_tag: 'F4D0'
+  },
+  '608': {
+    attr_id: 608,
+    name: '6:0',
+    unit: 'g',
+    usda_tag: 'F6D0'
+  },
+  '609': {
+    attr_id: 609,
+    name: '8:0',
+    unit: 'g',
+    usda_tag: 'F8D0'
+  },
+  '610': {
+    attr_id: 610,
+    name: '10:0',
+    unit: 'g',
+    usda_tag: 'F10D0'
+  },
+  '611': {
+    attr_id: 611,
+    name: '12:0',
+    unit: 'g',
+    usda_tag: 'F12D0'
+  },
+  '612': {
+    attr_id: 612,
+    name: '14:0',
+    unit: 'g',
+    usda_tag: 'F14D0'
+  },
+  '613': {
+    attr_id: 613,
+    name: '16:0',
+    unit: 'g',
+    usda_tag: 'F16D0'
+  },
+  '614': {
+    attr_id: 614,
+    name: '18:0',
+    unit: 'g',
+    usda_tag: 'F18D0'
+  },
+  '615': {
+    attr_id: 615,
+    name: '20:0',
+    unit: 'g',
+    usda_tag: 'F20D0'
+  },
   '617': {
     attr_id: 617,
     name: '18:1 undifferentiated',
@@ -364,16 +614,36 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'F22D6'
   },
-  '624': { attr_id: 624, name: '22:0', unit: 'g', usda_tag: 'F22D0' },
-  '625': { attr_id: 625, name: '14:1', unit: 'g', usda_tag: 'F14D1' },
+  '624': {
+    attr_id: 624,
+    name: '22:0',
+    unit: 'g',
+    usda_tag: 'F22D0'
+  },
+  '625': {
+    attr_id: 625,
+    name: '14:1',
+    unit: 'g',
+    usda_tag: 'F14D1'
+  },
   '626': {
     attr_id: 626,
     name: '16:1 undifferentiated',
     unit: 'g',
     usda_tag: 'F16D1'
   },
-  '627': { attr_id: 627, name: '18:4', unit: 'g', usda_tag: 'F18D4' },
-  '628': { attr_id: 628, name: '20:1', unit: 'g', usda_tag: 'F20D1' },
+  '627': {
+    attr_id: 627,
+    name: '18:4',
+    unit: 'g',
+    usda_tag: 'F18D4'
+  },
+  '628': {
+    attr_id: 628,
+    name: '20:1',
+    unit: 'g',
+    usda_tag: 'F20D1'
+  },
   '629': {
     attr_id: 629,
     name: '20:5 n-3 (EPA)',
@@ -428,49 +698,114 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'FAPU'
   },
-  '652': { attr_id: 652, name: '15:0', unit: 'g', usda_tag: 'F15D0' },
-  '653': { attr_id: 653, name: '17:0', unit: 'g', usda_tag: 'F17D0' },
-  '654': { attr_id: 654, name: '24:0', unit: 'g', usda_tag: 'F24D0' },
-  '662': { attr_id: 662, name: '16:1 t', unit: 'g', usda_tag: 'F16D1T' },
-  '663': { attr_id: 663, name: '18:1 t', unit: 'g', usda_tag: 'F18D1T' },
-  '664': { attr_id: 664, name: '22:1 t', unit: 'g', usda_tag: '' },
+  '652': {
+    attr_id: 652,
+    name: '15:0',
+    unit: 'g',
+    usda_tag: 'F15D0'
+  },
+  '653': {
+    attr_id: 653,
+    name: '17:0',
+    unit: 'g',
+    usda_tag: 'F17D0'
+  },
+  '654': {
+    attr_id: 654,
+    name: '24:0',
+    unit: 'g',
+    usda_tag: 'F24D0'
+  },
+  '662': {
+    attr_id: 662,
+    name: '16:1 t',
+    unit: 'g',
+    usda_tag: 'F16D1T'
+  },
+  '663': {
+    attr_id: 663,
+    name: '18:1 t',
+    unit: 'g',
+    usda_tag: 'F18D1T'
+  },
+  '664': {
+    attr_id: 664,
+    name: '22:1 t',
+    unit: 'g',
+    usda_tag: ''
+  },
   '665': {
     attr_id: 665,
     name: '18:2 t not further defined',
     unit: 'g',
     usda_tag: ''
   },
-  '666': { attr_id: 666, name: '18:2 i', unit: 'g', usda_tag: '' },
-  '669': { attr_id: 669, name: '18:2 t,t', unit: 'g', usda_tag: 'F18D2TT' },
+  '666': {
+    attr_id: 666,
+    name: '18:2 i',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '669': {
+    attr_id: 669,
+    name: '18:2 t,t',
+    unit: 'g',
+    usda_tag: 'F18D2TT'
+  },
   '670': {
     attr_id: 670,
     name: '18:2 CLAs',
     unit: 'g',
     usda_tag: 'F18D2CLA'
   },
-  '671': { attr_id: 671, name: '24:1 c', unit: 'g', usda_tag: 'F24D1C' },
+  '671': {
+    attr_id: 671,
+    name: '24:1 c',
+    unit: 'g',
+    usda_tag: 'F24D1C'
+  },
   '672': {
     attr_id: 672,
     name: '20:2 n-6 c,c',
     unit: 'g',
     usda_tag: 'F20D2CN6'
   },
-  '673': { attr_id: 673, name: '16:1 c', unit: 'g', usda_tag: 'F16D1C' },
-  '674': { attr_id: 674, name: '18:1 c', unit: 'g', usda_tag: 'F18D1C' },
+  '673': {
+    attr_id: 673,
+    name: '16:1 c',
+    unit: 'g',
+    usda_tag: 'F16D1C'
+  },
+  '674': {
+    attr_id: 674,
+    name: '18:1 c',
+    unit: 'g',
+    usda_tag: 'F18D1C'
+  },
   '675': {
     attr_id: 675,
     name: '18:2 n-6 c,c',
     unit: 'g',
     usda_tag: 'F18D2CN6'
   },
-  '676': { attr_id: 676, name: '22:1 c', unit: 'g', usda_tag: '' },
+  '676': {
+    attr_id: 676,
+    name: '22:1 c',
+    unit: 'g',
+    usda_tag: ''
+  },
   '685': {
     attr_id: 685,
     name: '18:3 n-6 c,c,c',
     unit: 'g',
     usda_tag: 'F18D3CN6'
   },
-  '687': { attr_id: 687, name: '17:1', unit: 'g', usda_tag: 'F17D1' },
+  '687': {
+    attr_id: 687,
+    name: '17:1',
+    unit: 'g',
+    usda_tag: 'F17D1'
+  },
   '689': {
     attr_id: 689,
     name: '20:3 undifferentiated',
@@ -489,20 +824,60 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'FATRNP'
   },
-  '696': { attr_id: 696, name: '13:0', unit: 'g', usda_tag: 'F13D0' },
-  '697': { attr_id: 697, name: '15:1', unit: 'g', usda_tag: 'F15D1' },
+  '696': {
+    attr_id: 696,
+    name: '13:0',
+    unit: 'g',
+    usda_tag: 'F13D0'
+  },
+  '697': {
+    attr_id: 697,
+    name: '15:1',
+    unit: 'g',
+    usda_tag: 'F15D1'
+  },
   '851': {
     attr_id: 851,
     name: '18:3 n-3 c,c,c (ALA)',
     unit: 'g',
     usda_tag: 'F18D3CN3'
   },
-  '852': { attr_id: 852, name: '20:3 n-3', unit: 'g', usda_tag: 'F20D3N3' },
-  '853': { attr_id: 853, name: '20:3 n-6', unit: 'g', usda_tag: 'F20D3N6' },
-  '855': { attr_id: 855, name: '20:4 n-6', unit: 'g', usda_tag: 'F20D4N6' },
-  '856': { attr_id: 856, name: '18:3i', unit: 'g', usda_tag: '' },
-  '857': { attr_id: 857, name: '21:5', unit: 'g', usda_tag: 'F21D5' },
-  '858': { attr_id: 858, name: '22:4', unit: 'g', usda_tag: 'F22D4' },
+  '852': {
+    attr_id: 852,
+    name: '20:3 n-3',
+    unit: 'g',
+    usda_tag: 'F20D3N3'
+  },
+  '853': {
+    attr_id: 853,
+    name: '20:3 n-6',
+    unit: 'g',
+    usda_tag: 'F20D3N6'
+  },
+  '855': {
+    attr_id: 855,
+    name: '20:4 n-6',
+    unit: 'g',
+    usda_tag: 'F20D4N6'
+  },
+  '856': {
+    attr_id: 856,
+    name: '18:3i',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '857': {
+    attr_id: 857,
+    name: '21:5',
+    unit: 'g',
+    usda_tag: 'F21D5'
+  },
+  '858': {
+    attr_id: 858,
+    name: '22:4',
+    unit: 'g',
+    usda_tag: 'F22D4'
+  },
   '859': {
     attr_id: 859,
     name: '18:1-11t (18:1t n-7)',
@@ -510,7 +885,6 @@ var fullNutrientsDefinitions = {
     usda_tag: 'F18D1TN7'
   }
 };
-
 var nutrientsMap = {
   nf_protein: fullNutrientsDefinitions['203'],
   nf_total_fat: fullNutrientsDefinitions['204'],
@@ -530,6 +904,7 @@ var nutrientsMap = {
   nf_thebrn: fullNutrientsDefinitions['263'],
   nf_enerc_kj: fullNutrientsDefinitions['268'],
   nf_sugars: fullNutrientsDefinitions['269'],
+  nf_added_sugars: fullNutrientsDefinitions['539'],
   nf_gals: fullNutrientsDefinitions['287'],
   nf_dietary_fiber: fullNutrientsDefinitions['291'],
   nf_calcium_dv: fullNutrientsDefinitions['301'],
@@ -553,7 +928,6 @@ var nutrientsMap = {
   nf_monounsaturated_fat: fullNutrientsDefinitions['645'],
   nf_polyunsaturated_fat: fullNutrientsDefinitions['646']
 };
-
 var attrMap = {
   '203': 'nf_protein',
   '204': 'nf_total_fat',
@@ -572,6 +946,7 @@ var attrMap = {
   '263': 'nf_thebrn',
   '268': 'nf_enerc_kj',
   '269': 'nf_sugars',
+  '539': 'nf_added_sugars',
   '287': 'nf_gals',
   '291': 'nf_dietary_fiber',
   '301': 'nf_calcium_dv',
@@ -596,7 +971,6 @@ var attrMap = {
   '646': 'nf_polyunsaturated_fat',
   '859': 'NULL'
 };
-
 var baseTrackObj = {
   metadata: {},
   food_name: undefined,
@@ -633,20 +1007,21 @@ var baseTrackObj = {
   note: null,
   alt_measures: null
 };
-
 var dailyValueTransforms = {
   //vitamin_a_dv
   318: 5000,
   //vitamin_c_dv
   401: 60,
   //calcium_dv
-  301: 1000,
+  301: 1300,
   //iron_dv
   303: 18,
   //vitam_d_dv
-  324: 400
-};
+  324: 800,
+  // IU
+  328: 20 // µg
 
+};
 var onyxMapping = {
   "127271": 204,
   "127272": 606,
@@ -662,7 +1037,6 @@ var onyxMapping = {
   "127273": 646,
   "127274": 645
 };
-
 module.exports = {
   nutrientsMap: nutrientsMap,
   fullNutrientsDefinitions: fullNutrientsDefinitions,
@@ -675,9 +1049,15 @@ module.exports = {
 },{}],2:[function(require,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var _2 = require('./utils');
 
@@ -687,10 +1067,9 @@ var _require = require('./artifacts.js'),
     attrMap = _require.attrMap,
     baseTrackObj = _require.baseTrackObj,
     dailyValueTransforms = _require.dailyValueTransforms;
-
 /**
  * @license MIT
- * @version 2.4.0
+ * @version 2.5.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -710,7 +1089,6 @@ module.exports = {
   convertOnyxToFullNutrientsArray: convertOnyxToFullNutrientsArray,
   convertCxhToFullNutrients: convertCxhToFullNutrients
 };
-
 var v1TypeAliases = {
   item_name: ['food_name', 'nix_item_name'],
   nf_serving_size_qty: ['serving_qty'],
@@ -728,19 +1106,19 @@ function hasItems(test) {
 function optimisticallyMergeArrays(comparator) {
   var _ref;
 
-  for (var _len = arguments.length, cols = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+  for (var _len = arguments.length, cols = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     cols[_key - 1] = arguments[_key];
   }
 
-  var mergeCols = cols.filter(hasItems);
-  //base cases
+  var mergeCols = cols.filter(hasItems); //base cases
+
   if (!mergeCols.length) return [];
   if (mergeCols.length === 1) return mergeCols[0];
 
   var flat = (_ref = []).concat.apply(_ref, _toConsumableArray(mergeCols));
+
   return _2.uniqBy(flat, comparator);
 }
-
 /**
  *
  * @param {object} v1Item Api V1 Food object
@@ -749,17 +1127,17 @@ function optimisticallyMergeArrays(comparator) {
  * @returns {object} Track API food object
  */
 
+
 function convertV1ItemToTrackFood(v1Item, defaultObj) {
-  v1Item = (typeof v1Item === 'undefined' ? 'undefined' : _typeof(v1Item)) === 'object' && v1Item !== null ? v1Item : {};
-  defaultObj = (typeof defaultObj === 'undefined' ? 'undefined' : _typeof(defaultObj)) === 'object' && defaultObj !== null ? defaultObj : {};
+  v1Item = _typeof(v1Item) === 'object' && v1Item !== null ? v1Item : {};
+  defaultObj = _typeof(defaultObj) === 'object' && defaultObj !== null ? defaultObj : {}; //build a full nutrient array from any 'nf' fields from the v1item;
 
-  //build a full nutrient array from any 'nf' fields from the v1item;
-  var v1FullNutrs = buildFullNutrientsArray(v1Item);
+  var v1FullNutrs = buildFullNutrientsArray(v1Item); //create an object with superset of keys, including both original and aliases fields for later picking.
 
-  //create an object with superset of keys, including both original and aliases fields for later picking.
   var mappedFields = _2.reduce(v1Item, function (accum, val, key) {
     //either use array of aliases, or the key itself.
     var aliases = v1TypeAliases[key];
+
     if (aliases) {
       aliases.forEach(function (alias) {
         return accum[alias] = val;
@@ -767,22 +1145,23 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
     } else {
       accum[key] = val;
     }
-    return accum;
-  }, {});
 
-  //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
+    return accum;
+  }, {}); //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
+
+
   var v1Defaults = _2.pickBy(mappedFields, function (val, key) {
     return baseTrackObj.hasOwnProperty(key) && (val || val === 0);
-  });
+  }); //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
 
-  //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
+
   var fullNutrArray = optimisticallyMergeArrays(function (nutr) {
     return nutr.attr_id;
   }, defaultObj.full_nutrients, v1FullNutrs);
-
-  return _2.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1Defaults, baseTrackObj);
+  return _2.defaults({
+    full_nutrients: fullNutrArray
+  }, defaultObj, v1Defaults, baseTrackObj);
 }
-
 /**
  * Uses top level properties from provided data object to construct full nutrients array.
  * Supports api names as keys of the source object
@@ -790,17 +1169,21 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
  * @param {Object} data
  * @returns {Array} Full nutrients array
  */
+
+
 function buildFullNutrientsArray(data) {
   return _2.reduce(nutrientsMap, function (accum, nutrDetails, v1AttrName) {
     if (data[v1AttrName] || data[v1AttrName] === 0) {
       var value = parseFloat(data[v1AttrName]);
+
       if (!isNaN(value) && !(value < 0)) {
-        var attr_id = nutrDetails.attr_id;
-        //ensure that daily value measures are calculated into the appropriate units.
+        var attr_id = nutrDetails.attr_id; //ensure that daily value measures are calculated into the appropriate units.
+
         if (dailyValueTransforms[attr_id]) {
           value = dailyValueTransforms[attr_id] / 100 * value;
-        }
-        //round to 4 decimal places
+        } //round to 4 decimal places
+
+
         value = parseFloat(value.toFixed(4));
         accum.push({
           attr_id: nutrDetails.attr_id,
@@ -808,26 +1191,29 @@ function buildFullNutrientsArray(data) {
         });
       }
     }
+
     return accum;
   }, []);
 }
-
 /**
  * Generates object with top level nf_attributes from full_nutrients array
  * @param {Object[]} fullNutrients Full nutrients array
  * @returns {Object} Nf attributes object
  */
+
+
 function convertFullNutrientsToNfAttributes(fullNutrients) {
   return _2.reduce(fullNutrients, function (accum, val) {
     var nfKey = attrMap[val.attr_id];
+
     if (nfKey) {
       var transformVal = dailyValueTransforms[val.attr_id];
       accum[nfKey] = transformVal ? val.value / transformVal * 100 : val.value;
     }
+
     return accum;
   }, {});
 }
-
 /**
  * Expand short form of full_nutrients items to the full one with name, unit and usda_tag
  * Mutates original objects
@@ -835,37 +1221,92 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
  * @param {Object[]} fullNutrients Full nutrients array
  * @returns {Object[]} Mutated full nutrients array
  */
+
+
 function extendFullNutrientsWithMetaData(fullNutrients) {
   return fullNutrients.map(function (nutr) {
     //found matching nutrient, extend.
     var nutrDefMatch = fullNutrientsDefinitions[nutr.attr_id];
+
     if (nutrDefMatch) {
       return _2.defaults(nutr, nutrDefMatch);
     } else {
-      return nutr;
-      //no match, return base.
+      return nutr; //no match, return base.
     }
   });
 }
 
 var onyxMapping = {
-  204: [{ 'Nutrient.Text': "Total Fat" }, { 'Nutrient.Value': "127271" }],
-  606: [{ 'Nutrient.Text': "Saturated Fat" }, { 'Nutrient.Text': "Sat. fat" }, { 'Nutrient.Value': "127272" }],
-  605: [{ 'Nutrient.Text': "Trans Fat" }, { 'Nutrient.Value': "132289" }],
-  601: [{ 'Nutrient.Text': "Cholesterol" }, { 'Nutrient.Text': "cholestrol" }, { 'Nutrient.Value': "127275" }],
-  307: [{ 'Nutrient.Text': "Sodium" }, { 'Nutrient.Value': "127276" }],
-  205: [{ 'Nutrient.Text': "Total Carbohydrate" }, { 'Nutrient.Text': "carbohydrates" }, { 'Nutrient.Value': "127278" }],
-  291: [{ 'Nutrient.Text': "Dietary Fiber" }, { 'Nutrient.Value': "127279" }],
-  269: [{ 'Nutrient.Text': "Sugars" }, { 'Nutrient.Value': "127282" }],
-  203: [{ 'Nutrient.Text': "Protein" }, { 'Nutrient.Value': "127285" }],
-  306: [{ 'Nutrient.Text': "Potassium" }, { 'Nutrient.Value': "127277" }],
+  204: [{
+    'Nutrient.Text': "Total Fat"
+  }, {
+    'Nutrient.Value': "127271"
+  }],
+  606: [{
+    'Nutrient.Text': "Saturated Fat"
+  }, {
+    'Nutrient.Text': "Sat. fat"
+  }, {
+    'Nutrient.Value': "127272"
+  }],
+  605: [{
+    'Nutrient.Text': "Trans Fat"
+  }, {
+    'Nutrient.Value': "132289"
+  }],
+  601: [{
+    'Nutrient.Text': "Cholesterol"
+  }, {
+    'Nutrient.Text': "cholestrol"
+  }, {
+    'Nutrient.Value': "127275"
+  }],
+  307: [{
+    'Nutrient.Text': "Sodium"
+  }, {
+    'Nutrient.Value': "127276"
+  }],
+  205: [{
+    'Nutrient.Text': "Total Carbohydrate"
+  }, {
+    'Nutrient.Text': "carbohydrates"
+  }, {
+    'Nutrient.Value': "127278"
+  }],
+  291: [{
+    'Nutrient.Text': "Dietary Fiber"
+  }, {
+    'Nutrient.Value': "127279"
+  }],
+  269: [{
+    'Nutrient.Text': "Sugars"
+  }, {
+    'Nutrient.Value': "127282"
+  }],
+  203: [{
+    'Nutrient.Text': "Protein"
+  }, {
+    'Nutrient.Value': "127285"
+  }],
+  306: [{
+    'Nutrient.Text': "Potassium"
+  }, {
+    'Nutrient.Value': "127277"
+  }],
   208: function _(panel) {
     return _2.get(panel, 'Calorie.Calories');
   },
-  646: [{ 'Nutrient.Text': "Polyunsaturated Fat" }, { 'Nutrient.Value': "127273" }],
-  645: [{ 'Nutrient.Text': "Monounsaturated Fat" }, { 'Nutrient.Value': "127274" }]
+  646: [{
+    'Nutrient.Text': "Polyunsaturated Fat"
+  }, {
+    'Nutrient.Value': "127273"
+  }],
+  645: [{
+    'Nutrient.Text': "Monounsaturated Fat"
+  }, {
+    'Nutrient.Value': "127274"
+  }]
 };
-
 /**
  * Uses top level properties from provided data object to construct full nutrients array.
  * Supports api names as keys of the source object
@@ -873,36 +1314,36 @@ var onyxMapping = {
  * @param {Object} data Onyx nutrition label data
  * @returns {Array} Full nutrients array
  */
+
 function convertOnyxToFullNutrientsArray(data) {
   var fullNutrients = [];
 
   _2.forEach(onyxMapping, function (onyxMapping, nutrientId) {
-    var value = void 0;
+    var value;
 
     if (typeof onyxMapping === 'function') {
       value = onyxMapping(data);
     } else {
       var facts = [].concat(_2.get(data, 'Dietary.Facts') || [], _2.get(data, 'Vitamineral.Facts') || []);
-      var fact = void 0;
+      var fact;
 
       var _loop = function _loop(i) {
         var factSearchKey = Object.keys(onyxMapping[i])[0];
         var factSearchValue = Object.values(onyxMapping[i])[0].toLowerCase();
-
         fact = _2.find(facts, function (fact) {
           return (_2.get(fact, factSearchKey) || '').toString().toLowerCase() === factSearchValue;
         });
 
         if (fact) {
           value = _2.get(fact, 'Quantity');
-          return 'break';
+          return "break";
         }
       };
 
       for (var i = 0; i < onyxMapping.length; i += 1) {
         var _ret = _loop(i);
 
-        if (_ret === 'break') break;
+        if (_ret === "break") break;
       }
     }
 
@@ -911,7 +1352,10 @@ function convertOnyxToFullNutrientsArray(data) {
         value = parseFloat(value);
       }
 
-      fullNutrients.push({ attr_id: +nutrientId, value: value });
+      fullNutrients.push({
+        attr_id: +nutrientId,
+        value: value
+      });
     }
   });
 
@@ -929,12 +1373,15 @@ var cxhMappping = {
   539: 'SUGAD',
   291: 'FIBTSW',
   605: 'FATRN',
-  203: 'PRO-'
+  203: 'PRO-',
+  320: 'VITA-',
+  410: 'VITC-',
+  301: 'CA',
+  303: 'FE'
 };
 
 function convertCxhToFullNutrients(panel) {
   var nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
-
   var fullNutrients = [];
 
   _2.forEach(cxhMappping, function (nutrientTypeCode, attrId) {
@@ -943,7 +1390,16 @@ function convertCxhToFullNutrients(panel) {
     });
 
     if (nutrientDetail) {
-      fullNutrients.push({ attr_id: +attrId, value: nutrientDetail.QuantityContained.Value });
+      var nutrient = {
+        attr_id: +attrId,
+        value: nutrientDetail.QuantityContained.Value
+      };
+
+      if (!_2.isUndefined(nutrientDetail.DailyValueIntakePercent)) {
+        nutrient.dv = nutrientDetail.DailyValueIntakePercent;
+      }
+
+      fullNutrients.push(nutrient);
     }
   });
 
@@ -953,7 +1409,7 @@ function convertCxhToFullNutrients(panel) {
 },{"./artifacts.js":1,"./utils":3}],3:[function(require,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 module.exports = {
   defaults: defaults,
@@ -969,7 +1425,7 @@ module.exports = {
 };
 
 function defaults(source) {
-  for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+  for (var _len = arguments.length, rest = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     rest[_key - 1] = arguments[_key];
   }
 
@@ -984,6 +1440,7 @@ function defaults(source) {
   for (var i = 0; i < rest.length; i++) {
     _loop(i);
   }
+
   return source;
 }
 
@@ -999,9 +1456,8 @@ function mapKeys(obj, fnc) {
 function reduce(collection, fn, accum) {
   var isArr = Array.isArray(collection);
   var hasAccumulator = arguments.length >= 3;
-  var result = accum;
+  var result = accum; // bind new iterator fn to collection & accum
 
-  // bind new iterator fn to collection & accum
   function iterator(item, idxOrKey) {
     if (!hasAccumulator) {
       result = item;
@@ -1017,34 +1473,37 @@ function reduce(collection, fn, accum) {
     }
   } else {
     var _keys = Object.keys(collection);
+
     for (var i = 0; i < _keys.length; i++) {
       var val = collection[_keys[i]];
       iterator(val, _keys[i]);
     }
   }
+
   return result;
 }
 
 function uniqBy(array, comparator) {
   var uniqKeys = {};
   var result = [];
-
   array.forEach(function (item) {
     var keyTest = comparator(item);
+
     if (!uniqKeys[keyTest]) {
       uniqKeys[keyTest] = true;
       result.push(item);
     }
   });
-
   return result;
 }
 
 function keys(obj) {
   var ownKeys = [];
+
   for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) ownKeys.push(prop);
   }
+
   return ownKeys;
 }
 
@@ -1052,6 +1511,7 @@ function pickBy(obj, predicate) {
   predicate = predicate || function (x) {
     return x;
   };
+
   var result = {};
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
@@ -1060,7 +1520,6 @@ function pickBy(obj, predicate) {
   try {
     for (var _iterator = keys(obj)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
       var key = _step.value;
-
       var shouldPick = predicate(obj[key], key);
       if (shouldPick) result[key] = obj[key];
     }
@@ -1069,8 +1528,8 @@ function pickBy(obj, predicate) {
     _iteratorError = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion && _iterator.return) {
-        _iterator.return();
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
       }
     } finally {
       if (_didIteratorError) {
@@ -1088,11 +1547,10 @@ function isUndefined(value) {
 
 function get(object, key) {
   var current = object;
-
   var keys = key.split('.');
 
   for (var i = 0; i < keys.length; i += 1) {
-    if (current === null || (typeof current === 'undefined' ? 'undefined' : _typeof(current)) !== 'object') {
+    if (current === null || _typeof(current) !== 'object') {
       current = undefined;
       break;
     }
@@ -1104,7 +1562,7 @@ function get(object, key) {
 }
 
 function find(collection, predicate) {
-  if ((typeof collection === 'undefined' ? 'undefined' : _typeof(collection)) === 'object') {
+  if (_typeof(collection) === 'object') {
     if (!collection.length) {
       collection = Object.values(collection);
     }
