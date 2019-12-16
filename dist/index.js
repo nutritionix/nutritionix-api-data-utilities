@@ -1069,7 +1069,7 @@ var _require = require('./artifacts.js'),
     dailyValueTransforms = _require.dailyValueTransforms;
 /**
  * @license MIT
- * @version 2.5.0
+ * @version 2.7.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -1377,7 +1377,9 @@ var cxhMappping = {
   320: 'VITA-',
   410: 'VITC-',
   301: 'CA',
-  303: 'FE'
+  303: 'FE',
+  306: 'K',
+  328: 'VITD-'
 };
 
 function convertCxhToFullNutrients(panel) {
