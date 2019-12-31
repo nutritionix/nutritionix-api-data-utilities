@@ -11,7 +11,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.7.0
+ * @version 2.7.1
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -250,7 +250,7 @@ function convertCxhToFullNutrients(panel) {
     const nutrientDetail = _.find(nutrientDetails, (detail) => detail.NutrientTypeCode === nutrientTypeCode);
 
     if (nutrientDetail) {
-      const nutrient = {attr_id: +attrId, value: nutrientDetail.QuantityContained.Value};
+      const nutrient = {attr_id: +attrId, value: _.get(nutrientDetail, 'QuantityContained.Value')};
       if (!_.isUndefined(nutrientDetail.DailyValueIntakePercent)) {
         nutrient.dv = nutrientDetail.DailyValueIntakePercent;
       }

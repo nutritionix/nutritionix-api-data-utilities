@@ -1069,7 +1069,7 @@ var _require = require('./artifacts.js'),
     dailyValueTransforms = _require.dailyValueTransforms;
 /**
  * @license MIT
- * @version 2.7.0
+ * @version 2.7.1
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -1394,7 +1394,7 @@ function convertCxhToFullNutrients(panel) {
     if (nutrientDetail) {
       var nutrient = {
         attr_id: +attrId,
-        value: nutrientDetail.QuantityContained.Value
+        value: _2.get(nutrientDetail, 'QuantityContained.Value')
       };
 
       if (!_2.isUndefined(nutrientDetail.DailyValueIntakePercent)) {
