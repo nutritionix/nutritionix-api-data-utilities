@@ -1,0 +1,6 @@
+/tmp
+.idea
+npm-debug.log
+node_modules/
+/test.js
+/spec
