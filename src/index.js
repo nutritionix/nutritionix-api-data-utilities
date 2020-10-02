@@ -234,7 +234,7 @@ const cxhMappping = {
   605: 'FATRN',
   203: 'PRO-',
   320: 'VITA-',
-  410: 'VITC-',
+  401: 'VITC-',
   301: 'CA',
   303: 'FE',
   306: 'K',
