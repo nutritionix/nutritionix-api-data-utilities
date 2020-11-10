@@ -1069,7 +1069,7 @@ var _require = require('./artifacts.js'),
     dailyValueTransforms = _require.dailyValueTransforms;
 /**
  * @license MIT
- * @version 2.7.1
+ * @version 2.8.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -1370,7 +1370,7 @@ var cxhMappping = {
   205: 'CHO-',
   601: 'CHOL-',
   269: 'SUGAR-',
-  539: 'SUGAD',
+  539: ['SUGAD', 'Includes Added Sugars'],
   291: 'FIBTSW',
   605: 'FATRN',
   203: 'PRO-',
@@ -1386,9 +1386,13 @@ function convertCxhToFullNutrients(panel) {
   var nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
   var fullNutrients = [];
 
-  _2.forEach(cxhMappping, function (nutrientTypeCode, attrId) {
+  _2.forEach(cxhMappping, function (nutrientMapping, attrId) {
     var nutrientDetail = _2.find(nutrientDetails, function (detail) {
-      return detail.NutrientTypeCode === nutrientTypeCode;
+      if (Array.isArray(nutrientMapping)) {
+        return nutrientMapping.includes(detail.NutrientTypeCode || detail.CustomNutrientName);
+      }
+
+      return detail.NutrientTypeCode === nutrientMapping;
     });
 
     if (nutrientDetail) {

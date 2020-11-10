@@ -11,7 +11,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.7.1
+ * @version 2.8.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -229,7 +229,7 @@ const cxhMappping = {
   205: 'CHO-',
   601: 'CHOL-',
   269: 'SUGAR-',
-  539: 'SUGAD',
+  539: ['SUGAD', 'Includes Added Sugars'],
   291: 'FIBTSW',
   605: 'FATRN',
   203: 'PRO-',
@@ -246,8 +246,17 @@ function convertCxhToFullNutrients(panel) {
 
   const fullNutrients = [];
 
-  _.forEach(cxhMappping, (nutrientTypeCode, attrId) => {
-    const nutrientDetail = _.find(nutrientDetails, (detail) => detail.NutrientTypeCode === nutrientTypeCode);
+  _.forEach(cxhMappping, (nutrientMapping, attrId) => {
+    const nutrientDetail = _.find(
+      nutrientDetails,
+      (detail) => {
+        if(Array.isArray(nutrientMapping)) {
+          return nutrientMapping.includes(detail.NutrientTypeCode || detail.CustomNutrientName);
+        }
+
+        return detail.NutrientTypeCode === nutrientMapping;
+      }
+    );
 
     if (nutrientDetail) {
       const nutrient = {attr_id: +attrId, value: _.get(nutrientDetail, 'QuantityContained.Value')};
