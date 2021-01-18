@@ -11,7 +11,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.8.0
+ * @version 2.9.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -102,25 +102,35 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
  * @returns {Array} Full nutrients array
  */
 function buildFullNutrientsArray(data) {
-  return _.reduce(nutrientsMap, function(accum, nutrDetails, v1AttrName) {
+  const fullNutrients = [];
+
+  _.forEach(nutrientsMap, function (nutrientDetails, v1AttrName) {
     if (data[v1AttrName] || data[v1AttrName] === 0) {
-      let value   = parseFloat(data[v1AttrName]);
+      let value = parseFloat(data[v1AttrName]);
       if (!isNaN(value) && !(value < 0)) {
-        let attr_id = nutrDetails.attr_id;
+        let attr_id = nutrientDetails.attr_id;
         //ensure that daily value measures are calculated into the appropriate units.
-        if (dailyValueTransforms[attr_id]) {
+        if (v1AttrName.slice(-3) === '_dv' && dailyValueTransforms[attr_id]) {
           value = dailyValueTransforms[attr_id] / 100 * value;
         }
         //round to 4 decimal places
         value = parseFloat(value.toFixed(4));
-        accum.push({
-          attr_id: nutrDetails.attr_id,
-          value:   value
-        });
+
+        // failsafe in case the same nutrient may be mapped from multiple attributes (dv and non-dv values)
+        const nutrient = _.find(fullNutrients, (v) => v.attr_id === attr_id);
+        if (nutrient) {
+          nutrient.value = value;
+        } else {
+          fullNutrients.push({
+            attr_id,
+            value: value
+          });
+        }
       }
     }
-    return accum;
-  }, []);
+  })
+
+  return fullNutrients;
 }
 
 /**

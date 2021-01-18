@@ -899,7 +899,6 @@ var nutrientsMap = {
   nf_mals: fullNutrientsDefinitions['214'],
   nf_alc: fullNutrientsDefinitions['221'],
   nf_water: fullNutrientsDefinitions['255'],
-  NULL: fullNutrientsDefinitions['859'],
   nf_caffn: fullNutrientsDefinitions['262'],
   nf_thebrn: fullNutrientsDefinitions['263'],
   nf_enerc_kj: fullNutrientsDefinitions['268'],
@@ -908,7 +907,9 @@ var nutrientsMap = {
   nf_gals: fullNutrientsDefinitions['287'],
   nf_dietary_fiber: fullNutrientsDefinitions['291'],
   nf_calcium_dv: fullNutrientsDefinitions['301'],
+  nf_calcium_mg: fullNutrientsDefinitions['301'],
   nf_iron_dv: fullNutrientsDefinitions['303'],
+  nf_iron_mg: fullNutrientsDefinitions['303'],
   nf_mg: fullNutrientsDefinitions['304'],
   nf_p: fullNutrientsDefinitions['305'],
   nf_potassium: fullNutrientsDefinitions['306'],
@@ -922,6 +923,7 @@ var nutrientsMap = {
   nf_retol: fullNutrientsDefinitions['319'],
   nf_vitamin_c_dv: fullNutrientsDefinitions['401'],
   nf_vitamin_d_dv: fullNutrientsDefinitions['324'],
+  nf_vitamin_d_mcg: fullNutrientsDefinitions['328'],
   nf_cholesterol: fullNutrientsDefinitions['601'],
   nf_trans_fatty_acid: fullNutrientsDefinitions['605'],
   nf_saturated_fat: fullNutrientsDefinitions['606'],
@@ -1069,7 +1071,7 @@ var _require = require('./artifacts.js'),
     dailyValueTransforms = _require.dailyValueTransforms;
 /**
  * @license MIT
- * @version 2.8.0
+ * @version 2.9.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -1172,28 +1174,39 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
 
 
 function buildFullNutrientsArray(data) {
-  return _2.reduce(nutrientsMap, function (accum, nutrDetails, v1AttrName) {
+  var fullNutrients = [];
+
+  _2.forEach(nutrientsMap, function (nutrientDetails, v1AttrName) {
     if (data[v1AttrName] || data[v1AttrName] === 0) {
       var value = parseFloat(data[v1AttrName]);
 
       if (!isNaN(value) && !(value < 0)) {
-        var attr_id = nutrDetails.attr_id; //ensure that daily value measures are calculated into the appropriate units.
+        var attr_id = nutrientDetails.attr_id; //ensure that daily value measures are calculated into the appropriate units.
 
-        if (dailyValueTransforms[attr_id]) {
+        if (v1AttrName.slice(-3) === '_dv' && dailyValueTransforms[attr_id]) {
           value = dailyValueTransforms[attr_id] / 100 * value;
         } //round to 4 decimal places
 
 
-        value = parseFloat(value.toFixed(4));
-        accum.push({
-          attr_id: nutrDetails.attr_id,
-          value: value
+        value = parseFloat(value.toFixed(4)); // failsafe in case the same nutrient may be mapped from multiple attributes (dv and non-dv values)
+
+        var nutrient = _2.find(fullNutrients, function (v) {
+          return v.attr_id === attr_id;
         });
+
+        if (nutrient) {
+          nutrient.value = value;
+        } else {
+          fullNutrients.push({
+            attr_id: attr_id,
+            value: value
+          });
+        }
       }
     }
+  });
 
-    return accum;
-  }, []);
+  return fullNutrients;
 }
 /**
  * Generates object with top level nf_attributes from full_nutrients array
