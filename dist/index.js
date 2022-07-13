@@ -1010,14 +1010,20 @@ var baseTrackObj = {
   alt_measures: null
 };
 var dailyValueTransforms = {
-  //vitamin_a_dv
+  // Dietary Fiber 28g
+  291: 28,
+  //vitamin_a_dv 5000 IU
   318: 5000,
+  // Vitamin A 900mcg RAE
+  320: 900,
   //vitamin_c_dv
   401: 60,
   //calcium_dv
   301: 1300,
   //iron_dv
   303: 18,
+  // Potassium 4700mg
+  306: 4700,
   //vitam_d_dv
   324: 800,
   // IU
@@ -1071,7 +1077,7 @@ var _require = require('./artifacts.js'),
     dailyValueTransforms = _require.dailyValueTransforms;
 /**
  * @license MIT
- * @version 2.9.0
+ * @version 2.11.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
