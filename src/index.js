@@ -11,7 +11,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.11.0
+ * @version 2.12.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -248,7 +248,9 @@ const cxhMappping = {
   301: 'CA',
   303: 'FE',
   306: 'K',
-  328: 'VITD-'
+  328: 'VITD-',
+  304: 'MG',
+  305: 'P'
 };
 
 function convertCxhToFullNutrients(panel) {
