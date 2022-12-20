@@ -1027,7 +1027,11 @@ var dailyValueTransforms = {
   //vitam_d_dv
   324: 800,
   // IU
-  328: 20 // µg
+  328: 20,
+  // µg
+  304: 420,
+  // mg
+  305: 1250 //mg
 
 };
 var onyxMapping = {
@@ -1045,13 +1049,35 @@ var onyxMapping = {
   "127273": 646,
   "127274": 645
 };
+var cxhMapping = {
+  208: 'ENER-',
+  204: 'FAT',
+  606: 'FASAT',
+  307: 'NA',
+  205: 'CHO-',
+  601: 'CHOL-',
+  269: 'SUGAR-',
+  539: ['SUGAD', 'Includes Added Sugars'],
+  291: 'FIBTSW',
+  605: 'FATRN',
+  203: 'PRO-',
+  320: 'VITA-',
+  401: 'VITC-',
+  301: 'CA',
+  303: 'FE',
+  306: 'K',
+  328: 'VITD-',
+  304: 'MG',
+  305: 'P'
+};
 module.exports = {
   nutrientsMap: nutrientsMap,
   fullNutrientsDefinitions: fullNutrientsDefinitions,
   attrMap: attrMap,
   baseTrackObj: baseTrackObj,
   dailyValueTransforms: dailyValueTransforms,
-  onyxMapping: onyxMapping
+  onyxMapping: onyxMapping,
+  cxhMapping: cxhMapping
 };
 
 },{}],2:[function(require,module,exports){
@@ -1074,7 +1100,8 @@ var _require = require('./artifacts.js'),
     fullNutrientsDefinitions = _require.fullNutrientsDefinitions,
     attrMap = _require.attrMap,
     baseTrackObj = _require.baseTrackObj,
-    dailyValueTransforms = _require.dailyValueTransforms;
+    dailyValueTransforms = _require.dailyValueTransforms,
+    cxhMapping = _require.cxhMapping;
 /**
  * @license MIT
  * @version 2.12.0
@@ -1095,7 +1122,8 @@ module.exports = {
   extendFullNutrientsWithMetaData: extendFullNutrientsWithMetaData,
   dailyValueTransforms: dailyValueTransforms,
   convertOnyxToFullNutrientsArray: convertOnyxToFullNutrientsArray,
-  convertCxhToFullNutrients: convertCxhToFullNutrients
+  convertCxhToFullNutrients: convertCxhToFullNutrients,
+  cxhMapping: cxhMapping
 };
 var v1TypeAliases = {
   item_name: ['food_name', 'nix_item_name'],
@@ -1381,33 +1409,11 @@ function convertOnyxToFullNutrientsArray(data) {
   return fullNutrients;
 }
 
-var cxhMappping = {
-  208: 'ENER-',
-  204: 'FAT',
-  606: 'FASAT',
-  307: 'NA',
-  205: 'CHO-',
-  601: 'CHOL-',
-  269: 'SUGAR-',
-  539: ['SUGAD', 'Includes Added Sugars'],
-  291: 'FIBTSW',
-  605: 'FATRN',
-  203: 'PRO-',
-  320: 'VITA-',
-  401: 'VITC-',
-  301: 'CA',
-  303: 'FE',
-  306: 'K',
-  328: 'VITD-',
-  304: 'MG',
-  305: 'P'
-};
-
 function convertCxhToFullNutrients(panel) {
   var nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
   var fullNutrients = [];
 
-  _2.forEach(cxhMappping, function (nutrientMapping, attrId) {
+  _2.forEach(cxhMapping, function (nutrientMapping, attrId) {
     var nutrientDetail = _2.find(nutrientDetails, function (detail) {
       if (Array.isArray(nutrientMapping)) {
         return nutrientMapping.includes(detail.NutrientTypeCode || detail.CustomNutrientName);

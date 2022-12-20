@@ -6,12 +6,13 @@ const {
         fullNutrientsDefinitions,
         attrMap,
         baseTrackObj,
-        dailyValueTransforms
+        dailyValueTransforms,
+        cxhMapping,
       } = require('./artifacts.js');
 
 /**
  * @license MIT
- * @version 2.12.0
+ * @version 2.13.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -27,7 +28,8 @@ module.exports = {
   extendFullNutrientsWithMetaData,
   dailyValueTransforms,
   convertOnyxToFullNutrientsArray,
-  convertCxhToFullNutrients
+  convertCxhToFullNutrients,
+  cxhMapping,
 };
 
 
@@ -231,34 +233,12 @@ function convertOnyxToFullNutrientsArray(data) {
   return fullNutrients;
 }
 
-const cxhMappping = {
-  208: 'ENER-',
-  204: 'FAT',
-  606: 'FASAT',
-  307: 'NA',
-  205: 'CHO-',
-  601: 'CHOL-',
-  269: 'SUGAR-',
-  539: ['SUGAD', 'Includes Added Sugars'],
-  291: 'FIBTSW',
-  605: 'FATRN',
-  203: 'PRO-',
-  320: 'VITA-',
-  401: 'VITC-',
-  301: 'CA',
-  303: 'FE',
-  306: 'K',
-  328: 'VITD-',
-  304: 'MG',
-  305: 'P'
-};
-
 function convertCxhToFullNutrients(panel) {
   const nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
 
   const fullNutrients = [];
 
-  _.forEach(cxhMappping, (nutrientMapping, attrId) => {
+  _.forEach(cxhMapping, (nutrientMapping, attrId) => {
     const nutrientDetail = _.find(
       nutrientDetails,
       (detail) => {

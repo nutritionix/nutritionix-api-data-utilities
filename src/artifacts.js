@@ -655,7 +655,9 @@ const dailyValueTransforms = {
   306: 4700,
   //vitam_d_dv
   324: 800, // IU
-  328: 20 // µg
+  328: 20, // µg
+  304: 420, // mg
+  305: 1250, //mg
 };
 
 const onyxMapping = {
@@ -674,11 +676,34 @@ const onyxMapping = {
   "127274": 645
 };
 
+const cxhMapping = {
+  208: 'ENER-',
+  204: 'FAT',
+  606: 'FASAT',
+  307: 'NA',
+  205: 'CHO-',
+  601: 'CHOL-',
+  269: 'SUGAR-',
+  539: ['SUGAD', 'Includes Added Sugars'],
+  291: 'FIBTSW',
+  605: 'FATRN',
+  203: 'PRO-',
+  320: 'VITA-',
+  401: 'VITC-',
+  301: 'CA',
+  303: 'FE',
+  306: 'K',
+  328: 'VITD-',
+  304: 'MG',
+  305: 'P'
+};
+
 module.exports = {
   nutrientsMap,
   fullNutrientsDefinitions,
   attrMap,
   baseTrackObj,
   dailyValueTransforms,
-  onyxMapping
+  onyxMapping,
+  cxhMapping,
 };
