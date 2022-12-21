@@ -951,8 +951,8 @@ var attrMap = {
   '539': 'nf_added_sugars',
   '287': 'nf_gals',
   '291': 'nf_dietary_fiber',
-  '301': 'nf_calcium_dv',
-  '303': 'nf_iron_dv',
+  '301': ['nf_calcium_dv', 'nf_calcium_mg'],
+  '303': ['nf_iron_dv', 'nf_iron_mg'],
   '304': 'nf_mg',
   '305': 'nf_p',
   '306': 'nf_potassium',
@@ -965,6 +965,7 @@ var attrMap = {
   '318': 'nf_vitamin_a_dv',
   '319': 'nf_retol',
   '324': 'nf_vitamin_d_dv',
+  '328': 'nf_vitamin_d_mcg',
   '401': 'nf_vitamin_c_dv',
   '601': 'nf_cholesterol',
   '605': 'nf_trans_fatty_acid',
@@ -1009,7 +1010,7 @@ var baseTrackObj = {
   note: null,
   alt_measures: null
 };
-var dailyValueTransforms = {
+var dailyValues = {
   // Dietary Fiber 28g
   291: 28,
   //vitamin_a_dv 5000 IU
@@ -1024,7 +1025,7 @@ var dailyValueTransforms = {
   303: 18,
   // Potassium 4700mg
   306: 4700,
-  //vitam_d_dv
+  //vitamin_d_dv
   324: 800,
   // IU
   328: 20,
@@ -1032,8 +1033,8 @@ var dailyValueTransforms = {
   304: 420,
   // mg
   305: 1250 //mg
-
 };
+
 var onyxMapping = {
   "127271": 204,
   "127272": 606,
@@ -1075,7 +1076,7 @@ module.exports = {
   fullNutrientsDefinitions: fullNutrientsDefinitions,
   attrMap: attrMap,
   baseTrackObj: baseTrackObj,
-  dailyValueTransforms: dailyValueTransforms,
+  dailyValues: dailyValues,
   onyxMapping: onyxMapping,
   cxhMapping: cxhMapping
 };
@@ -1083,35 +1084,30 @@ module.exports = {
 },{}],2:[function(require,module,exports){
 'use strict';
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 var _2 = require('./utils');
-
 var _require = require('./artifacts.js'),
-    nutrientsMap = _require.nutrientsMap,
-    fullNutrientsDefinitions = _require.fullNutrientsDefinitions,
-    attrMap = _require.attrMap,
-    baseTrackObj = _require.baseTrackObj,
-    dailyValueTransforms = _require.dailyValueTransforms,
-    cxhMapping = _require.cxhMapping;
+  nutrientsMap = _require.nutrientsMap,
+  fullNutrientsDefinitions = _require.fullNutrientsDefinitions,
+  attrMap = _require.attrMap,
+  baseTrackObj = _require.baseTrackObj,
+  dailyValues = _require.dailyValues,
+  cxhMapping = _require.cxhMapping;
+
 /**
  * @license MIT
- * @version 2.12.0
+ * @version 2.13.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
  * Utilities to handle different data formats in Nutritionix APIs
  */
-
-
 module.exports = {
   nutrientsMap: nutrientsMap,
   fullNutrientsDefinitions: fullNutrientsDefinitions,
@@ -1120,7 +1116,8 @@ module.exports = {
   buildFullNutrientsArray: buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes: convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData: extendFullNutrientsWithMetaData,
-  dailyValueTransforms: dailyValueTransforms,
+  dailyValueTransforms: dailyValues,
+  dailyValues: dailyValues,
   convertOnyxToFullNutrientsArray: convertOnyxToFullNutrientsArray,
   convertCxhToFullNutrients: convertCxhToFullNutrients,
   cxhMapping: cxhMapping
@@ -1134,27 +1131,22 @@ var v1TypeAliases = {
   brand_name: ['nix_brand_name', 'brand_name'],
   brand_id: ['nix_brand_id']
 };
-
 function hasItems(test) {
   return Array.isArray(test) && test.length;
 }
-
 function optimisticallyMergeArrays(comparator) {
   var _ref;
-
   for (var _len = arguments.length, cols = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     cols[_key - 1] = arguments[_key];
   }
-
-  var mergeCols = cols.filter(hasItems); //base cases
-
+  var mergeCols = cols.filter(hasItems);
+  //base cases
   if (!mergeCols.length) return [];
   if (mergeCols.length === 1) return mergeCols[0];
-
   var flat = (_ref = []).concat.apply(_ref, _toConsumableArray(mergeCols));
-
   return _2.uniqBy(flat, comparator);
 }
+
 /**
  *
  * @param {object} v1Item Api V1 Food object
@@ -1163,17 +1155,17 @@ function optimisticallyMergeArrays(comparator) {
  * @returns {object} Track API food object
  */
 
-
 function convertV1ItemToTrackFood(v1Item, defaultObj) {
   v1Item = _typeof(v1Item) === 'object' && v1Item !== null ? v1Item : {};
-  defaultObj = _typeof(defaultObj) === 'object' && defaultObj !== null ? defaultObj : {}; //build a full nutrient array from any 'nf' fields from the v1item;
+  defaultObj = _typeof(defaultObj) === 'object' && defaultObj !== null ? defaultObj : {};
 
-  var v1FullNutrs = buildFullNutrientsArray(v1Item); //create an object with superset of keys, including both original and aliases fields for later picking.
+  //build a full nutrient array from any 'nf' fields from the v1item;
+  var v1FullNutrs = buildFullNutrientsArray(v1Item);
 
+  //create an object with superset of keys, including both original and aliases fields for later picking.
   var mappedFields = _2.reduce(v1Item, function (accum, val, key) {
     //either use array of aliases, or the key itself.
     var aliases = v1TypeAliases[key];
-
     if (aliases) {
       aliases.forEach(function (alias) {
         return accum[alias] = val;
@@ -1181,16 +1173,15 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
     } else {
       accum[key] = val;
     }
-
     return accum;
-  }, {}); //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
+  }, {});
 
-
+  //only include truthy fields that are track food object fields. Untruthy fields will be defaulted to the baseTrackObj value.
   var v1Defaults = _2.pickBy(mappedFields, function (val, key) {
     return baseTrackObj.hasOwnProperty(key) && (val || val === 0);
-  }); //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
+  });
 
-
+  //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
   var fullNutrArray = optimisticallyMergeArrays(function (nutr) {
     return nutr.attr_id;
   }, defaultObj.full_nutrients, v1FullNutrs);
@@ -1198,6 +1189,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
     full_nutrients: fullNutrArray
   }, defaultObj, v1Defaults, baseTrackObj);
 }
+
 /**
  * Uses top level properties from provided data object to construct full nutrients array.
  * Supports api names as keys of the source object
@@ -1205,29 +1197,24 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
  * @param {Object} data
  * @returns {Array} Full nutrients array
  */
-
-
 function buildFullNutrientsArray(data) {
   var fullNutrients = [];
-
   _2.forEach(nutrientsMap, function (nutrientDetails, v1AttrName) {
     if (data[v1AttrName] || data[v1AttrName] === 0) {
       var value = parseFloat(data[v1AttrName]);
-
       if (!isNaN(value) && !(value < 0)) {
-        var attr_id = nutrientDetails.attr_id; //ensure that daily value measures are calculated into the appropriate units.
+        var attr_id = nutrientDetails.attr_id;
+        //ensure that daily value measures are calculated into the appropriate units.
+        if (v1AttrName.slice(-3) === '_dv' && dailyValues[attr_id]) {
+          value = dailyValues[attr_id] / 100 * value;
+        }
+        //round to 4 decimal places
+        value = parseFloat(value.toFixed(4));
 
-        if (v1AttrName.slice(-3) === '_dv' && dailyValueTransforms[attr_id]) {
-          value = dailyValueTransforms[attr_id] / 100 * value;
-        } //round to 4 decimal places
-
-
-        value = parseFloat(value.toFixed(4)); // failsafe in case the same nutrient may be mapped from multiple attributes (dv and non-dv values)
-
+        // failsafe in case the same nutrient may be mapped from multiple attributes (dv and non-dv values)
         var nutrient = _2.find(fullNutrients, function (v) {
           return v.attr_id === attr_id;
         });
-
         if (nutrient) {
           nutrient.value = value;
         } else {
@@ -1239,28 +1226,32 @@ function buildFullNutrientsArray(data) {
       }
     }
   });
-
   return fullNutrients;
 }
+
 /**
  * Generates object with top level nf_attributes from full_nutrients array
  * @param {Object[]} fullNutrients Full nutrients array
  * @returns {Object} Nf attributes object
  */
-
-
 function convertFullNutrientsToNfAttributes(fullNutrients) {
   return _2.reduce(fullNutrients, function (accum, val) {
-    var nfKey = attrMap[val.attr_id];
-
-    if (nfKey) {
-      var transformVal = dailyValueTransforms[val.attr_id];
-      accum[nfKey] = transformVal ? val.value / transformVal * 100 : val.value;
+    var nfKeys = attrMap[val.attr_id];
+    if (nfKeys) {
+      var nfKeysArray = Array.isArray(nfKeys) ? nfKeys : [nfKeys];
+      nfKeysArray.forEach(function (nfKey) {
+        if (nfKey.slice(-3) === '_dv') {
+          var dailyValue = dailyValues[val.attr_id];
+          accum[nfKey] = dailyValue ? val.value / dailyValue * 100 : val.value;
+        } else {
+          accum[nfKey] = val.value;
+        }
+      });
     }
-
     return accum;
   }, {});
 }
+
 /**
  * Expand short form of full_nutrients items to the full one with name, unit and usda_tag
  * Mutates original objects
@@ -1268,17 +1259,15 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
  * @param {Object[]} fullNutrients Full nutrients array
  * @returns {Object[]} Mutated full nutrients array
  */
-
-
 function extendFullNutrientsWithMetaData(fullNutrients) {
   return fullNutrients.map(function (nutr) {
     //found matching nutrient, extend.
     var nutrDefMatch = fullNutrientsDefinitions[nutr.attr_id];
-
     if (nutrDefMatch) {
       return _2.defaults(nutr, nutrDefMatch);
     } else {
-      return nutr; //no match, return base.
+      return nutr;
+      //no match, return base.
     }
   });
 }
@@ -1354,6 +1343,7 @@ var onyxMapping = {
     'Nutrient.Value': "127274"
   }]
 };
+
 /**
  * Uses top level properties from provided data object to construct full nutrients array.
  * Supports api names as keys of the source object
@@ -1361,89 +1351,74 @@ var onyxMapping = {
  * @param {Object} data Onyx nutrition label data
  * @returns {Array} Full nutrients array
  */
-
 function convertOnyxToFullNutrientsArray(data) {
   var fullNutrients = [];
-
   _2.forEach(onyxMapping, function (onyxMapping, nutrientId) {
     var value;
-
     if (typeof onyxMapping === 'function') {
       value = onyxMapping(data);
     } else {
       var facts = [].concat(_2.get(data, 'Dietary.Facts') || [], _2.get(data, 'Vitamineral.Facts') || []);
       var fact;
-
       var _loop = function _loop(i) {
         var factSearchKey = Object.keys(onyxMapping[i])[0];
         var factSearchValue = Object.values(onyxMapping[i])[0].toLowerCase();
         fact = _2.find(facts, function (fact) {
           return (_2.get(fact, factSearchKey) || '').toString().toLowerCase() === factSearchValue;
         });
-
         if (fact) {
           value = _2.get(fact, 'Quantity');
           return "break";
         }
       };
-
       for (var i = 0; i < onyxMapping.length; i += 1) {
         var _ret = _loop(i);
-
         if (_ret === "break") break;
       }
     }
-
     if (!_2.isUndefined(value)) {
       if (value !== null) {
         value = parseFloat(value);
       }
-
       fullNutrients.push({
         attr_id: +nutrientId,
         value: value
       });
     }
   });
-
   return fullNutrients;
 }
-
 function convertCxhToFullNutrients(panel) {
   var nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
   var fullNutrients = [];
-
   _2.forEach(cxhMapping, function (nutrientMapping, attrId) {
     var nutrientDetail = _2.find(nutrientDetails, function (detail) {
       if (Array.isArray(nutrientMapping)) {
         return nutrientMapping.includes(detail.NutrientTypeCode || detail.CustomNutrientName);
       }
-
       return detail.NutrientTypeCode === nutrientMapping;
     });
-
     if (nutrientDetail) {
       var nutrient = {
         attr_id: +attrId,
         value: _2.get(nutrientDetail, 'QuantityContained.Value')
       };
-
       if (!_2.isUndefined(nutrientDetail.DailyValueIntakePercent)) {
         nutrient.dv = nutrientDetail.DailyValueIntakePercent;
       }
-
       fullNutrients.push(nutrient);
     }
   });
-
   return fullNutrients;
 }
 
 },{"./artifacts.js":1,"./utils":3}],3:[function(require,module,exports){
 'use strict';
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 module.exports = {
   defaults: defaults,
   mapKeys: mapKeys,
@@ -1456,12 +1431,10 @@ module.exports = {
   find: find,
   isUndefined: isUndefined
 };
-
 function defaults(source) {
   for (var _len = arguments.length, rest = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     rest[_key - 1] = arguments[_key];
   }
-
   var _loop = function _loop(i) {
     Object.keys(rest[i]).forEach(function (key) {
       if (source[key] === undefined) {
@@ -1469,14 +1442,11 @@ function defaults(source) {
       }
     });
   };
-
   for (var i = 0; i < rest.length; i++) {
     _loop(i);
   }
-
   return source;
 }
-
 function mapKeys(obj, fnc) {
   var returnObj = {};
   Object.keys(obj).forEach(function (key) {
@@ -1485,12 +1455,12 @@ function mapKeys(obj, fnc) {
   });
   return returnObj;
 }
-
 function reduce(collection, fn, accum) {
   var isArr = Array.isArray(collection);
   var hasAccumulator = arguments.length >= 3;
-  var result = accum; // bind new iterator fn to collection & accum
+  var result = accum;
 
+  // bind new iterator fn to collection & accum
   function iterator(item, idxOrKey) {
     if (!hasAccumulator) {
       result = item;
@@ -1499,29 +1469,24 @@ function reduce(collection, fn, accum) {
       result = fn(result, item, idxOrKey, collection);
     }
   }
-
   if (isArr) {
     for (var i = 0; i < collection.length; i++) {
       iterator(collection[i], i);
     }
   } else {
     var _keys = Object.keys(collection);
-
     for (var i = 0; i < _keys.length; i++) {
       var val = collection[_keys[i]];
       iterator(val, _keys[i]);
     }
   }
-
   return result;
 }
-
 function uniqBy(array, comparator) {
   var uniqKeys = {};
   var result = [];
   array.forEach(function (item) {
     var keyTest = comparator(item);
-
     if (!uniqKeys[keyTest]) {
       uniqKeys[keyTest] = true;
       result.push(item);
@@ -1529,87 +1494,61 @@ function uniqBy(array, comparator) {
   });
   return result;
 }
-
 function keys(obj) {
   var ownKeys = [];
-
   for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) ownKeys.push(prop);
   }
-
   return ownKeys;
 }
-
 function pickBy(obj, predicate) {
   predicate = predicate || function (x) {
     return x;
   };
-
   var result = {};
-  var _iteratorNormalCompletion = true;
-  var _didIteratorError = false;
-  var _iteratorError = undefined;
-
+  var _iterator = _createForOfIteratorHelper(keys(obj)),
+    _step;
   try {
-    for (var _iterator = keys(obj)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var key = _step.value;
       var shouldPick = predicate(obj[key], key);
       if (shouldPick) result[key] = obj[key];
     }
   } catch (err) {
-    _didIteratorError = true;
-    _iteratorError = err;
+    _iterator.e(err);
   } finally {
-    try {
-      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-        _iterator["return"]();
-      }
-    } finally {
-      if (_didIteratorError) {
-        throw _iteratorError;
-      }
-    }
+    _iterator.f();
   }
-
   return result;
 }
-
 function isUndefined(value) {
   return value === undefined;
 }
-
 function get(object, key) {
   var current = object;
   var keys = key.split('.');
-
   for (var i = 0; i < keys.length; i += 1) {
     if (current === null || _typeof(current) !== 'object') {
       current = undefined;
       break;
     }
-
     current = current[keys[i]];
   }
-
   return current;
 }
-
 function find(collection, predicate) {
   if (_typeof(collection) === 'object') {
     if (!collection.length) {
       collection = Object.values(collection);
     }
-
     for (var i = 0; i < collection.length; i += 1) {
       if (predicate(collection[i])) {
         return collection[i];
       }
     }
   }
-
   return undefined;
 }
-
 function forEach(collection, iterator) {
   Object.keys(collection).forEach(function (key) {
     iterator(collection[key], key);

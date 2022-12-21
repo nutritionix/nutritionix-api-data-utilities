@@ -578,8 +578,8 @@ const attrMap = {
   '539': 'nf_added_sugars',
   '287': 'nf_gals',
   '291': 'nf_dietary_fiber',
-  '301': 'nf_calcium_dv',
-  '303': 'nf_iron_dv',
+  '301': ['nf_calcium_dv', 'nf_calcium_mg'],
+  '303': ['nf_iron_dv', 'nf_iron_mg'],
   '304': 'nf_mg',
   '305': 'nf_p',
   '306': 'nf_potassium',
@@ -592,6 +592,7 @@ const attrMap = {
   '318': 'nf_vitamin_a_dv',
   '319': 'nf_retol',
   '324': 'nf_vitamin_d_dv',
+  '328': 'nf_vitamin_d_mcg',
   '401': 'nf_vitamin_c_dv',
   '601': 'nf_cholesterol',
   '605': 'nf_trans_fatty_acid',
@@ -638,7 +639,7 @@ const baseTrackObj = {
   alt_measures: null
 };
 
-const dailyValueTransforms = {
+const dailyValues = {
   // Dietary Fiber 28g
   291: 28,
   //vitamin_a_dv 5000 IU
@@ -653,7 +654,7 @@ const dailyValueTransforms = {
   303: 18,
   // Potassium 4700mg
   306: 4700,
-  //vitam_d_dv
+  //vitamin_d_dv
   324: 800, // IU
   328: 20, // µg
   304: 420, // mg
@@ -703,7 +704,7 @@ module.exports = {
   fullNutrientsDefinitions,
   attrMap,
   baseTrackObj,
-  dailyValueTransforms,
+  dailyValues,
   onyxMapping,
   cxhMapping,
 };

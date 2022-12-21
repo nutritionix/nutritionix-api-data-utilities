@@ -6,13 +6,13 @@ const {
         fullNutrientsDefinitions,
         attrMap,
         baseTrackObj,
-        dailyValueTransforms,
+        dailyValues,
         cxhMapping,
       } = require('./artifacts.js');
 
 /**
  * @license MIT
- * @version 2.13.0
+ * @version 2.14.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -26,7 +26,8 @@ module.exports = {
   buildFullNutrientsArray,
   convertFullNutrientsToNfAttributes,
   extendFullNutrientsWithMetaData,
-  dailyValueTransforms,
+  dailyValueTransforms: dailyValues,
+  dailyValues,
   convertOnyxToFullNutrientsArray,
   convertCxhToFullNutrients,
   cxhMapping,
@@ -112,8 +113,8 @@ function buildFullNutrientsArray(data) {
       if (!isNaN(value) && !(value < 0)) {
         let attr_id = nutrientDetails.attr_id;
         //ensure that daily value measures are calculated into the appropriate units.
-        if (v1AttrName.slice(-3) === '_dv' && dailyValueTransforms[attr_id]) {
-          value = dailyValueTransforms[attr_id] / 100 * value;
+        if (v1AttrName.slice(-3) === '_dv' && dailyValues[attr_id]) {
+          value = dailyValues[attr_id] / 100 * value;
         }
         //round to 4 decimal places
         value = parseFloat(value.toFixed(4));
@@ -141,11 +142,19 @@ function buildFullNutrientsArray(data) {
  * @returns {Object} Nf attributes object
  */
 function convertFullNutrientsToNfAttributes(fullNutrients) {
-  return _.reduce(fullNutrients, function(accum, val) {
-    var nfKey = attrMap[val.attr_id];
-    if (nfKey) {
-      let transformVal = dailyValueTransforms[val.attr_id];
-      accum[nfKey] = transformVal ? val.value / transformVal * 100 : val.value;
+  return _.reduce(fullNutrients, function (accum, val) {
+    const nfKeys = attrMap[val.attr_id];
+    if (nfKeys) {
+      const nfKeysArray = Array.isArray(nfKeys) ? nfKeys : [nfKeys];
+
+      nfKeysArray.forEach(function (nfKey) {
+        if (nfKey.slice(-3) === '_dv') {
+          const dailyValue = dailyValues[val.attr_id];
+          accum[nfKey]     = dailyValue ? val.value / dailyValue * 100 : val.value;
+        } else {
+          accum[nfKey] = val.value;
+        }
+      });
     }
     return accum;
   }, {});
