@@ -110,6 +110,66 @@ var fullNutrientsDefinitions = {
     unit: 'g',
     usda_tag: 'SUGAR'
   },
+  '299': {
+    attr_id: 299,
+    name: 'Sugar Alcohol',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '1001': {
+    attr_id: 1001,
+    name: 'Erythritol',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '1006': {
+    attr_id: 1006,
+    name: 'Allulose',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '1002': {
+    attr_id: 1002,
+    name: 'Glycerin',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '290': {
+    attr_id: 290,
+    name: 'Xylitol',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '261': {
+    attr_id: 261,
+    name: 'Sorbitol',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '260': {
+    attr_id: 260,
+    name: 'Mannitol',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '1003': {
+    attr_id: 1003,
+    name: 'Maltitol',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '1004': {
+    attr_id: 1004,
+    name: 'Isomalt',
+    unit: 'g',
+    usda_tag: ''
+  },
+  '1005': {
+    attr_id: 1005,
+    name: 'Isomalt',
+    unit: 'g',
+    usda_tag: ''
+  },
   '287': {
     attr_id: 287,
     name: 'Galactose',
@@ -903,6 +963,16 @@ var nutrientsMap = {
   nf_thebrn: fullNutrientsDefinitions['263'],
   nf_enerc_kj: fullNutrientsDefinitions['268'],
   nf_sugars: fullNutrientsDefinitions['269'],
+  nf_sugar_alcohol: fullNutrientsDefinitions['299'],
+  nf_erythritol: fullNutrientsDefinitions['1001'],
+  nf_allulose: fullNutrientsDefinitions['1006'],
+  nf_glycerin: fullNutrientsDefinitions['1002'],
+  nf_xylitol: fullNutrientsDefinitions['290'],
+  nf_sorbitol: fullNutrientsDefinitions['261'],
+  nf_mannitol: fullNutrientsDefinitions['260'],
+  nf_maltitol: fullNutrientsDefinitions['1003'],
+  nf_isomalt: fullNutrientsDefinitions['1004'],
+  nf_lactitol: fullNutrientsDefinitions['1005'],
   nf_added_sugars: fullNutrientsDefinitions['539'],
   nf_gals: fullNutrientsDefinitions['287'],
   nf_dietary_fiber: fullNutrientsDefinitions['291'],
@@ -948,6 +1018,16 @@ var attrMap = {
   '263': 'nf_thebrn',
   '268': 'nf_enerc_kj',
   '269': 'nf_sugars',
+  '299': 'nf_sugar_alcohol',
+  '1001': 'nf_erythritol',
+  '1006': 'nf_allulose',
+  '1002': 'nf_glycerin',
+  '290': 'nf_xylitol',
+  '261': 'nf_sorbitol',
+  '260': 'nf_mannitol',
+  '1003': 'nf_maltitol',
+  '1004': 'nf_isomalt',
+  '1005': 'nf_lactitol',
   '539': 'nf_added_sugars',
   '287': 'nf_gals',
   '291': 'nf_dietary_fiber',
@@ -1102,7 +1182,7 @@ var _require = require('./artifacts.js'),
 
 /**
  * @license MIT
- * @version 2.13.0
+ * @version 2.15.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
