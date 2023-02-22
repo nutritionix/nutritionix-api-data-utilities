@@ -1130,27 +1130,196 @@ var onyxMapping = {
   "127273": 646,
   "127274": 645
 };
-var cxhMapping = {
-  208: 'ENER-',
-  204: 'FAT',
-  606: 'FASAT',
-  307: 'NA',
-  205: 'CHO-',
-  601: 'CHOL-',
-  269: 'SUGAR-',
-  539: ['SUGAD', 'Includes Added Sugars'],
-  291: 'FIBTSW',
-  605: 'FATRN',
-  203: 'PRO-',
-  320: 'VITA-',
-  401: 'VITC-',
-  301: 'CA',
-  303: 'FE',
-  306: 'K',
-  328: 'VITD-',
-  304: 'MG',
-  305: 'P'
-};
+var cxhMapping = [{
+  apiName: 'nf_calcium_mg',
+  attrId: nutrientsMap.nf_calcium_mg.attr_id,
+  // 301,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_calcium_mg.attr_id] || null,
+  nutrientTypeCodes: ['CA'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_total_carbohydrate',
+  attrId: nutrientsMap.nf_total_carbohydrate.attr_id,
+  // 205,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_total_carbohydrate.attr_id] || null,
+  nutrientTypeCodes: ['CHO-', 'CHOCDF'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_cholesterol',
+  attrId: nutrientsMap.nf_cholesterol.attr_id,
+  // 601,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_cholesterol.attr_id] || null,
+  nutrientTypeCodes: ['CHOL-', 'CHOLC'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_calories',
+  attrId: nutrientsMap.nf_calories.attr_id,
+  // 208,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_calories.attr_id] || null,
+  nutrientTypeCodes: ['ENER-', 'ENERC'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_saturated_fat',
+  attrId: nutrientsMap.nf_saturated_fat.attr_id,
+  // 606,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_saturated_fat.attr_id] || null,
+  nutrientTypeCodes: ['FASAT'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_monounsaturated_fat',
+  attrId: nutrientsMap.nf_monounsaturated_fat.attr_id,
+  // 645,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_monounsaturated_fat.attr_id] || null,
+  nutrientTypeCodes: ['FAMS'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_polyunsaturated_fat',
+  attrId: nutrientsMap.nf_polyunsaturated_fat.attr_id,
+  // 646,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_polyunsaturated_fat.attr_id] || null,
+  nutrientTypeCodes: ['FAPU'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_total_fat',
+  attrId: nutrientsMap.nf_total_fat.attr_id,
+  // 204,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_total_fat.attr_id] || null,
+  nutrientTypeCodes: ['FAT', 'FATNLEA'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_trans_fatty_acid',
+  attrId: nutrientsMap.nf_trans_fatty_acid.attr_id,
+  // 605,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_trans_fatty_acid.attr_id] || null,
+  nutrientTypeCodes: ['FATRN'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_iron_mg',
+  attrId: nutrientsMap.nf_iron_mg.attr_id,
+  // 303,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_iron_mg.attr_id] || null,
+  nutrientTypeCodes: ['FE', 'HAEM'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_dietary_fiber',
+  attrId: nutrientsMap.nf_dietary_fiber.attr_id,
+  // 291,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_dietary_fiber.attr_id] || null,
+  nutrientTypeCodes: ['FIBTSW', 'FIB-', 'FIBTG'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_potassium',
+  attrId: nutrientsMap.nf_potassium.attr_id,
+  // 306,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_potassium.attr_id] || null,
+  nutrientTypeCodes: ['K'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_sodium',
+  attrId: nutrientsMap.nf_sodium.attr_id,
+  // 307,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_sodium.attr_id] || null,
+  nutrientTypeCodes: ['NA', 'NACL'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_protein',
+  attrId: nutrientsMap.nf_protein.attr_id,
+  // 203,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_protein.attr_id] || null,
+  nutrientTypeCodes: ['PRO-', 'PROA'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_sugars',
+  attrId: nutrientsMap.nf_sugars.attr_id,
+  // 269,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_sugars.attr_id] || null,
+  nutrientTypeCodes: ['SUGAR-', 'SUGAR'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_added_sugars',
+  attrId: nutrientsMap.nf_added_sugars.attr_id,
+  // 539,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_added_sugars.attr_id] || null,
+  nutrientTypeCodes: ['SUGAD'],
+  customNutrientNames: ['Includes Added Sugars']
+}, {
+  apiName: 'nf_vitamin_d_mcg',
+  attrId: nutrientsMap.nf_vitamin_d_mcg.attr_id,
+  // 328,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_vitamin_d_mcg.attr_id] || null,
+  nutrientTypeCodes: ['VITD-', 'VITD'],
+  customNutrientNames: []
+}, {
+  apiName: 'nf_sugar_alcohol',
+  attrId: nutrientsMap.nf_sugar_alcohol.attr_id,
+  // 299,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_sugar_alcohol.attr_id] || null,
+  nutrientTypeCodes: [],
+  customNutrientNames: ['Sugar Alcohol', 'Sugar Alcohols']
+}, {
+  apiName: 'nf_erythritol',
+  attrId: nutrientsMap.nf_erythritol.attr_id,
+  // 1001,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_erythritol.attr_id] || null,
+  nutrientTypeCodes: ['ERYTHL'],
+  customNutrientNames: ['Erythritol']
+}, {
+  apiName: 'nf_allulose',
+  attrId: nutrientsMap.nf_allulose.attr_id,
+  // 1006,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_allulose.attr_id] || null,
+  nutrientTypeCodes: [],
+  customNutrientNames: ['Allulose']
+}, {
+  apiName: 'nf_glycerin',
+  attrId: nutrientsMap.nf_glycerin.attr_id,
+  // 1002,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_glycerin.attr_id] || null,
+  nutrientTypeCodes: [],
+  customNutrientNames: ['Glycerin']
+}, {
+  apiName: 'nf_xylitol',
+  attrId: nutrientsMap.nf_xylitol.attr_id,
+  // 290,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_xylitol.attr_id] || null,
+  nutrientTypeCodes: ['XYLTL'],
+  customNutrientNames: ['Xylitol']
+}, {
+  apiName: 'nf_sorbitol',
+  attrId: nutrientsMap.nf_sorbitol.attr_id,
+  // 261,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_sorbitol.attr_id] || null,
+  nutrientTypeCodes: ['SORTL'],
+  customNutrientNames: ['Sorbitol']
+}, {
+  apiName: 'nf_mannitol',
+  attrId: nutrientsMap.nf_mannitol.attr_id,
+  // 260,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_mannitol.attr_id] || null,
+  nutrientTypeCodes: ['MANTL'],
+  customNutrientNames: ['Mannitol']
+}, {
+  apiName: 'nf_maltitol',
+  attrId: nutrientsMap.nf_maltitol.attr_id,
+  // 1003,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_maltitol.attr_id] || null,
+  nutrientTypeCodes: ['MALTL'],
+  customNutrientNames: ['Maltitol']
+}, {
+  apiName: 'nf_isomalt',
+  attrId: nutrientsMap.nf_isomalt.attr_id,
+  // 1004,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_isomalt.attr_id] || null,
+  nutrientTypeCodes: ['ISOMALT'],
+  customNutrientNames: ['Isomalt']
+}, {
+  apiName: 'nf_lactitol',
+  attrId: nutrientsMap.nf_lactitol.attr_id,
+  // 1005,
+  dailyValueIntake: dailyValues[nutrientsMap.nf_lactitol.attr_id] || null,
+  nutrientTypeCodes: [],
+  customNutrientNames: ['Lactitol']
+}];
 module.exports = {
   nutrientsMap: nutrientsMap,
   fullNutrientsDefinitions: fullNutrientsDefinitions,
@@ -1182,7 +1351,7 @@ var _require = require('./artifacts.js'),
 
 /**
  * @license MIT
- * @version 2.15.0
+ * @version 3.0.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -1469,22 +1638,28 @@ function convertOnyxToFullNutrientsArray(data) {
   return fullNutrients;
 }
 function convertCxhToFullNutrients(panel) {
-  var nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
+  var cxhNutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
   var fullNutrients = [];
-  _2.forEach(cxhMapping, function (nutrientMapping, attrId) {
-    var nutrientDetail = _2.find(nutrientDetails, function (detail) {
-      if (Array.isArray(nutrientMapping)) {
-        return nutrientMapping.includes(detail.NutrientTypeCode || detail.CustomNutrientName);
+  _2.forEach(cxhMapping, function (nutrientMapping) {
+    var cxhNutrientDetail = _2.find(cxhNutrientDetails, function (detail) {
+      if (detail.NutrientTypeCode && nutrientMapping.nutrientTypeCodes.includes(detail.NutrientTypeCode)) {
+        return true;
       }
-      return detail.NutrientTypeCode === nutrientMapping;
+      return !!(detail.CustomNutrientName && nutrientMapping.customNutrientNames.includes(detail.CustomNutrientName));
     });
-    if (nutrientDetail) {
+    if (cxhNutrientDetail) {
       var nutrient = {
-        attr_id: +attrId,
-        value: _2.get(nutrientDetail, 'QuantityContained.Value')
+        attr_id: nutrientMapping.attrId
       };
-      if (!_2.isUndefined(nutrientDetail.DailyValueIntakePercent)) {
-        nutrient.dv = nutrientDetail.DailyValueIntakePercent;
+      var value = _2.get(cxhNutrientDetail, 'QuantityContained.Value');
+      if (!_2.isUndefined(cxhNutrientDetail.DailyValueIntakePercent)) {
+        nutrient.dv = cxhNutrientDetail.DailyValueIntakePercent;
+        if (_2.isUndefined(value) && nutrientMapping.dailyValueIntake) {
+          value = nutrientMapping.dailyValueIntake / 100 * cxhNutrientDetail.DailyValueIntakePercent;
+        }
+      }
+      if (!_2.isUndefined(value)) {
+        nutrient.value = value;
       }
       fullNutrients.push(nutrient);
     }

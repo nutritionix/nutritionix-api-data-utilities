@@ -12,7 +12,7 @@ const {
 
 /**
  * @license MIT
- * @version 2.15.0
+ * @version 3.0.0
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -35,13 +35,13 @@ module.exports = {
 
 
 const v1TypeAliases = {
-  item_name: ['food_name', 'nix_item_name'],
-  nf_serving_size_qty:  ['serving_qty'],
-  nf_serving_size_unit: ['serving_unit'],
-  nf_serving_weight_grams: ['serving_weight_grams'],
-  item_id: ['nix_item_id'],
-  brand_name: ['nix_brand_name', 'brand_name'],
-  brand_id: ['nix_brand_id']
+  item_name:               [ 'food_name', 'nix_item_name' ],
+  nf_serving_size_qty:     [ 'serving_qty' ],
+  nf_serving_size_unit:    [ 'serving_unit' ],
+  nf_serving_weight_grams: [ 'serving_weight_grams' ],
+  item_id:                 [ 'nix_item_id' ],
+  brand_name:              [ 'nix_brand_name', 'brand_name' ],
+  brand_id:                [ 'nix_brand_id' ]
 };
 
 function hasItems(test) {
@@ -67,14 +67,14 @@ function optimisticallyMergeArrays(comparator, ...cols) {
  */
 
 function convertV1ItemToTrackFood(v1Item, defaultObj) {
-  v1Item = (typeof v1Item === 'object' && v1Item !== null) ? v1Item : {};
+  v1Item     = (typeof v1Item === 'object' && v1Item !== null) ? v1Item : {};
   defaultObj = (typeof defaultObj === 'object' && defaultObj !== null) ? defaultObj : {};
 
   //build a full nutrient array from any 'nf' fields from the v1item;
   let v1FullNutrs = buildFullNutrientsArray(v1Item);
 
   //create an object with superset of keys, including both original and aliases fields for later picking.
-  let mappedFields = _.reduce(v1Item, function(accum, val, key) {
+  let mappedFields = _.reduce(v1Item, function (accum, val, key) {
     //either use array of aliases, or the key itself.
     let aliases = v1TypeAliases[key];
     if (aliases) {
@@ -94,7 +94,7 @@ function convertV1ItemToTrackFood(v1Item, defaultObj) {
   //join the arrays, taking the defaultObj nutrients first (will be preferred in later uniq testing)
   let fullNutrArray = optimisticallyMergeArrays(nutr => nutr.attr_id, defaultObj.full_nutrients, v1FullNutrs);
 
-  return _.defaults({full_nutrients: fullNutrArray}, defaultObj, v1Defaults, baseTrackObj);
+  return _.defaults({ full_nutrients: fullNutrArray }, defaultObj, v1Defaults, baseTrackObj);
 }
 
 /**
@@ -145,7 +145,7 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
   return _.reduce(fullNutrients, function (accum, val) {
     const nfKeys = attrMap[val.attr_id];
     if (nfKeys) {
-      const nfKeysArray = Array.isArray(nfKeys) ? nfKeys : [nfKeys];
+      const nfKeysArray = Array.isArray(nfKeys) ? nfKeys : [ nfKeys ];
 
       nfKeysArray.forEach(function (nfKey) {
         if (nfKey.slice(-3) === '_dv') {
@@ -161,7 +161,6 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
 }
 
 
-
 /**
  * Expand short form of full_nutrients items to the full one with name, unit and usda_tag
  * Mutates original objects
@@ -170,7 +169,7 @@ function convertFullNutrientsToNfAttributes(fullNutrients) {
  * @returns {Object[]} Mutated full nutrients array
  */
 function extendFullNutrientsWithMetaData(fullNutrients) {
-  return fullNutrients.map(function(nutr) {
+  return fullNutrients.map(function (nutr) {
     //found matching nutrient, extend.
     let nutrDefMatch = fullNutrientsDefinitions[nutr.attr_id];
     if (nutrDefMatch) {
@@ -183,19 +182,19 @@ function extendFullNutrientsWithMetaData(fullNutrients) {
 }
 
 const onyxMapping = {
-  204: [{'Nutrient.Text': "Total Fat"}, {'Nutrient.Value': "127271"}],
-  606: [{'Nutrient.Text': "Saturated Fat"}, {'Nutrient.Text': "Sat. fat"}, {'Nutrient.Value': "127272"}],
-  605: [{'Nutrient.Text': "Trans Fat"}, {'Nutrient.Value': "132289"}],
-  601: [{'Nutrient.Text': "Cholesterol"}, {'Nutrient.Text': "cholestrol"}, {'Nutrient.Value': "127275"}],
-  307: [{'Nutrient.Text': "Sodium"}, {'Nutrient.Value': "127276"}],
-  205: [{'Nutrient.Text': "Total Carbohydrate"}, {'Nutrient.Text': "carbohydrates"}, {'Nutrient.Value': "127278"}],
-  291: [{'Nutrient.Text': "Dietary Fiber"}, {'Nutrient.Value': "127279"}],
-  269: [{'Nutrient.Text': "Sugars"}, {'Nutrient.Value': "127282"}],
-  203: [{'Nutrient.Text': "Protein"}, {'Nutrient.Value': "127285"}],
-  306: [{'Nutrient.Text': "Potassium"}, {'Nutrient.Value': "127277"}],
-  208: panel => _.get(panel, 'Calorie.Calories'),
-  646: [{'Nutrient.Text': "Polyunsaturated Fat"}, {'Nutrient.Value': "127273"}],
-  645: [{'Nutrient.Text': "Monounsaturated Fat"}, {'Nutrient.Value': "127274"}],
+  204: [ { 'Nutrient.Text': "Total Fat" }, { 'Nutrient.Value': "127271" } ],
+  606: [ { 'Nutrient.Text': "Saturated Fat" }, { 'Nutrient.Text': "Sat. fat" }, { 'Nutrient.Value': "127272" } ],
+  605: [ { 'Nutrient.Text': "Trans Fat" }, { 'Nutrient.Value': "132289" } ],
+  601: [ { 'Nutrient.Text': "Cholesterol" }, { 'Nutrient.Text': "cholestrol" }, { 'Nutrient.Value': "127275" } ],
+  307: [ { 'Nutrient.Text': "Sodium" }, { 'Nutrient.Value': "127276" } ],
+  205: [ { 'Nutrient.Text': "Total Carbohydrate" }, { 'Nutrient.Text': "carbohydrates" }, { 'Nutrient.Value': "127278" } ],
+  291: [ { 'Nutrient.Text': "Dietary Fiber" }, { 'Nutrient.Value': "127279" } ],
+  269: [ { 'Nutrient.Text': "Sugars" }, { 'Nutrient.Value': "127282" } ],
+  203: [ { 'Nutrient.Text': "Protein" }, { 'Nutrient.Value': "127285" } ],
+  306: [ { 'Nutrient.Text': "Potassium" }, { 'Nutrient.Value': "127277" } ],
+  208: (panel) => _.get(panel, 'Calorie.Calories'),
+  646: [ { 'Nutrient.Text': "Polyunsaturated Fat" }, { 'Nutrient.Value': "127273" } ],
+  645: [ { 'Nutrient.Text': "Monounsaturated Fat" }, { 'Nutrient.Value': "127274" } ],
 };
 
 /**
@@ -235,7 +234,7 @@ function convertOnyxToFullNutrientsArray(data) {
         value = parseFloat(value);
       }
 
-      fullNutrients.push({attr_id: +nutrientId, value});
+      fullNutrients.push({ attr_id: +nutrientId, value });
     }
   });
 
@@ -243,27 +242,39 @@ function convertOnyxToFullNutrientsArray(data) {
 }
 
 function convertCxhToFullNutrients(panel) {
-  const nutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
+  const cxhNutrientDetails = Array.isArray(panel) ? panel : panel.NutrientDetails;
 
   const fullNutrients = [];
 
-  _.forEach(cxhMapping, (nutrientMapping, attrId) => {
-    const nutrientDetail = _.find(
-      nutrientDetails,
+  _.forEach(cxhMapping, (nutrientMapping) => {
+    const cxhNutrientDetail = _.find(
+      cxhNutrientDetails,
       (detail) => {
-        if(Array.isArray(nutrientMapping)) {
-          return nutrientMapping.includes(detail.NutrientTypeCode || detail.CustomNutrientName);
+        if (detail.NutrientTypeCode && nutrientMapping.nutrientTypeCodes.includes(detail.NutrientTypeCode)) {
+          return true;
         }
 
-        return detail.NutrientTypeCode === nutrientMapping;
+        return !!(detail.CustomNutrientName && nutrientMapping.customNutrientNames.includes(detail.CustomNutrientName));
       }
     );
 
-    if (nutrientDetail) {
-      const nutrient = {attr_id: +attrId, value: _.get(nutrientDetail, 'QuantityContained.Value')};
-      if (!_.isUndefined(nutrientDetail.DailyValueIntakePercent)) {
-        nutrient.dv = nutrientDetail.DailyValueIntakePercent;
+    if (cxhNutrientDetail) {
+      const nutrient = { attr_id: nutrientMapping.attrId };
+
+      let value = _.get(cxhNutrientDetail, 'QuantityContained.Value');
+
+      if (!_.isUndefined(cxhNutrientDetail.DailyValueIntakePercent)) {
+        nutrient.dv = cxhNutrientDetail.DailyValueIntakePercent;
+
+        if (_.isUndefined(value) && nutrientMapping.dailyValueIntake) {
+          value = (nutrientMapping.dailyValueIntake / 100) * cxhNutrientDetail.DailyValueIntakePercent;
+        }
       }
+
+      if (!_.isUndefined(value)) {
+        nutrient.value = value;
+      }
+
       fullNutrients.push(nutrient);
     }
   });

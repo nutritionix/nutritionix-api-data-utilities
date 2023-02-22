@@ -1,89 +1,101 @@
 {
-  "NumberOfServings":"5",
-  "ServingSize":{
-    "Code":"oz",
-    "Value":1.0
+  "NumberOfServings": "5",
+  "ServingSize": {
+    "Code": "oz",
+    "Value": 1.0
   },
-  "ServingSizeWeightInGrams":28.0,
-  "NutrientDetails":[
+  "ServingSizeWeightInGrams": 28.0,
+  "NutrientDetails": [
     {
-      "NutrientTypeCode":"ENER-",
-      "QuantityContained":{
-        "Code":"E14",
-        "Value":130.0
+      "NutrientTypeCode": "ENER-",
+      "QuantityContained": {
+        "Code": "E14",
+        "Value": 130.0
       }
     },
     {
-      "NutrientTypeCode":"FAMS",
-      "QuantityContained":{
-        "Code":"g",
-        "Value":3.7
+      "NutrientTypeCode": "FAMS",
+      "QuantityContained": {
+        "Code": "g",
+        "Value": 3.7
       },
-      "DailyValueIntakePercent":0.0
+      "DailyValueIntakePercent": 0.0
     },
     {
-      "NutrientTypeCode":"FAPU",
-      "QuantityContained":{
-        "Code":"g",
-        "Value":1.0
+      "NutrientTypeCode": "FAPU",
+      "QuantityContained": {
+        "Code": "g",
+        "Value": 1.0
       },
-      "DailyValueIntakePercent":0.0
+      "DailyValueIntakePercent": 0.0
     },
     {
-      "NutrientTypeCode":"PRO-",
-      "QuantityContained":{
-        "Code":"g",
-        "Value":2.0
+      "NutrientTypeCode": "PRO-",
+      "QuantityContained": {
+        "Code": "g",
+        "Value": 2.0
       },
-      "DailyValueIntakePercent":0.0
+      "DailyValueIntakePercent": 0.0
     },
     {
-      "NutrientTypeCode":"CHO-",
-      "QuantityContained":{
-        "Code":"g",
-        "Value":19.0
+      "NutrientTypeCode": "CHO-",
+      "QuantityContained": {
+        "Code": "g",
+        "Value": 19.0
       },
-      "DailyValueIntakePercent":6.0
+      "DailyValueIntakePercent": 6.0
     },
     {
-      "NutrientTypeCode":"NA",
-      "QuantityContained":{
-        "Code":"mg",
-        "Value":300.0
+      "NutrientTypeCode": "NA",
+      "QuantityContained": {
+        "Code": "mg",
+        "Value": 300.0
       },
-      "DailyValueIntakePercent":13.0
+      "DailyValueIntakePercent": 13.0
     },
     {
-      "NutrientTypeCode":"CHOL-",
-      "QuantityContained":{
-        "Code":"mg",
-        "Value":0.0
+      "NutrientTypeCode": "CHOL-",
+      "QuantityContained": {
+        "Code": "mg",
+        "Value": 0.0
       },
-      "DailyValueIntakePercent":0.0
+      "DailyValueIntakePercent": 0.0
     },
     {
-      "NutrientTypeCode":"FASAT",
-      "QuantityContained":{
-        "Code":"g",
-        "Value":0.5
+      "NutrientTypeCode": "FASAT",
+      "QuantityContained": {
+        "Code": "g",
+        "Value": 0.5
       },
-      "DailyValueIntakePercent":3.0
+      "DailyValueIntakePercent": 3.0
     },
     {
-      "NutrientTypeCode":"FAT",
-      "QuantityContained":{
-        "Code":"g",
-        "Value":5.0
+      "NutrientTypeCode": "FAT",
+      "QuantityContained": {
+        "Code": "g",
+        "Value": 5.0
       },
-      "DailyValueIntakePercent":8.0
+      "DailyValueIntakePercent": 8.0
     },
     {
-      "NutrientTypeCode":"FATRN",
-      "QuantityContained":{
-        "Code":"g",
-        "Value":0.0
+      "NutrientTypeCode": "FATRN",
+      "QuantityContained": {
+        "Code": "g",
+        "Value": 0.0
       },
-      "DailyValueIntakePercent":0.0
+      "DailyValueIntakePercent": 0.0
+    },
+    {
+      "QuantityContained": {
+        "Code": "GRM",
+        "Value": 2
+      },
+      "CustomNutrientName": "Sugar Alcohols"
+    },
+    {
+      "NutrientTypeCode": "FE",
+      "QuantityContained": {},
+      "DailyValueIntakePercent": 2
     }
   ]
 }

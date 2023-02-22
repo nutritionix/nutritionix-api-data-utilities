@@ -31,10 +31,10 @@ describe('convertV1ItemToTrackFood', () => {
   });
   it('should intelligently merge full nutrients', () => {
     let res = convertV1ItemToTrackFood({ nf_cholesterol: 10, nf_calories: 100 }, {
-      full_nutrients: [{
+      full_nutrients: [ {
         attr_id: 208,
         value:   5
-      }]
+      } ]
     });
     expect(res.full_nutrients.length).to.equal(2);
     let calFN = res.full_nutrients.filter(x => x.attr_id === 208)[0];
@@ -97,7 +97,7 @@ describe('convertFullNutrientsToNfAttributes', () => {
     expect(built.nf_iron_mg).to.equal(18);
   });
   it('should correctly calculate daily values', () => {
-    let built = convertFullNutrientsToNfAttributes([{ attr_id: 401, value: 10 }]);
+    let built = convertFullNutrientsToNfAttributes([ { attr_id: 401, value: 10 } ]);
     expect(built.nf_vitamin_c_dv).to.equal(10 / 60 * 100);
   });
 });
@@ -107,7 +107,7 @@ describe('extendFullNutrientsWithMetaData', () => {
     expect(extendFullNutrientsWithMetaData(food.full_nutrients)).to.be.an('array');
   });
   it('should extend with correct fields', () => {
-    let built = extendFullNutrientsWithMetaData([{ attr_id: 208, value: 10 }])[0];
+    let built = extendFullNutrientsWithMetaData([ { attr_id: 208, value: 10 } ])[0];
     expect(built.name).to.equal('Energy');
     expect(built.usda_tag).to.equal('ENERC_KCAL');
     expect(built.unit).to.equal('kcal');
@@ -169,7 +169,11 @@ describe('convertCxhToFullNutrientsArray', () => {
       { attr_id: 307, value: 300, dv: 13 },
       { attr_id: 601, value: 0, dv: 0 },
       { attr_id: 605, value: 0, dv: 0 },
-      { attr_id: 606, value: 0.5, dv: 3 }
+      { attr_id: 606, value: 0.5, dv: 3 },
+      { attr_id: 645, dv: 0, value: 3.7 },
+      { attr_id: 646, dv: 0, value: 1 },
+      { attr_id: 299, value: 2 },
+      { attr_id: 303, dv: 2, value: 0.36 },
     ].sort(sorter));
   });
 });
