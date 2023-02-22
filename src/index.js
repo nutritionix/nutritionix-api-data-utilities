@@ -12,7 +12,7 @@ const {
 
 /**
  * @license MIT
- * @version 3.0.0
+ * @version 3.0.1
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -267,7 +267,7 @@ function convertCxhToFullNutrients(panel) {
         nutrient.dv = cxhNutrientDetail.DailyValueIntakePercent;
 
         if (_.isUndefined(value) && nutrientMapping.dailyValueIntake) {
-          value = (nutrientMapping.dailyValueIntake / 100) * cxhNutrientDetail.DailyValueIntakePercent;
+          value = (cxhNutrientDetail.DailyValueIntakePercent / 100) * nutrientMapping.dailyValueIntake;
         }
       }
 

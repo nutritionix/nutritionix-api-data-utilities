@@ -1351,7 +1351,7 @@ var _require = require('./artifacts.js'),
 
 /**
  * @license MIT
- * @version 3.0.0
+ * @version 3.0.1
  * @author Yura Fedoriv <yurko.fedoriv@gmail.com>
  *
  * @description
@@ -1655,7 +1655,7 @@ function convertCxhToFullNutrients(panel) {
       if (!_2.isUndefined(cxhNutrientDetail.DailyValueIntakePercent)) {
         nutrient.dv = cxhNutrientDetail.DailyValueIntakePercent;
         if (_2.isUndefined(value) && nutrientMapping.dailyValueIntake) {
-          value = nutrientMapping.dailyValueIntake / 100 * cxhNutrientDetail.DailyValueIntakePercent;
+          value = cxhNutrientDetail.DailyValueIntakePercent / 100 * nutrientMapping.dailyValueIntake;
         }
       }
       if (!_2.isUndefined(value)) {
